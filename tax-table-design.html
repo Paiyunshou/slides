@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>税务表结构与开发GTD设计</title>
+<style>
+/* emerald-editorial template | MIT License https://github.com/Paiyunshou/beautiful-html-templates */
+:root{
+  --bg:#f8f6f0;
+  --text:#2c302c;
+  --accent:#205c47;
+  --gold:#b89758;
+  --muted:#646b64;
+  --card:#ffffffdd;
+  --stroke:#dcd8cc;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0;font-family:"Noto Serif SC",serif;background:var(--bg);color:var(--text)}
+.stage{
+  width:100vw;height:100vh;display:grid;place-items:center;overflow:hidden;
+}
+.slide-wrap{
+  width:1920px;height:1080px;transform:scale(min(100vw/1920,100vh/1080));transform-origin:center;position:relative;
+}
+.slide{
+  position:absolute;inset:0;padding:96px;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;
+}
+.slide.active{opacity:1;visibility:visible}
+h1{font-size:56px;font-weight:600;color:var(--accent);margin:0 0 24px}
+h2{font-size:34px;font-weight:500;color:var(--gold);margin:0 0 32px}
+p,li{font-size:22px;line-height:1.7;color:var(--text)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.card{background:var(--card);border:1px solid var(--stroke);border-radius:18px;padding:32px}
+.card h3{margin-top:0;font-size:26px;color:var(--accent)}
+.flow-row{display:flex;align-items:center;gap:16px;margin:16px 0}
+.box{padding:18px 24px;border-radius:12px;border:1px solid var(--stroke);background:#fff}
+.arrow{color:var(--gold);font-size:28px}
+footer{position:absolute;bottom:40px;left:96px;color:var(--muted);font-size:18px}
+.nav-hint{position:absolute;bottom:40px;right:96px;color:var(--muted);font-size:18px}
+</style>
+</head>
+<body>
+<div class="stage">
+<div class="slide-wrap">
+  <!-- Slide 1: 表格层级和关联设计 -->
+  <div class="slide active">
+    <h1>表格、表格层级和关联设计</h1>
+    <div class="flow-row">
+      <div class="box" style="background:#fff2cc;border-color:#e6b85c;width:340px">
+        <strong>一层：公司档案（主信息）</strong>
+        <p style="margin:8px 0 0;font-size:19px;color:#555">维护公司级字段：税率、房土...</p>
+      </div>
+    </div>
+    <div style="margin:24px 0 12px;padding-left:120px;color:var(--muted)">二层数据流转关系</div>
+    <div class="flow-row" style="padding-left:40px">
+      <div class="card" style="width:620px">
+        <div style="margin-bottom:14px"><strong>✅ 销售开票台账</strong><br><span style="font-size:18px;color:#555">销项税: 行级公式(公司×客户×属期×税率)<br>当月VAT收入：当月开票+未开票变动</span></div>
+        <div style="margin-bottom:14px"><strong>✅ 进项发票明细</strong><br><span style="font-size:18px;color:#555">进项税：进项库（标注勾选月自动同步到计算表）</span></div>
+        <div style="margin-bottom:14px"><strong>✅ 财报数据</strong><br><span style="font-size:18px;color:#555">查询：无</span></div>
+        <div><strong>✅ 购销合同印花税税金</strong><br><span style="font-size:18px;color:#555">查询：无</span></div>
+      </div>
+      <span class="arrow">→</span>
+      <div class="box" style="background:#e9e2f3;border-color:#b8a2d6;width:340px">
+        <strong>当月税金计算表</strong>
+        <p style="margin:8px 0 0;font-size:19px;color:#555">计算VAT、CIT、印花税、房土税等</p>
+      </div>
+      <span class="arrow">→</span>
+      <div class="box" style="background:#e2edf6;border-color:#8fb4d6;width:320px">
+        <strong>税金申报台账</strong>
+        <p style="margin:8px 0 0;font-size:19px;color:#555">归档历史申报税金（集团税金统计基础）</p>
+      </div>
+    </div>
+    <footer>Slide 1 / 2</footer>
+    <div class="nav-hint">← → / 空格 翻页</div>
+  </div>
+
+  <!-- Slide 2: 开发过程GTD -->
+  <div class="slide">
+    <h1>开发过程GTD（需求-任务-测试）</h1>
+    <h2>开发内容拆解</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>表格层级 & 关联设计</h3>
+        <ul style="padding-left:22px;margin:0">
+          <li>一层：公司主文档</li>
+          <li>二层：明细表｜计算表｜归档表</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>内核（表间计算、查询、流程）</h3>
+        <ul style="padding-left:22px;margin:0">
+          <li>业务校验逻辑</li>
+          <li>跨表联动、自动同步</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>AI数据采集</h3>
+        <ul style="padding-left:22px;margin:0">
+          <li>收入、开票</li>
+          <li>进项（IC、协同、零星）</li>
+          <li>财报、房土、印花税</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>多维表系统</h3>
+        <ul style="padding-left:22px;margin:0">
+          <li>权限、视图、报表</li>
+          <li>历史版本、日志</li>
+        </ul>
+      </div>
+    </div>
+    <footer>Slide 2 / 2</footer>
+    <div class="nav-hint">← → / 空格 翻页</div>
+  </div>
+</div>
+</div>
+<script>
+const slides=document.querySelectorAll('.slide');
+let idx=0;
+function render(){
+  slides.forEach((s,i)=>s.classList.toggle('active',i===idx))
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){idx=Math.min(idx+1,slides.length-1);render()}
+  if(e.key==='ArrowLeft'){idx=Math.max(idx-1,0);render()}
+})
+document.querySelector('.slide-wrap').addEventListener('click',e=>{
+  const rect=e.target.getBoundingClientRect();
+  const x=e.clientX-rect.left;
+  if(x>rect.width/2) idx=Math.min(idx+1,slides.length-1);
+  else idx=Math.max(idx-1,0);
+  render();
+})
+render();
+</script>
+</body>
+</html>
