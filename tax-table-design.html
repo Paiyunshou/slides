@@ -27,7 +27,7 @@ html,body{height:100%;margin:0;padding:0;font-family:"Noto Serif SC",serif;backg
   position:absolute;inset:0;padding:96px;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;
 }
 .slide.active{opacity:1;visibility:visible}
-h1{font-size:56px;font-weight:600;color:var(--accent);margin:0 0 24px}
+h1{font-size:56px;font-weight:600;color:var(--accent);margin:0 0 40px;text-align:center;}
 h2{font-size:34px;font-weight:500;color:var(--gold);margin:0 0 32px}
 p,li{font-size:22px;line-height:1.7;color:var(--text)}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
@@ -35,6 +35,22 @@ p,li{font-size:22px;line-height:1.7;color:var(--text)}
 .card h3{margin-top:0;font-size:26px;color:var(--accent)}
 .flow-row{display:flex;align-items:center;gap:16px;margin:16px 0}
 .box{padding:18px 24px;border-radius:12px;border:1px solid var(--stroke);background:#fff}
+.box-top{
+  background:#fff2cc;border-color:#e6b85c;
+  width:340px;margin:0 auto;
+  text-align:center;
+}
+.dash-line{
+  width:1px;
+  height:48px;
+  margin:0 auto;
+  border-left:2px dashed var(--gold);
+}
+.desc-sub{
+  text-align:center;
+  color:var(--muted);
+  margin:12px 0 24px;
+}
 .arrow{color:var(--gold);font-size:28px}
 footer{position:absolute;bottom:40px;left:96px;color:var(--muted);font-size:18px}
 .nav-hint{position:absolute;bottom:40px;right:96px;color:var(--muted);font-size:18px}
@@ -46,14 +62,16 @@ footer{position:absolute;bottom:40px;left:96px;color:var(--muted);font-size:18px
   <!-- Slide 1: 表格层级和关联设计 -->
   <div class="slide active">
     <h1>表格、表格层级和关联设计</h1>
-    <div class="flow-row">
-      <div class="box" style="background:#fff2cc;border-color:#e6b85c;width:340px">
-        <strong>一层：公司档案（主信息）</strong>
-        <p style="margin:8px 0 0;font-size:19px;color:#555">维护公司级字段：税率、房土...</p>
-      </div>
+    <!-- 顶部居中：一层公司档案 -->
+    <div class="box box-top">
+      <strong>一层：公司档案（主信息）</strong>
+      <p style="margin:8px 0 0;font-size:19px;color:#555">维护公司级字段：税率、房土...</p>
     </div>
-    <div style="margin:24px 0 12px;padding-left:120px;color:var(--muted)">二层数据流转关系</div>
-    <div class="flow-row" style="padding-left:40px">
+    <!-- 向下虚线 -->
+    <div class="dash-line"></div>
+    <div class="desc-sub">二层数据流转关系</div>
+
+    <div class="flow-row" style="justify-content:center">
       <div class="card" style="width:620px">
         <div style="margin-bottom:14px"><strong>✅ 销售开票台账</strong><br><span style="font-size:18px;color:#555">销项税: 行级公式(公司×客户×属期×税率)<br>当月VAT收入：当月开票+未开票变动</span></div>
         <div style="margin-bottom:14px"><strong>✅ 进项发票明细</strong><br><span style="font-size:18px;color:#555">进项税：进项库（标注勾选月自动同步到计算表）</span></div>
