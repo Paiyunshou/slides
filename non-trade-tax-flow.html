@@ -5,161 +5,129 @@
 <title>非贸备案扣税多维表流程系统</title>
 <style>
   /* ============================================================
-     FONTS — self-hosted (no external CDN, works offline / in CN)
+     FONTS — self-hosted (Soft Editorial: Cormorant Garamond + Work Sans)
      ============================================================ */
-  @font-face{font-family:'Bodoni Moda';src:url('fonts/bodoni-900.woff2') format('woff2');font-weight:900;font-style:normal;font-display:swap}
-  @font-face{font-family:'Manrope';src:url('fonts/manrope-500.woff2') format('woff2');font-weight:500;font-display:swap}
-  @font-face{font-family:'Manrope';src:url('fonts/manrope-700.woff2') format('woff2');font-weight:700;font-display:swap}
-  @font-face{font-family:'Manrope';src:url('fonts/manrope-800.woff2') format('woff2');font-weight:800;font-display:swap}
-  @font-face{font-family:'Noto Serif SC';src:url('fonts/notoserif-900-0.woff2') format('woff2');font-weight:900;font-display:swap}
-  @font-face{font-family:'Noto Serif SC';src:url('fonts/notoserif-400-0.woff2') format('woff2');font-weight:400;font-display:swap}
-  @font-face{font-family:'Noto Sans SC';src:url('fonts/notosans-0.woff2') format('woff2');font-weight:500;font-display:swap}
-  @font-face{font-family:'Noto Sans SC';src:url('fonts/notosans-1.woff2') format('woff2');font-weight:700;font-display:swap}
+  @font-face{font-family:'Cormorant Garamond';src:url('fonts/cormorant-500-n.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:'Cormorant Garamond';src:url('fonts/cormorant-500-i.woff2') format('woff2');font-weight:400 500;font-style:italic;font-display:swap}
+  @font-face{font-family:'Cormorant Garamond';src:url('fonts/cormorant-600-n.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+  @font-face{font-family:'Work Sans';src:url('fonts/worksans-300-n.woff2') format('woff2');font-weight:300;font-display:swap}
+  @font-face{font-family:'Work Sans';src:url('fonts/worksans-400-n.woff2') format('woff2');font-weight:400;font-display:swap}
+  @font-face{font-family:'Work Sans';src:url('fonts/worksans-500-n.woff2') format('woff2');font-weight:500;font-display:swap}
+  @font-face{font-family:'Noto Serif SC';src:url('fonts/notoserif-cn.woff2') format('woff2');font-weight:300 700;font-display:swap}
+  @font-face{font-family:'Noto Sans SC';src:url('fonts/notosans-cn.woff2') format('woff2');font-weight:300 700;font-display:swap}
 
   /* ============================================================
-     TOKENS — Emerald Editorial (beautiful-html-templates)
+     TOKENS — Soft Editorial
      ============================================================ */
   :root{
-    --bg:#3CD896;
-    --ink:#0F1A5C;
-    --paper:#F1E9D6;
-    --rule:rgba(15,26,92,0.22);
-    --serif:'Bodoni Moda','Noto Serif SC',Georgia,'Songti SC',serif;
-    --sans:'Manrope','Noto Sans SC',system-ui,-apple-system,'Microsoft YaHei',sans-serif;
+    --paper:#F2EEDF;
+    --paper-2:#ECE6D2;
+    --ink:#2A241B;
+    --ink-soft:#5C5345;
+    --pink:#E1A4C2;
+    --lemon:#D6DD63;
+    --blush:#E8C9B6;
+    --sage:#B7C7A8;
+    --lilac:#C9BEDC;
+    --card-fill:rgba(255,255,255,0.55);
+    --rule-soft:rgba(42,36,27,0.18);
+    --rule-med:rgba(42,36,27,0.35);
+    --serif:'Cormorant Garamond','Noto Serif SC',Garamond,serif;
+    --sans:'Work Sans','Noto Sans SC',system-ui,sans-serif;
   }
 
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0;height:100%;background:#0a0a0a;overflow:hidden}
+  html,body{margin:0;padding:0;height:100%;background:#d9d4c2;overflow:hidden}
   body{font-family:var(--sans);color:var(--ink)}
 
   /* ============================================================
-     STAGE — fixed 1920×1080 canvas, scaled by JS (never CSS min())
+     STAGE — fixed 1920×1080, scaled in JS
      ============================================================ */
   .stage{position:fixed;inset:0;overflow:hidden}
-  .deck{
-    position:absolute;top:50%;left:50%;
-    width:1920px;height:1080px;
-    transform:translate(-50%,-50%) scale(1);
-    transform-origin:center;
-  }
+  .deck{position:absolute;top:50%;left:50%;width:1920px;height:1080px;
+    transform:translate(-50%,-50%) scale(1);transform-origin:center}
 
   .slide{
-    position:absolute;inset:0;
-    width:1920px;height:1080px;
-    background:var(--bg);
-    color:var(--ink);
-    overflow:hidden;
+    position:absolute;inset:0;width:1920px;height:1080px;
+    background:var(--paper);color:var(--ink);
     visibility:hidden;opacity:0;pointer-events:none;
-    transition:opacity .42s ease,visibility .42s ease;
-    /* flex column keeps the plate auto-fitting: never overflows the canvas */
-    display:flex;flex-direction:column;
-    padding:104px 110px 96px;
+    transition:opacity .45s ease,visibility .45s ease;
+    overflow:hidden;
   }
   .slide.active{visibility:visible;opacity:1;pointer-events:auto}
 
   /* ============================================================
-     CHROME — masthead / footline
+     CHROME — eyebrow / pagedot / footer (fixed offsets)
      ============================================================ */
-  .masthead,.footline{
-    position:absolute;left:80px;right:80px;
-    display:flex;justify-content:space-between;align-items:center;
-    font-size:23px;font-weight:700;letter-spacing:.08em;
-    color:var(--ink);
-  }
-  .masthead{top:46px}
-  .footline{bottom:42px;opacity:.85}
+  .eyebrow{position:absolute;top:60px;left:80px;font-size:28px;font-weight:400;color:var(--ink)}
+  .pagedot{position:absolute;top:60px;right:80px;font-family:var(--serif);font-style:italic;font-size:26px;color:var(--ink-soft)}
+  .foot{position:absolute;bottom:50px;left:80px;right:80px;display:flex;justify-content:space-between;
+    font-family:var(--serif);font-style:italic;font-size:26px;color:var(--ink-soft)}
 
   /* ============================================================
-     TYPE
+     CONTENT AREA
      ============================================================ */
-  .head{flex:0 0 auto;margin-bottom:22px}
-  .eyebrow{
-    font-family:var(--sans);font-size:22px;font-weight:800;
-    letter-spacing:.16em;text-transform:uppercase;
-    margin-bottom:14px;opacity:.92;
+  .body{position:absolute;top:126px;left:80px;right:80px;bottom:104px;
+    display:flex;flex-direction:column;min-height:0}
+  .body.two-col{flex-direction:row;gap:36px}
+
+  h2{
+    font-family:var(--serif);font-weight:500;font-size:96px;line-height:1.06;
+    letter-spacing:0;margin:0 0 14px;color:var(--ink);
   }
-  .eyebrow .cn{letter-spacing:.06em;text-transform:none;font-weight:700}
-  h1{
-    font-family:var(--serif);font-weight:900;
-    font-size:88px;line-height:1.04;letter-spacing:0;
-    margin:0 0 16px;color:var(--ink);
-  }
-  .lede{
-    font-family:var(--sans);font-size:25px;font-weight:500;line-height:1.5;
-    margin:0;max-width:1500px;
-  }
-  .lede .hl{font-weight:700}
+  h2 em{font-style:italic;font-weight:400;color:#8a5a44}
+  .lede{font-size:26px;font-weight:400;line-height:1.55;color:var(--ink-soft);
+    margin:0;max-width:1320px}
+  .lede b{font-weight:500;color:var(--ink)}
+
+  /* ---- pastel pills ---- */
+  .pills{display:flex;gap:14px;margin-top:22px}
+  .pill{border-radius:999px;padding:11px 26px;font-size:22px;font-weight:500;color:var(--ink)}
+  .pill.sage{background:var(--sage)}
+  .pill.lemon{background:var(--lemon)}
+  .pill.blush{background:var(--blush)}
+
+  /* ---- figure card (translucent white, rounded, no shadow) ---- */
+  .fig{background:var(--card-fill);border-radius:28px;padding:14px;
+    display:flex;flex-direction:column;min-height:0;flex:1 1 auto;margin-top:26px}
+  .fig .shot{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;
+    background:#fff;border-radius:14px;overflow:hidden}
+  .fig img{display:block;max-width:100%;max-height:100%;width:auto;height:auto}
+  .figcap{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;
+    padding:10px 10px 2px;font-family:var(--serif);font-style:italic;font-size:24px;color:var(--ink-soft)}
 
   /* ============================================================
-     PLATE — framed white figure, auto-fit inside remaining height
+     SLIDE 3 — copy column + pastel note cards + formula bar
      ============================================================ */
-  .plate{
-    flex:1 1 auto;min-height:0;
-    border:4px solid var(--ink);
-    background:#fff;
-    display:flex;align-items:center;justify-content:center;
-    overflow:hidden;
-    width:100%;
-  }
-  .plate img{display:block;max-width:100%;max-height:100%;width:auto;height:auto}
+  .col-copy{flex:0 0 700px;display:flex;flex-direction:column;min-height:0}
+  .col-fig{flex:1 1 auto;display:flex;min-height:0}
+  .notes{margin-top:24px;display:flex;flex-direction:column;gap:12px}
+  .note{border-radius:24px;padding:18px 24px;display:grid;grid-template-columns:104px 1fr;gap:16px;align-items:baseline}
+  .note.a{background:var(--sage)}
+  .note.b{background:var(--lemon)}
+  .note.c{background:var(--blush)}
+  .note .k{font-family:var(--serif);font-weight:600;font-size:26px;font-style:italic}
+  .note .v{font-size:22px;line-height:1.4}
+  .formula{margin-top:14px;background:var(--lilac);border-radius:24px;padding:20px 26px;
+    font-size:22px;line-height:1.6}
+  .formula .hd{font-family:var(--serif);font-style:italic;font-size:26px;margin-bottom:6px;display:block}
 
   /* ============================================================
-     CAPTION ROW — 3 keys under the figure, 4px ink rules
-     ============================================================ */
-  .caption-row{
-    flex:0 0 auto;
-    display:grid;grid-template-columns:repeat(3,1fr);
-    border-bottom:4px solid var(--ink);
-  }
-  .caption-row .cell{padding:14px 24px 16px 0;border-top:4px solid var(--ink)}
-  .caption-row .cell + .cell{padding-left:24px;border-left:2px solid var(--rule)}
-  .caption-row .k{font-size:21px;font-weight:800;letter-spacing:.1em;margin-bottom:5px}
-  .caption-row .v{font-size:21px;font-weight:500;line-height:1.4;opacity:.92}
-
-  /* ============================================================
-     SLIDE 3 — split: copy left / plate right
-     ============================================================ */
-  .split{
-    flex:1 1 auto;min-height:0;
-    display:grid;grid-template-columns:720px 1fr;gap:52px;align-items:stretch;
-    margin-top:14px;
-  }
-  .split .copy{display:flex;flex-direction:column;min-height:0}
-  .split .lede{font-size:24px}
-  .notes{margin-top:22px}
-  .notes .row{display:grid;grid-template-columns:132px 1fr;gap:14px;padding:13px 0;border-top:4px solid var(--ink)}
-  .notes .row:last-child{border-bottom:4px solid var(--ink)}
-  .notes .k{font-size:21px;font-weight:800;letter-spacing:.06em}
-  .notes .v{font-size:21px;font-weight:500;line-height:1.4}
-  .formula{
-    margin-top:18px;padding:18px 22px;background:var(--ink);color:var(--bg);
-    font-size:22px;font-weight:500;line-height:1.55;
-  }
-  .formula b{font-weight:800;letter-spacing:.06em}
-
-  /* ============================================================
-     BACK LINK — outside the deck stage (never triggers nav)
+     BACK LINK + HINT
      ============================================================ */
   .back-home{
-    position:fixed;top:20px;left:20px;z-index:50;
-    display:inline-flex;align-items:center;gap:8px;
-    padding:9px 18px;border:1px solid rgba(241,233,214,.55);
-    background:rgba(15,26,92,.72);color:var(--paper);
-    font-family:var(--sans);font-size:15px;font-weight:700;
-    letter-spacing:.06em;text-decoration:none;line-height:1;
-    transition:background .2s ease,transform .2s ease;
+    position:fixed;top:18px;left:18px;z-index:50;
+    display:inline-flex;align-items:center;gap:8px;padding:9px 18px;
+    border-radius:999px;border:1px solid rgba(42,36,27,.28);
+    background:rgba(242,238,223,.92);color:var(--ink);
+    font-family:'Work Sans','Noto Sans SC',system-ui,sans-serif;font-size:15px;font-weight:500;
+    text-decoration:none;line-height:1;transition:background .2s,transform .2s;
   }
-  .back-home:hover{background:var(--ink);transform:translateX(-2px)}
+  .back-home:hover{background:#fff;transform:translateX(-2px)}
 
-  /* ============================================================
-     NAV HINT
-     ============================================================ */
-  .hint{
-    position:fixed;right:20px;bottom:18px;z-index:50;
-    font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.1em;
-    color:rgba(241,233,214,.55);
-    transition:opacity .6s ease;
-  }
+  .hint{position:fixed;right:18px;bottom:16px;z-index:50;
+    font-family:'Work Sans','Noto Sans SC',system-ui,sans-serif;font-size:14px;font-weight:500;
+    color:rgba(42,36,27,.42);transition:opacity .6s ease}
   .hint.fade{opacity:0}
 
   @media (prefers-reduced-motion:reduce){
@@ -175,114 +143,79 @@
 <div class="stage">
   <div class="deck" id="deck">
 
-    <!-- ================= SLIDE 1 · 三层多维表结构 ================= -->
+    <!-- ================= SLIDE 1 — 三层多维表 ================= -->
     <section class="slide active">
-      <div class="masthead">
-        <span>非贸备案扣税多维表流程系统</span>
-        <span>01 / 03</span>
-      </div>
+      <div class="eyebrow">非贸备案扣税 · 多维表流程系统</div>
+      <div class="pagedot">i / iii</div>
 
-      <div class="head">
-        <div class="eyebrow">01 <span class="cn">· 数据底座 / Data Foundation</span></div>
-        <h1>三层多维表</h1>
-        <p class="lede">名录、备案、扣税三层双向关联：<span class="hl">一商一档</span>维护供应商主数据，<span class="hl">一合同一条</span>记录备案与流程状态，<span class="hl">一条扣税记录</span>回溯上游合同；税率、账户、类别等字段自动带出。</p>
-      </div>
-
-      <div class="plate">
-        <img src="img/non-trade-tables.png" alt="非居民供应商名录、合同备案登记、扣税明细三层表结构与关联字段" />
-      </div>
-
-      <div class="caption-row">
-        <div class="cell">
-          <div class="k">第一层 · 名录</div>
-          <div class="v">一商一档，唯一供应商主数据来源</div>
+      <div class="body">
+        <h2>三层<em>多维表</em></h2>
+        <p class="lede">名录、备案、扣税三层双向关联：<b>一商一档</b>维护供应商主数据，<b>一合同一条</b>记录备案与流程状态，<b>一条扣税记录</b>回溯上游合同；税率、账户、类别字段自动带出。</p>
+        <div class="pills">
+          <span class="pill sage">名录 · 一商一档</span>
+          <span class="pill lemon">备案 · 一合同一条</span>
+          <span class="pill blush">扣税 · 一条一凭证</span>
         </div>
-        <div class="cell">
-          <div class="k">第二层 · 备案</div>
-          <div class="v">上传合同备案表即置「已备案完成」</div>
-        </div>
-        <div class="cell">
-          <div class="k">第三层 · 扣税</div>
-          <div class="v">上传完税凭证即置「已扣税」</div>
+
+        <div class="fig">
+          <div class="shot"><img src="img/non-trade-tables.png" alt="非居民供应商名录、合同备案登记、扣税明细三层表结构与关联字段" /></div>
+          <div class="figcap"><span>图一 · 三层表结构与关联字段</span><span>Data Foundation</span></div>
         </div>
       </div>
 
-      <div class="footline">
-        <span>财税数字化 · 2026</span>
-        <span>数据底座</span>
-      </div>
+      <div class="foot"><span>财税数字化 · 2026</span><span>Paiyunshou</span></div>
     </section>
 
-    <!-- ================= SLIDE 2 · 四角色全流程 ================= -->
+    <!-- ================= SLIDE 2 — 四角色一条流程 ================= -->
     <section class="slide">
-      <div class="masthead">
-        <span>非贸备案扣税多维表流程系统</span>
-        <span>02 / 03</span>
+      <div class="eyebrow">非贸备案扣税 · 多维表流程系统</div>
+      <div class="pagedot">ii / iii</div>
+
+      <div class="body">
+        <h2>四角色，<em>一条流程</em></h2>
+        <p class="lede">业务提交、财务建明细、税务算税扣款、资金安排支付。<b>十处自动通知与状态回写</b>（图中 ⚡）替代人工催办：名录自动同步、备案完成即通知、扣税完成即通知、资金不足自动提醒。</p>
+
+        <div class="fig">
+          <div class="shot"><img src="img/non-trade-flow.png" alt="非贸备案扣税全流程图：业务、财务、税务、资金四角色泳道与自动通知节点" /></div>
+          <div class="figcap"><span>图二 · 全流程图，⚡ 为自动通知节点</span><span>Workflow</span></div>
+        </div>
       </div>
 
-      <div class="head">
-        <div class="eyebrow">02 <span class="cn">· 流程自动化 / Workflow</span></div>
-        <h1>四角色，一条流程</h1>
-        <p class="lede">业务提交、财务建明细、税务算税扣款、资金安排支付。十处自动通知与状态回写（⚡）替代人工催办：名录自动同步、备案完成即通知、扣税完成即通知、资金不足自动提醒。</p>
-      </div>
-
-      <div class="plate">
-        <img src="img/non-trade-flow.png" alt="非贸备案扣税全流程图：业务、财务、税务、资金四角色泳道与自动通知节点" />
-      </div>
-
-      <div class="footline">
-        <span>财税数字化 · 2026</span>
-        <span>流程自动化</span>
-      </div>
+      <div class="foot"><span>财税数字化 · 2026</span><span>Paiyunshou</span></div>
     </section>
 
-    <!-- ================= SLIDE 3 · 税金公式 ================= -->
+    <!-- ================= SLIDE 3 — 税金口径 ================= -->
     <section class="slide">
-      <div class="masthead">
-        <span>非贸备案扣税多维表流程系统</span>
-        <span>03 / 03</span>
-      </div>
+      <div class="eyebrow">非贸备案扣税 · 多维表流程系统</div>
+      <div class="pagedot">iii / iii</div>
 
-      <div class="head">
-        <div class="eyebrow">03 <span class="cn">· 税金口径 / Formula</span></div>
-        <h1>先还原计税依据</h1>
-      </div>
-
-      <div class="split">
-        <div class="copy">
-          <p class="lede">扣税的核心是涉税判断与公式求解：先按承担主体还原计税依据，再乘税率。涉及为否即为零；某税种不涉及时税率填 0，分母自动归 1。</p>
+      <div class="body two-col">
+        <div class="col-copy">
+          <h2 style="font-size:84px">先还原<em>计税依据</em></h2>
+          <p class="lede" style="font-size:24px">扣税的核心是涉税判断与公式求解：先按承担主体还原计税依据，再乘税率。</p>
 
           <div class="notes">
-            <div class="row">
-              <div class="k">所得税</div>
-              <div class="v">工程劳务填 3.75%，其他源泉扣缴填 10%</div>
-            </div>
-            <div class="row">
-              <div class="k">增值税</div>
-              <div class="v">按适用税率，两种承担主体计税依据不同</div>
-            </div>
-            <div class="row">
-              <div class="k">自动列</div>
-              <div class="v">始终按公式计算，手动列保留为备份数据</div>
-            </div>
+            <div class="note a"><span class="k">所得税</span><span class="v">工程劳务填 3.75%，其他源泉扣缴填 10%</span></div>
+            <div class="note b"><span class="k">增值税</span><span class="v">按适用税率，两种承担主体计税依据不同</span></div>
+            <div class="note c"><span class="k">自动列</span><span class="v">始终按公式计算，手动列保留为备份</span></div>
           </div>
 
           <div class="formula">
-            <b>计税依据还原</b><br>
+            <span class="hd">计税依据还原</span>
             非居民承担 → P ÷ (1 + 增值税率)<br>
             中方承担 → P ÷ (1 − 所得税率)
           </div>
         </div>
 
-        <div class="plate">
-          <img src="img/non-trade-formula.png" alt="非居民扣税税金公式：所得税与增值税自动计算判定树" />
+        <div class="col-fig">
+          <div class="fig" style="margin-top:0">
+            <div class="shot"><img src="img/non-trade-formula.png" alt="非居民扣税税金公式：所得税与增值税自动计算判定树" /></div>
+            <div class="figcap"><span>图三 · 公式判定树</span><span>Formula</span></div>
+          </div>
         </div>
       </div>
 
-      <div class="footline">
-        <span>财税数字化 · 2026</span>
-        <span>税金口径</span>
-      </div>
+      <div class="foot"><span>财税数字化 · 2026</span><span>Paiyunshou</span></div>
     </section>
 
   </div>
@@ -291,55 +224,41 @@
 <div class="hint" id="hint">← → / 空格 翻页</div>
 
 <script>
-/* ============================================================
-   FIXED-STAGE SCALING
-   scale() needs a unitless number — CSS min(100vw/1920,...) is
-   silently invalid, so compute it here and recentre with translate.
-   ============================================================ */
-const deck = document.getElementById('deck');
-function fit(){
-  const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-  deck.style.transform = 'translate(-50%,-50%) scale(' + s + ')';
-}
-window.addEventListener('resize', fit);
-fit();
+/* ---- fixed-stage scaling (JS, never CSS min()) ---- */
+const deck=document.getElementById('deck');
+function fit(){const s=Math.min(innerWidth/1920,innerHeight/1080);
+  deck.style.transform='translate(-50%,-50%) scale('+s+')';}
+addEventListener('resize',fit);fit();
 
-/* ============================================================
-   NAVIGATION — keyboard, click halves, swipe
-   ============================================================ */
-const slides = Array.from(document.querySelectorAll('.slide'));
-let idx = 0;
+/* ---- navigation ---- */
+const slides=[...document.querySelectorAll('.slide')];
+let idx=0;
 function render(){
-  slides.forEach((s,i)=>s.classList.toggle('active', i===idx));
-  clearTimeout(window.__hintT);
-  const h=document.getElementById('hint');
-  h.classList.remove('fade');
-  window.__hintT=setTimeout(()=>h.classList.add('fade'), 2200);
+  slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
+  clearTimeout(window.__t);
+  const h=document.getElementById('hint');h.classList.remove('fade');
+  window.__t=setTimeout(()=>h.classList.add('fade'),2200);
 }
-function next(){ if(idx < slides.length-1){ idx++; render(); } }
-function prev(){ if(idx > 0){ idx--; render(); } }
-
-document.addEventListener('keydown', e=>{
-  if(e.key==='ArrowRight' || e.key===' ' || e.key==='PageDown'){ e.preventDefault(); next(); }
-  else if(e.key==='ArrowLeft' || e.key==='PageUp'){ e.preventDefault(); prev(); }
-  else if(e.key==='Home'){ idx=0; render(); }
-  else if(e.key==='End'){ idx=slides.length-1; render(); }
+function next(){if(idx<slides.length-1){idx++;render();}}
+function prev(){if(idx>0){idx--;render();}}
+addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();next();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev();}
+  else if(e.key==='Home'){idx=0;render();}
+  else if(e.key==='End'){idx=slides.length-1;render();}
 });
-
-deck.addEventListener('click', e=>{
-  const r = e.currentTarget.getBoundingClientRect();
-  if(e.clientX - r.left > r.width/2) next(); else prev();
+deck.addEventListener('click',e=>{
+  const r=e.currentTarget.getBoundingClientRect();
+  (e.clientX-r.left>r.width/2)?next():prev();
 });
-
-let tx = null;
-deck.addEventListener('touchstart', e=>{ tx = e.touches[0].clientX; }, {passive:true});
-deck.addEventListener('touchend', e=>{
-  if(tx===null) return;
-  const dx = e.changedTouches[0].clientX - tx;
-  if(Math.abs(dx) > 60){ dx < 0 ? next() : prev(); }
-  tx = null;
+let tx=null;
+deck.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+deck.addEventListener('touchend',e=>{
+  if(tx===null)return;
+  const dx=e.changedTouches[0].clientX-tx;
+  if(Math.abs(dx)>60){dx<0?next():prev();}
+  tx=null;
 });
-
 render();
 </script>
 </body>
