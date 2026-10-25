@@ -101,8 +101,8 @@
      ============================================================ */
   .col-copy{flex:0 0 700px;display:flex;flex-direction:column;min-height:0}
   .col-fig{flex:1 1 auto;display:flex;min-height:0}
-  .notes{margin-top:24px;display:flex;flex-direction:column;gap:12px}
-  .note{border-radius:24px;padding:18px 24px;display:grid;grid-template-columns:104px 1fr;gap:16px;align-items:baseline}
+  .notes{flex:1 1 auto;margin-top:22px;display:flex;flex-direction:column;gap:14px;justify-content:flex-end}
+  .note{border-radius:24px;padding:22px 24px;display:grid;grid-template-columns:104px 1fr;gap:16px;align-items:baseline}
   .note.a{background:var(--sage)}
   .note.b{background:var(--lemon)}
   .note.c{background:var(--blush)}
@@ -134,6 +134,55 @@
     .slide{transition:none}
     .back-home{transition:none}
   }
+
+  /* ============================================================
+     SLIDE 1 — 三层结构（原生 HTML，替代原 draw.io 图片）
+     ============================================================ */
+  .layers{flex:0 0 auto;margin-top:16px;display:grid;
+    grid-template-columns:1fr 30px 1fr 30px 1fr;align-items:stretch}
+  .layer{border-radius:26px;padding:18px 20px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+  .layer.sage{background:var(--sage)}
+  .layer.lemon{background:var(--lemon)}
+  .layer.blush{background:var(--blush)}
+  .layer .lt{font-family:var(--serif);font-weight:600;font-size:26px;line-height:1.15;margin-bottom:3px}
+  .layer .lt span{font-family:var(--sans);font-size:15px;font-weight:500;opacity:.6;
+    letter-spacing:.08em;margin-right:7px}
+  .layer .ld{font-size:15.5px;color:var(--ink-soft);margin-bottom:10px;line-height:1.4}
+  .layer ul{list-style:none;margin:0;padding:0}
+  .layer li{font-size:16.5px;line-height:1.5;padding:6.5px 0;border-top:1px dashed var(--rule-soft);
+    display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+  .layer li:first-child{border-top:0}
+  .layer li.key{font-weight:500}
+  .layer li em{font-style:normal;font-size:13.5px;color:var(--ink-soft);white-space:nowrap;letter-spacing:.02em}
+  .layer .lf{margin-top:auto;padding-top:10px;font-family:var(--serif);font-style:italic;
+    font-size:15.5px;color:var(--ink-soft);line-height:1.35}
+  .link{display:flex;align-items:center;justify-content:center;padding-top:170px;font-size:20px;
+    color:var(--ink-soft);opacity:.5}
+
+  /* ============================================================
+     SLIDE 3 — 公式判定树（原生 HTML）
+     ============================================================ */
+  .tree{flex:1 1 auto;min-height:0;background:var(--card-fill);border-radius:26px;
+    padding:26px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+  .tree .node{border-radius:999px;padding:11px 24px;font-size:20px;text-align:center;line-height:1.35}
+  .tree .input{background:#fff;border:1px solid var(--rule-med)}
+  .tree .q{background:var(--lilac);font-weight:500}
+  .tree .side.sage{background:var(--sage)}
+  .tree .side.blush{background:var(--blush)}
+  .tree .side{margin-top:0}
+  .tree .zero{background:#fff;border:1px dashed var(--rule-med);font-size:16.5px;padding:8px 16px}
+  .tree .vline{width:2px;height:34px;background:var(--rule-med)}
+  .tree .qrow{display:flex;align-items:center;gap:14px}
+  .tree .branch{display:flex;align-items:center;gap:8px;font-size:14.5px;color:var(--ink-soft)}
+  .tree .split{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;margin-top:10px}
+  .tree .side{border-radius:18px;padding:14px 18px;font-size:18px;line-height:1.45}
+  .tree .side b{display:block;font-size:14px;font-weight:500;letter-spacing:.05em;
+    opacity:.62;margin-bottom:3px}
+  .tree .fgroup{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;margin-top:18px}
+  .tree .fcard{background:#fff;border-radius:16px;padding:13px 18px;font-size:18px;line-height:1.45}
+  .tree .treenote{font-family:var(--serif);font-style:italic;font-size:16px;
+    color:var(--ink-soft);text-align:center;margin-top:14px}
+  .tree .fcard em{display:block;font-style:normal;font-size:14.5px;color:var(--ink-soft);margin-top:4px}
 </style>
 </head>
 <body>
@@ -151,15 +200,60 @@
       <div class="body">
         <h2>三层<em>多维表</em></h2>
         <p class="lede">名录、备案、扣税三层双向关联：<b>一商一档</b>维护供应商主数据，<b>一合同一条</b>记录备案与流程状态，<b>一条扣税记录</b>回溯上游合同；税率、账户、类别字段自动带出。</p>
-        <div class="pills">
-          <span class="pill sage">名录 · 一商一档</span>
-          <span class="pill lemon">备案 · 一合同一条</span>
-          <span class="pill blush">扣税 · 一条一凭证</span>
-        </div>
+        <div class="layers">
+          <div class="layer sage">
+            <div class="lt"><span>第一层</span>名录</div>
+            <div class="ld">一商一档，唯一供应商主数据来源</div>
+            <ul>
+              <li class="key">非居民企业外文名称 <em>主字段</em></li>
+              <li>非居民企业中文名称</li>
+              <li>非居民税收编号 <em>⚡ B 维护</em></li>
+              <li>开户行名称 <em>⚡ A 维护</em></li>
+              <li>收款账号 <em>⚡ A 维护</em></li>
+              <li>SWIFT / BIC <em>⚡ A 维护</em></li>
+              <li>关联合同备案 <em>反向 1—N</em></li>
+            </ul>
+            <div class="lf">自动带出 → 开户行 · 收款账号 · SWIFT</div>
+          </div>
 
-        <div class="fig">
-          <div class="shot"><img src="img/non-trade-tables.png" alt="非居民供应商名录、合同备案登记、扣税明细三层表结构与关联字段" /></div>
-          <div class="figcap"><span>图一 · 三层表结构与关联字段</span><span>Data Foundation</span></div>
+          <div class="link">⇄</div>
+
+          <div class="layer lemon">
+            <div class="lt"><span>第二层</span>备案</div>
+            <div class="ld">一合同一条记录，承载流程状态</div>
+            <ul>
+              <li class="key">非居民企业外文名称 <em>主字段</em></li>
+              <li>非居民税收编号 <em>⚡ 自动带出</em></li>
+              <li>购买服务内容</li>
+              <li>合同名称 / 总金额</li>
+              <li>流程状态 <em>待税务 → 已备案</em></li>
+              <li>▤ 中英文合同（盖公章）</li>
+              <li>▤ 合同备案表 <em>⚡ 自动置完成</em></li>
+              <li>支付备案编号 / 查验码 <em>B 反馈</em></li>
+              <li>关联扣税记录 <em>反向 1—N</em></li>
+            </ul>
+            <div class="lf">自动带出 → 类别 · 承担主体 · 银行三列</div>
+          </div>
+
+          <div class="link">⇄</div>
+
+          <div class="layer blush">
+            <div class="lt"><span>第三层</span>扣税</div>
+            <div class="ld">一扣税记录回溯一条备案合同</div>
+            <ul>
+              <li class="key">关联备案 <em>→ 备案登记</em></li>
+              <li>扣税状态 <em>待扣税 → 已扣税</em></li>
+              <li>⚡ 完税凭证 <em>自动置已扣税</em></li>
+              <li>⚡ 发票等付款附件</li>
+              <li>扣缴日期 / 金额 / 汇率</li>
+              <li>所得税率 · 增值税率</li>
+              <li>所得税 / 增值税 <em>手动 · 历史固化</em></li>
+              <li>所得税 / 增值税 <em>⚡ 自动公式</em></li>
+              <li>类别 / 项目 <em>⚡ 从备案带出</em></li>
+              <li>税金承担主体 <em>⚡ 自动</em></li>
+            </ul>
+            <div class="lf">自动带出 → 备案号 · 查验码 · 账户</div>
+          </div>
         </div>
       </div>
 
@@ -200,17 +294,28 @@
             <div class="note c"><span class="k">自动列</span><span class="v">始终按公式计算，手动列保留为备份</span></div>
           </div>
 
-          <div class="formula">
-            <span class="hd">计税依据还原</span>
-            非居民承担 → P ÷ (1 + 增值税率)<br>
-            中方承担 → P ÷ (1 − 所得税率)
-          </div>
         </div>
 
         <div class="col-fig">
-          <div class="fig" style="margin-top:0">
-            <div class="shot"><img src="img/non-trade-formula.png" alt="非居民扣税税金公式：所得税与增值税自动计算判定树" /></div>
-            <div class="figcap"><span>图三 · 公式判定树</span><span>Formula</span></div>
+          <div class="tree">
+            <div class="node input">P = 金额 × 汇率</div>
+            <div class="vline"></div>
+            <div class="qrow">
+              <div class="node q">涉及所得税 / 增值税 = 是？</div>
+              <div class="branch">— 否 —→<span class="node zero">税金 = 0</span></div>
+            </div>
+            <div class="vline"></div>
+            <div class="node q">承担主体 = 非居民企业？</div>
+            <div class="vline"></div>
+            <div class="split">
+              <div class="node side sage"><b>是 · 非居民承担</b>计税依据 = P ÷ (1 + 增值税率)</div>
+              <div class="node side blush"><b>否 · 中方承担</b>计税依据 = P ÷ (1 − 所得税率)</div>
+            </div>
+            <div class="fgroup">
+              <div class="fcard">所得税 = 计税依据 × 所得税率<em>工程劳务 3.75% · 其他源泉扣缴 10%</em></div>
+              <div class="fcard">增值税 = 计税依据 × 增值税率<em>不涉及某税种时税率填 0，分母自动归 1</em></div>
+            </div>
+            <div class="treenote">自动列 100% 按口径计算；手动列（所得税 / 增值税）保留为历史备份数据</div>
           </div>
         </div>
       </div>
