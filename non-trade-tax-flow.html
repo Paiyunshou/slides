@@ -13,8 +13,8 @@
   @font-face{font-family:'Work Sans';src:url('fonts/worksans-300-n.woff2') format('woff2');font-weight:300;font-display:swap}
   @font-face{font-family:'Work Sans';src:url('fonts/worksans-400-n.woff2') format('woff2');font-weight:400;font-display:swap}
   @font-face{font-family:'Work Sans';src:url('fonts/worksans-500-n.woff2') format('woff2');font-weight:500;font-display:swap}
-  @font-face{font-family:'Noto Serif SC';src:url('fonts/notoserif-cn-r2.woff2') format('woff2');font-weight:300 700;font-display:swap}
-  @font-face{font-family:'Noto Sans SC';src:url('fonts/notosans-cn-r2.woff2') format('woff2');font-weight:300 700;font-display:swap}
+  @font-face{font-family:'Noto Serif SC';src:url('fonts/notoserif-cn-r4.woff2') format('woff2');font-weight:300 700;font-display:swap}
+  @font-face{font-family:'Noto Sans SC';src:url('fonts/notosans-cn-r4.woff2') format('woff2');font-weight:300 700;font-display:swap}
 
   /* ============================================================
      TOKENS — Soft Editorial
@@ -183,6 +183,19 @@
   .tree .treenote{font-family:var(--serif);font-style:italic;font-size:16px;
     color:var(--ink-soft);text-align:center;margin-top:14px}
   .tree .fcard em{display:block;font-style:normal;font-size:14.5px;color:var(--ink-soft);margin-top:4px}
+
+  /* ============================================================
+     DIAGRAM — draw.io 图转换后的原生 HTML/SVG
+     ============================================================ */
+  .diagram{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center}
+  .canvas{position:relative;color:var(--ink)}
+  .n{position:absolute;display:flex;align-items:center;justify-content:center;padding:4px 7px;
+     line-height:1.3;overflow:hidden;font-family:var(--sans);font-weight:400;color:var(--ink)}
+  .n.lbl{background:transparent;border:0;justify-content:flex-start}
+  .n b,.n strong{font-weight:600}
+  .edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;color:var(--ink)}
+  .edge{fill:none;stroke:currentColor;stroke-width:1.5;opacity:.6}
+  .edge.dash{stroke-dasharray:6 5}
 </style>
 </head>
 <body>
@@ -200,61 +213,14 @@
       <div class="body">
         <h2>三层<em>多维表</em></h2>
         <p class="lede">名录、备案、扣税三层双向关联：<b>一商一档</b>维护供应商主数据，<b>一合同一条</b>记录备案与流程状态，<b>一条扣税记录</b>回溯上游合同；税率、账户、类别字段自动带出。</p>
-        <div class="layers">
-          <div class="layer sage">
-            <div class="lt"><span>第一层</span>名录</div>
-            <div class="ld">一商一档，唯一供应商主数据来源</div>
-            <ul>
-              <li class="key">非居民企业外文名称 <em>主字段</em></li>
-              <li>非居民企业中文名称</li>
-              <li>非居民税收编号 <em>⚡ B 维护</em></li>
-              <li>开户行名称 <em>⚡ A 维护</em></li>
-              <li>收款账号 <em>⚡ A 维护</em></li>
-              <li>SWIFT / BIC <em>⚡ A 维护</em></li>
-              <li>关联合同备案 <em>反向 1—N</em></li>
-            </ul>
-            <div class="lf">自动带出 → 开户行 · 收款账号 · SWIFT</div>
-          </div>
-
-          <div class="link">⇄</div>
-
-          <div class="layer lemon">
-            <div class="lt"><span>第二层</span>备案</div>
-            <div class="ld">一合同一条记录，承载流程状态</div>
-            <ul>
-              <li class="key">非居民企业外文名称 <em>主字段</em></li>
-              <li>非居民税收编号 <em>⚡ 自动带出</em></li>
-              <li>购买服务内容</li>
-              <li>合同名称 / 总金额</li>
-              <li>流程状态 <em>待税务 → 已备案</em></li>
-              <li>▤ 中英文合同（盖公章）</li>
-              <li>▤ 合同备案表 <em>⚡ 自动置完成</em></li>
-              <li>支付备案编号 / 查验码 <em>B 反馈</em></li>
-              <li>关联扣税记录 <em>反向 1—N</em></li>
-            </ul>
-            <div class="lf">自动带出 → 类别 · 承担主体 · 银行三列</div>
-          </div>
-
-          <div class="link">⇄</div>
-
-          <div class="layer blush">
-            <div class="lt"><span>第三层</span>扣税</div>
-            <div class="ld">一扣税记录回溯一条备案合同</div>
-            <ul>
-              <li class="key">关联备案 <em>→ 备案登记</em></li>
-              <li>扣税状态 <em>待扣税 → 已扣税</em></li>
-              <li>⚡ 完税凭证 <em>自动置已扣税</em></li>
-              <li>⚡ 发票等付款附件</li>
-              <li>扣缴日期 / 金额 / 汇率</li>
-              <li>所得税率 · 增值税率</li>
-              <li>所得税 / 增值税 <em>手动 · 历史固化</em></li>
-              <li>所得税 / 增值税 <em>⚡ 自动公式</em></li>
-              <li>类别 / 项目 <em>⚡ 从备案带出</em></li>
-              <li>税金承担主体 <em>⚡ 自动</em></li>
-            </ul>
-            <div class="lf">自动带出 → 备案号 · 查验码 · 账户</div>
-          </div>
-        </div>
+        <div class="diagram"><div class="canvas" style="width:1740px;height:638px">
+  <svg class="edges" viewBox="0 0 1740 638" preserveAspectRatio="none">
+    <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" opacity=".6"/></marker></defs>
+    <path d="M523.8,211.4 L568.5,211.4 L568.5,289.5 L613.1,289.5" class="edge" marker-end="url(#arrow)"/><path d="M1115.2,289.5 L1159.8,289.5 L1159.8,352.0 L1204.4,352.0" class="edge" marker-end="url(#arrow)"/><path d="M523.8,211.4 L864.1,211.4 L864.1,352.0 L1204.4,352.0" class="edge dash" marker-end="url(#arrow)"/>
+  </svg>
+  <div class="n box" style="left:44.1px;top:66.4px;width:479.8px;height:290.1px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:center;color:#1A1B1C;">非居民供应商名录（96条）</div><div class="n box" style="left:45.2px;top:67.5px;width:477.5px;height:36.8px;background:#E1A4C2;border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:15.6px;text-align:center;color:#1A1B1C;">非居民供应商名录（<font style="color: rgb(255, 0, 0);">第一层</font>）</div><div class="n box" style="left:45.2px;top:104.3px;width:477.5px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">● 非居民企业外文名称（主字段）</div><div class="n box" style="left:45.2px;top:135.6px;width:477.5px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">非居民企业中文名称</div><div class="n box" style="left:45.2px;top:166.8px;width:477.5px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">非居民税收编号　◆B 维护</div><div class="n box" style="left:45.2px;top:198.0px;width:477.5px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">开户行名称　◆A 维护</div><div class="n box" style="left:45.2px;top:229.3px;width:477.5px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">收款账号　◆A 维护</div><div class="n box" style="left:45.2px;top:260.5px;width:477.5px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">SWIFT/BIC　◆A 维护</div><div class="n box" style="left:45.2px;top:291.8px;width:477.5px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">关联合同备案（反向，1→N）</div><div class="n box" style="left:45.2px;top:323.0px;width:477.5px;height:32.4px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:12.3px;text-align:center;color:#666666;"><font style="color: rgb(255, 51, 51); font-style: normal;">一商一档：唯一供应商主数据来源</font></div><div class="n box" style="left:613.1px;top:66.4px;width:502.1px;height:446.3px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:center;color:#1A1B1C;">合同（支付）备案登记（140条）</div><div class="n box" style="left:614.2px;top:67.5px;width:499.9px;height:36.8px;background:#C9BEDC;border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:15.6px;text-align:center;color:#1A1B1C;">合同（支付）备案登记（<font style="color: rgb(255, 0, 0);">第二层</font>）</div><div class="n box" style="left:614.2px;top:104.3px;width:499.9px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">● 非居民企业外文名称（主字段）</div><div class="n box" style="left:614.2px;top:135.6px;width:499.9px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">非居民税收编号　◆ 从名录自动带出</div><div class="n box" style="left:614.2px;top:166.8px;width:499.9px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">购买服务内容</div><div class="n box" style="left:614.2px;top:198.0px;width:499.9px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">合同或协议名称 / 合同总金额</div><div class="n box" style="left:614.2px;top:229.3px;width:499.9px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">流程状态：待税务处理 → 已备案完成</div><div class="n box" style="left:614.2px;top:260.5px;width:499.9px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">关联供应商（→ 名录）</div><div class="n box" style="left:614.2px;top:291.8px;width:499.9px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">▤ 中英文合同（盖公章）</div><div class="n box" style="left:614.2px;top:323.0px;width:499.9px;height:31.2px;background:#E8C9B6;border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">▤ 合同备案表　（上传后自动置已备案完成）</div><div class="n box" style="left:614.2px;top:354.2px;width:499.9px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">支付备案编号 / 查验码（B 反馈，可填“无”）</div><div class="n box" style="left:614.2px;top:385.5px;width:499.9px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">开户行 / 收款账号 / SWIFT　◆ 从名录自动带出</div><div class="n box" style="left:614.2px;top:416.7px;width:499.9px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">关联扣税记录（反向，1→N）</div><div class="n box" style="left:614.2px;top:448.0px;width:499.9px;height:64.7px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:12.3px;text-align:center;color:#666666;"><font style="color: rgb(255, 51, 51); font-style: normal;">合同级：一条合同一条记录</font></div><div class="n box" style="left:1204.4px;top:66.4px;width:535.6px;height:571.3px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:center;color:#1A1B1C;">扣税明细（355条）</div><div class="n box" style="left:1205.6px;top:67.5px;width:533.3px;height:36.8px;background:#B7C7A8;border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:15.6px;text-align:center;color:#1A1B1C;">扣税明细（<font style="color: rgb(255, 0, 0);">第三层</font>）</div><div class="n box" style="left:1205.6px;top:104.3px;width:533.3px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">● 非居民企业外文名称</div><div class="n box" style="left:1205.6px;top:135.6px;width:533.3px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">关联备案（→ 备案登记）</div><div class="n box" style="left:1205.6px;top:166.8px;width:533.3px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">扣税状态：待扣税 → 已扣税（默认待扣税）</div><div class="n box" style="left:1205.6px;top:198.0px;width:533.3px;height:31.2px;background:#E8C9B6;border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">▤ 完税凭证　（上传后自动置已扣税）</div><div class="n box" style="left:1205.6px;top:229.3px;width:533.3px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">▤ 发票等付款附件</div><div class="n box" style="left:1205.6px;top:260.5px;width:533.3px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">扣缴日期 / 金额 / 币种 / 汇率</div><div class="n box" style="left:1205.6px;top:291.8px;width:533.3px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">所得税税率 / 增值税税率（工程劳务填3.75%，其他源泉扣缴填10%）</div><div class="n box" style="left:1205.6px;top:323.0px;width:533.3px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">所得税 / 增值税（手动填写，历史已固化）</div><div class="n box" style="left:1205.6px;top:354.2px;width:533.3px;height:31.2px;background:#E8C9B6;border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">所得税（自动）/ 增值税（自动）　◆公式待细化</div><div class="n box" style="left:1205.6px;top:385.5px;width:533.3px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">类别（自动）/ 项目（自动）　◆ 从备案带出</div><div class="n box" style="left:1205.6px;top:416.7px;width:533.3px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">合同备案号 / 支付备案编号 / 查验码（自动）　◆</div><div class="n box" style="left:1205.6px;top:448.0px;width:533.3px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">税金承担主体（自动）　◆</div><div class="n box" style="left:1205.6px;top:479.2px;width:533.3px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">开户行 / 收款账号 / SWIFT（自动）　◆ 从备案带出</div><div class="n box" style="left:1205.6px;top:510.5px;width:533.3px;height:31.2px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:13.4px;text-align:left;">备注</div><div class="n box" style="left:1205.6px;top:541.7px;width:533.3px;height:93.7px;background:rgba(255,255,255,0.55);border:1.1px solid rgba(42,36,27,.5);border-radius:3px;font-size:12.3px;text-align:center;color:#666666;"><font style="color: rgb(255, 51, 51); font-style: normal;">扣税级：一条扣税记录上溯一条备案合同</font></div><div class="n box" style="left:0.0px;top:0.0px;width:0.0px;height:0.0px;background:none;border:1.1px solid rgba(42,36,27,.35);border-radius:3px;font-size:12.3px;text-align:center;color:#555555;">1：N 双向关联<br>◆自动带出：开户行/收款账号/SWIFT、非居民税收编号</div><div class="n box" style="left:0.0px;top:0.0px;width:0.0px;height:0.0px;background:none;border:1.1px solid rgba(42,36,27,.35);border-radius:3px;font-size:12.3px;text-align:center;color:#555555;">1：N 双向关联<br>◆自动带出：类别/项目、税金承担主体、银行三列、备案编号</div><div class="n box" style="left:0.0px;top:0.0px;width:0.0px;height:0.0px;background:none;border:1.1px solid rgba(42,36,27,.35);border-radius:3px;font-size:12.3px;text-align:center;color:#8A5B00;">◆ 自动带出链：名录 → 备案 → 扣税</div>
+</div></div>
       </div>
 
       <div class="foot"><span>财税数字化 · 2026</span><span>Paiyunshou</span></div>
@@ -267,11 +233,10 @@
 
       <div class="body">
         <h2>四角色，<em>一条流程</em></h2>
-        <p class="lede">业务提交、财务建明细、税务算税扣款、资金安排支付。<b>十处自动通知与状态回写</b>（图中 ⚡）替代人工催办：名录自动同步、备案完成即通知、扣税完成即通知、资金不足自动提醒。</p>
-
+        <p class="lede">业务提交、财务建明细、税务算税扣款、资金安排支付。<b>十处自动通知与状态回写</b>替代人工催办：名录自动同步、备案完成即通知、扣税完成即通知、资金不足自动提醒。</p>
         <div class="fig">
           <div class="shot"><img src="img/non-trade-flow.png" alt="非贸备案扣税全流程图：业务、财务、税务、资金四角色泳道与自动通知节点" /></div>
-          <div class="figcap"><span>图二 · 全流程图，⚡ 为自动通知节点</span><span>Workflow</span></div>
+          <div class="figcap"><span>图二 · 全流程图，◆ 为自动通知节点</span><span>Workflow</span></div>
         </div>
       </div>
 
@@ -285,38 +250,35 @@
 
       <div class="body two-col">
         <div class="col-copy">
-          <h2 style="font-size:84px">先还原<em>计税依据</em></h2>
-          <p class="lede" style="font-size:24px">扣税的核心是涉税判断与公式求解：先按承担主体还原计税依据，再乘税率。</p>
+          <h2 style="font-size:80px">先还原<em>计税依据</em></h2>
+          <p class="lede" style="font-size:22px">扣税的核心是涉税判断与公式求解：先按承担主体还原计税依据，再乘税率。</p>
 
           <div class="notes">
             <div class="note a"><span class="k">所得税</span><span class="v">工程劳务填 3.75%，其他源泉扣缴填 10%</span></div>
             <div class="note b"><span class="k">增值税</span><span class="v">按适用税率，两种承担主体计税依据不同</span></div>
             <div class="note c"><span class="k">自动列</span><span class="v">始终按公式计算，手动列保留为备份</span></div>
           </div>
-
         </div>
 
         <div class="col-fig">
-          <div class="tree">
-            <div class="node input">P = 金额 × 汇率</div>
-            <div class="vline"></div>
-            <div class="qrow">
-              <div class="node q">涉及所得税 / 增值税 = 是？</div>
-              <div class="branch">— 否 —→<span class="node zero">税金 = 0</span></div>
-            </div>
-            <div class="vline"></div>
-            <div class="node q">承担主体 = 非居民企业？</div>
-            <div class="vline"></div>
-            <div class="split">
-              <div class="node side sage"><b>是 · 非居民承担</b>计税依据 = P ÷ (1 + 增值税率)</div>
-              <div class="node side blush"><b>否 · 中方承担</b>计税依据 = P ÷ (1 − 所得税率)</div>
-            </div>
-            <div class="fgroup">
-              <div class="fcard">所得税 = 计税依据 × 所得税率<em>工程劳务 3.75% · 其他源泉扣缴 10%</em></div>
-              <div class="fcard">增值税 = 计税依据 × 增值税率<em>不涉及某税种时税率填 0，分母自动归 1</em></div>
-            </div>
-            <div class="treenote">自动列 100% 按口径计算；手动列（所得税 / 增值税）保留为历史备份数据</div>
-          </div>
+          <div class="diagram"><div class="canvas" style="width:1000px;height:688px">
+  <svg class="edges" viewBox="0 0 1000 688" preserveAspectRatio="none">
+    <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" opacity=".6"/></marker></defs>
+    <path d="M216.6,307.9 L216.6,354.5 L216.6,401.0" class="edge" marker-end="url(#arrow)"/><path d="M307.7,277.6 L335.1,277.6 L362.4,277.6" class="edge" marker-end="url(#arrow)"/><path d="M216.6,461.8 L216.6,482.0 L125.6,482.0 L125.6,502.3" class="edge" marker-end="url(#arrow)"/><path d="M216.6,461.8 L216.6,482.0 L315.8,482.0 L315.8,502.3" class="edge" marker-end="url(#arrow)"/><path d="M718.6,307.9 L718.6,354.5 L718.6,401.0" class="edge" marker-end="url(#arrow)"/><path d="M809.7,277.6 L832.0,277.6 L854.3,277.6" class="edge" marker-end="url(#arrow)"/><path d="M718.6,461.8 L718.6,482.0 L631.6,482.0 L631.6,502.3" class="edge" marker-end="url(#arrow)"/><path d="M718.6,461.8 L718.6,482.0 L821.9,482.0 L821.9,502.3" class="edge" marker-end="url(#arrow)"/>
+  </svg>
+  <div class="n lbl" style="left:222.7px;top:10.4px;width:566.8px;height:46.6px;font-size:16.2px;">非居民扣税税金公式（按税务局口径）<br>自动计算列：100% 按口径计算</div><div class="n box" style="left:36.5px;top:75.1px;width:963.5px;height:32.4px;background:rgba(255,255,255,0.55);border:1.0px solid rgba(42,36,27,.5);border-radius:6px;font-size:13.2px;text-align:center;">计税依据还原：非居民承担 → ÷(1+增值税率)；远景（中方）承担 → ÷(1-所得税税率)</div><div class="n box" style="left:36.5px;top:121.7px;width:963.5px;height:62.7px;background:rgba(255,255,255,0.55);border:1.0px solid rgba(42,36,27,.5);border-radius:6px;font-size:12.1px;text-align:left;">输入：P = [金额] × [汇率]
+· [涉及所得税] / [涉及增值税] = 是 → 计算，否则 0
+· [税金承担主体]（非居民企业 / 远景）· [所得税税率]（工程劳务填 3.75%，其他填 10%）· [增值税税率]</div><div class="n lbl" style="left:40.5px;top:198.6px;width:190.3px;height:36.4px;font-size:13.2px;">① 所得税（自动）</div><div class="n lbl" style="left:542.5px;top:198.6px;width:202.4px;height:36.4px;font-size:13.2px;">② 增值税（自动）</div><div class="n box" style="left:125.6px;top:247.2px;width:182.2px;height:60.7px;background:#E8C9B6;border:1.0px solid rgba(42,36,27,.5);border-radius:3px;font-size:11.1px;text-align:center;">[涉及所得税] = 是？</div><div class="n box" style="left:362.4px;top:257.3px;width:123.5px;height:40.5px;background:#E1A4C2;border:1.0px solid rgba(42,36,27,.5);border-radius:6px;font-size:11.1px;text-align:center;">否 → 0</div><div class="n box" style="left:125.6px;top:401.0px;width:182.2px;height:60.7px;background:#E8C9B6;border:1.0px solid rgba(42,36,27,.5);border-radius:3px;font-size:11.1px;text-align:center;">[税金承担主体] = 非居民企业？</div><div class="n box" style="left:40.5px;top:502.3px;width:170.0px;height:96.1px;background:#D6DD63;border:1.0px solid rgba(42,36,27,.5);border-radius:6px;font-size:12.1px;text-align:center;">非居民承担
+计税依据 = P ÷ (1+增值税率)
+所得税 = 计税依据 × 所得税率</div><div class="n box" style="left:230.8px;top:502.3px;width:170.0px;height:96.1px;background:#C9BEDC;border:1.0px solid rgba(42,36,27,.5);border-radius:6px;font-size:12.1px;text-align:center;">远景（中方）承担
+计税依据 = P ÷ (1-所得税率)
+所得税 = 计税依据 × 所得税率</div><div class="n box" style="left:627.5px;top:247.2px;width:182.2px;height:60.7px;background:#E8C9B6;border:1.0px solid rgba(42,36,27,.5);border-radius:3px;font-size:11.1px;text-align:center;">[涉及增值税] = 是？</div><div class="n box" style="left:854.3px;top:257.3px;width:127.5px;height:40.5px;background:#E1A4C2;border:1.0px solid rgba(42,36,27,.5);border-radius:6px;font-size:11.1px;text-align:center;">否 → 0</div><div class="n box" style="left:627.5px;top:401.0px;width:182.2px;height:60.7px;background:#E8C9B6;border:1.0px solid rgba(42,36,27,.5);border-radius:3px;font-size:11.1px;text-align:center;">[税金承担主体] = 非居民企业？</div><div class="n box" style="left:546.6px;top:502.3px;width:170.0px;height:96.1px;background:#D6DD63;border:1.0px solid rgba(42,36,27,.5);border-radius:6px;font-size:12.1px;text-align:center;">非居民承担
+计税依据 = P ÷ (1+增值税率)
+增值税 = 计税依据 × 增值税率</div><div class="n box" style="left:736.9px;top:502.3px;width:170.0px;height:96.1px;background:#C9BEDC;border:1.0px solid rgba(42,36,27,.5);border-radius:6px;font-size:12.1px;text-align:center;">远景（中方）承担
+计税依据 = P ÷ (1-所得税率)
+增值税 = 计税依据 × 增值税率</div><div class="n box" style="left:32.4px;top:617.6px;width:963.5px;height:70.8px;background:#C9BEDC;border:1.0px solid rgba(42,36,27,.5);border-radius:6px;font-size:11.1px;text-align:left;"><font style="font-size: 12px;">说明<br>· 工程劳务（承包工程、提供劳务所得）直接在 [所得税税率] 填 3.75%，其他源泉扣缴填 10%。<br>· 涉及列 = 否 → 税金 0；不涉及某税种时把对应税率填 0，分母自动归 1<br>· 自动列始终按公式计算，手动列 [所得税] / [增值税] 备份数据保留</font></div><div class="n box" style="left:0.0px;top:0.0px;width:0.0px;height:0.0px;background:none;border:1.0px solid rgba(42,36,27,.35);border-radius:3px;font-size:10.1px;text-align:center;">是</div><div class="n box" style="left:0.0px;top:0.0px;width:0.0px;height:0.0px;background:none;border:1.0px solid rgba(42,36,27,.35);border-radius:3px;font-size:10.1px;text-align:center;">否</div><div class="n box" style="left:0.0px;top:0.0px;width:0.0px;height:0.0px;background:none;border:1.0px solid rgba(42,36,27,.35);border-radius:3px;font-size:10.1px;text-align:center;">是</div><div class="n box" style="left:0.0px;top:0.0px;width:0.0px;height:0.0px;background:none;border:1.0px solid rgba(42,36,27,.35);border-radius:3px;font-size:10.1px;text-align:center;">否</div><div class="n box" style="left:0.0px;top:0.0px;width:0.0px;height:0.0px;background:none;border:1.0px solid rgba(42,36,27,.35);border-radius:3px;font-size:10.1px;text-align:center;">是</div><div class="n box" style="left:0.0px;top:0.0px;width:0.0px;height:0.0px;background:none;border:1.0px solid rgba(42,36,27,.35);border-radius:3px;font-size:10.1px;text-align:center;">否</div><div class="n box" style="left:0.0px;top:0.0px;width:0.0px;height:0.0px;background:none;border:1.0px solid rgba(42,36,27,.35);border-radius:3px;font-size:10.1px;text-align:center;">是</div><div class="n box" style="left:0.0px;top:0.0px;width:0.0px;height:0.0px;background:none;border:1.0px solid rgba(42,36,27,.35);border-radius:3px;font-size:10.1px;text-align:center;">否</div>
+</div></div>
         </div>
       </div>
 
