@@ -18,10 +18,11 @@
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;padding:0;font-family:"Noto Serif SC",serif;background:var(--bg);color:var(--text)}
 .stage{
-  width:100vw;height:100vh;display:grid;place-items:center;overflow:hidden;
+  position:relative;width:100vw;height:100vh;overflow:hidden;
 }
 .slide-wrap{
-  width:1920px;height:1080px;transform:scale(min(100vw/1920,100vh/1080));transform-origin:center;position:relative;
+  position:absolute;top:50%;left:50%;width:1920px;height:1080px;
+  transform-origin:center;transform:translate(-50%,-50%) scale(1);
 }
 .slide{
   position:absolute;inset:0;padding:96px;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;
@@ -54,9 +55,22 @@ p,li{font-size:22px;line-height:1.7;color:var(--text)}
 .arrow{color:var(--gold);font-size:28px}
 footer{position:absolute;bottom:40px;left:96px;color:var(--muted);font-size:18px}
 .nav-hint{position:absolute;bottom:40px;right:96px;color:var(--muted);font-size:18px}
+/* 返回主页 */
+.back-home{
+  position:fixed;top:24px;left:24px;z-index:50;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 18px;border-radius:999px;
+  border:1px solid var(--stroke);background:var(--card);
+  color:var(--accent);font-family:inherit;font-size:16px;
+  text-decoration:none;line-height:1;backdrop-filter:blur(4px);
+  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+}
+.back-home:hover{background:#fff;border-color:var(--accent);transform:translateX(-2px)}
+.back-home .arw{font-size:15px}
 </style>
 </head>
 <body>
+<a class="back-home" href="./index.html"><span class="arw">←</span> 返回主页</a>
 <div class="stage">
 <div class="slide-wrap">
   <!-- Slide 1: 表格层级和关联设计 -->
@@ -151,6 +165,14 @@ document.querySelector('.slide-wrap').addEventListener('click',e=>{
   render();
 })
 render();
+
+/* 自适应缩放：把 1920x1080 的舞台等比缩放到当前窗口（CSS min() 在 transform 中无效） */
+function fit(){
+  const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+  document.querySelector('.slide-wrap').style.transform='translate(-50%,-50%) scale('+s+')';
+}
+window.addEventListener('resize',fit);
+fit();
 </script>
 </body>
 </html>
