@@ -1,0 +1,61 @@
+{
+ "updated": "2026-11-19",
+ "total": 9,
+ "recent": [
+  {
+   "t": "战略 · 股权设计战略考量",
+   "m": "STRATEGY · 待建设",
+   "href": "https://paiyunshou.github.io/slides/strategy-equity-design.html",
+   "status": "todo"
+  },
+  {
+   "t": "投融资 · 增资扩股涉税",
+   "m": "FINANCING · 待建设",
+   "href": "https://paiyunshou.github.io/slides/financing-capital-increase.html",
+   "status": "todo"
+  },
+  {
+   "t": "管理 · 重组与并购涉税",
+   "m": "MANAGEMENT · 待建设",
+   "href": "https://paiyunshou.github.io/slides/ma-restructuring.html",
+   "status": "todo"
+  },
+  {
+   "t": "退出 · 常见退出方式涉税",
+   "m": "EXIT · 待建设",
+   "href": "https://paiyunshou.github.io/slides/exit-tax.html",
+   "status": "todo"
+  },
+  {
+   "t": "上市与境外架构",
+   "m": "CAPITAL MARKET · 待建设",
+   "href": "https://paiyunshou.github.io/slides/ipo-overseas.html",
+   "status": "todo"
+  },
+  {
+   "t": "关联交易",
+   "m": "RELATED PARTY · 待建设",
+   "href": "https://paiyunshou.github.io/slides/related-party.html",
+   "status": "todo"
+  },
+  {
+   "t": "非贸备案扣税多维表流程系统",
+   "m": "SYSTEM DESIGN · 2026.10",
+   "href": "https://paiyunshou.github.io/slides/non-trade-tax-flow.html",
+   "status": "done"
+  },
+  {
+   "t": "区域税金管理系统 · 设计框架与操作指南",
+   "m": "DESIGN + GUIDE · 2026.10",
+   "href": "https://paiyunshou.github.io/slides/tax-table-design.html",
+   "status": "done"
+  },
+  {
+   "t": "集团退税管理系统 · 数据仓表格与计算逻辑",
+   "m": "DATA WAREHOUSE · 2026.10",
+   "href": "https://paiyunshou.github.io/slides/tuishi-system.html",
+   "status": "done"
+  }
+ ],
+ "site": "https://paiyunshou.github.io/slides/"
+}
