@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>增资扩股涉税 · 集团税务价值</title>
+<style>
+/* emerald-editorial template | 与 group-tax deck 统一风格 */
+@font-face{font-family:'Noto Serif SC';src:url('fonts/notoserif-cn-r5.woff2') format('woff2');font-weight:300 700;font-display:swap}
+@font-face{font-family:'Noto Sans SC';src:url('fonts/notosans-cn-r5.woff2') format('woff2');font-weight:300 700;font-display:swap}
+:root{
+  --bg:#f8f6f0;
+  --text:#2c302c;
+  --accent:#205c47;
+  --gold:#b89758;
+  --muted:#646b64;
+  --card:#ffffffdd;
+  --stroke:#dcd8cc;
+  --gold-soft:#fff2cc;
+  --gold-line:#e6b85c;
+  --serif:"Noto Serif SC",serif;
+  --mono:"SF Mono",Consolas,"Noto Sans SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0;font-family:var(--serif);background:var(--bg);color:var(--text)}
+.stage{position:relative;width:100vw;height:100vh;overflow:hidden}
+.slide-wrap{position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform-origin:center;transform:translate(-50%,-50%) scale(1)}
+.slide{position:absolute;inset:0;padding:82px 96px 104px;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;display:flex;flex-direction:column}
+.slide.active{opacity:1;visibility:visible}
+.slide.cover{justify-content:center}
+h1{font-size:72px;font-weight:600;color:var(--accent);margin:0 0 26px;letter-spacing:-.01em}
+h2{font-size:34px;font-weight:500;color:var(--gold);margin:0 0 32px}
+p,li{font-size:22px;line-height:1.7;color:var(--text);margin:0}
+
+.hdr{display:flex;align-items:center;gap:22px;padding-bottom:20px;border-bottom:1px solid var(--stroke);flex:0 0 auto}
+.hdr .num{flex:0 0 auto;width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#f8f6f0;font-family:var(--mono);font-size:24px;letter-spacing:1px}
+.hdr h3{margin:0;font-size:44px;font-weight:600;color:var(--accent);line-height:1.2}
+.hdr .sub{margin:6px 0 0;font-size:20px;color:var(--muted)}
+.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:17px;color:var(--accent);border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:999px;padding:8px 20px;font-family:var(--mono)}
+
+/* —— 封面 —— */
+.cover .eyebrow{font-family:var(--mono);font-size:20px;letter-spacing:3px;color:var(--gold);margin-bottom:22px}
+.cover .lede{font-size:26px;line-height:1.6;color:var(--muted);max-width:60ch;margin-top:8px}
+.cover .meta{display:flex;align-items:center;gap:16px;margin-top:44px}
+.pill{font-family:var(--mono);font-size:17px;letter-spacing:1px;padding:9px 22px;border-radius:999px;border:1px dashed var(--gold-line);background:var(--gold-soft);color:#7a5b12}
+.pill.solid{border-style:solid;border-color:var(--accent);background:transparent;color:var(--accent)}
+
+/* —— 占位骨牌 —— */
+.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:22px;margin-top:30px}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:26px;flex:1 1 auto;min-height:0}
+.slot{background:var(--card);border:1px dashed var(--stroke);border-radius:18px;padding:28px 30px;display:flex;flex-direction:column;gap:10px}
+.slot .k{font-family:var(--mono);font-size:15px;letter-spacing:2px;color:var(--gold)}
+.slot .t{font-size:28px;font-weight:600;color:var(--accent)}
+.slot .d{font-size:19px;line-height:1.6;color:var(--muted)}
+.slot .line{margin-top:auto;height:1px;background:repeating-linear-gradient(90deg,var(--stroke) 0 8px,transparent 8px 16px)}
+
+.empty{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;border:1px dashed var(--stroke);border-radius:18px;background:#ffffffee}
+.empty .big{font-size:46px;font-weight:600;color:#c9c3b4}
+.empty .d{font-size:20px;color:var(--muted);text-align:center;line-height:1.7}
+
+.nav-hint{position:absolute;right:96px;bottom:56px;font-family:var(--mono);font-size:15px;letter-spacing:1px;color:var(--muted)}
+footer{font-family:var(--mono);font-size:15px;letter-spacing:1px;color:var(--muted);text-align:center;flex:0 0 auto;padding-top:18px}
+.back{position:absolute;left:96px;top:52px;font-family:var(--mono);font-size:16px;letter-spacing:1px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--gold-line);padding-bottom:2px}
+.progress{position:fixed;left:0;bottom:0;height:3px;background:var(--gold);width:0;transition:width .3s ease;z-index:9}
+</style>
+</head>
+<body>
+<div class="stage">
+<div class="slide-wrap">
+
+  <!-- 封面 -->
+  <div class="slide cover">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="eyebrow">GROUP TAX VALUE · 02</div>
+    <h1>增资扩股涉税</h1>
+    <p class="lede">增资扩股各环节的税务处理：出资方式、资本公积、原股东权益。</p>
+    <div class="meta">
+      <span class="pill">待建设 · IN PROGRESS</span>
+      <span class="pill solid">投融资</span>
+    </div>
+    <div class="nav-hint">← → / 空格 翻页</div>
+  </div>
+
+  <!-- 第二章占位 -->
+  <div class="slide">
+    <div class="hdr">
+      <div class="num">02</div>
+      <div>
+        <h3>增资扩股涉税 · 内容框架</h3>
+        <p class="sub">先把骨架留好，内容后续逐页填充</p>
+      </div>
+      <div class="badge">OUTLINE · TO BE FILLED</div>
+    </div>
+    <div class="body">
+      <div class="slots">
+        <div class="slot">
+          <div class="k">SLOT 01 · FINANCING</div>
+          <div class="t">出资形式</div>
+          <div class="d">要点、依据、测算与案例待补</div>
+          <div class="line"></div>
+        </div>
+        <div class="slot">
+          <div class="k">SLOT 02 · FINANCING</div>
+          <div class="t">溢价与资本公积</div>
+          <div class="d">要点、依据、测算与案例待补</div>
+          <div class="line"></div>
+        </div>
+        <div class="slot">
+          <div class="k">SLOT 03 · FINANCING</div>
+          <div class="t">原股东涉税</div>
+          <div class="d">要点、依据、测算与案例待补</div>
+          <div class="line"></div>
+        </div>
+        <div class="slot">
+          <div class="k">SLOT 04 · FINANCING</div>
+          <div class="t">印花税</div>
+          <div class="d">要点、依据、测算与案例待补</div>
+          <div class="line"></div>
+        </div>
+      </div>
+      <div class="empty">
+        <div class="big">内容待建设</div>
+        <div class="d">确定本节提纲后，逐页补要点、法规依据与测算模型<br>（与集团税务价值其他章节共用同一套版式）</div>
+      </div>
+    </div>
+    <footer></footer>
+  </div>
+
+</div>
+</div>
+<div class="progress" id="progress"></div>
+<script>
+const slides=document.querySelectorAll('.slide');
+let idx=0;
+function render(){
+  slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
+  slides.forEach((s,i)=>{const f=s.querySelector('footer');if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;});
+  const p=document.getElementById('progress');
+  if(p)p.style.width=((idx+1)/slides.length*100)+'%';
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){idx=Math.min(idx+1,slides.length-1);render()}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){idx=Math.max(idx-1,0);render()}
+});
+document.querySelector('.slide-wrap').addEventListener('click',e=>{
+  const rect=e.target.getBoundingClientRect();
+  if(e.clientX-rect.left>rect.width/2) idx=Math.min(idx+1,slides.length-1);
+  else idx=Math.max(idx-1,0);
+  render();
+});
+render();
+function fit(){
+  const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+  document.querySelector('.slide-wrap').style.transform='translate(-50%,-50%) scale('+s+')';
+}
+window.addEventListener('resize',fit);
+fit();
+</script>
+</body>
+</html>
