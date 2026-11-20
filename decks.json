@@ -1,6 +1,6 @@
 {
  "updated": "2026-11-20",
- "total": 9,
+ "total": 10,
  "recent": [
   {
    "t": "战略 · 公司设立股权架构考量",
@@ -54,6 +54,12 @@
    "t": "集团退税管理系统 · 数据仓表格与计算逻辑",
    "m": "DATA WAREHOUSE · 2026.10",
    "href": "https://paiyunshou.github.io/slides/tuishi-system.html",
+   "status": "done"
+  },
+  {
+   "t": "增值税期末留抵退税 · 2025 年新政要点",
+   "m": "POLICY BRIEF · 2026.11 · 2 PAGES",
+   "href": "https://paiyunshou.github.io/slides/vat-retention-refund.html",
    "status": "done"
   }
  ],
