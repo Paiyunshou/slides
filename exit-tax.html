@@ -3,149 +3,718 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>常见退出方式涉税 · 集团税务价值</title>
+<title>投融资 · 增资扩股涉税 · 第二部分 公司扩张</title>
 <style>
-/* emerald-editorial template | 与 group-tax deck 统一风格 */
-@font-face{font-family:'Noto Serif SC';src:url('fonts/notoserif-cn-r5.woff2') format('woff2');font-weight:300 700;font-display:swap}
-@font-face{font-family:'Noto Sans SC';src:url('fonts/notosans-cn-r5.woff2') format('woff2');font-weight:300 700;font-display:swap}
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-r.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-sb.woff2') format('woff2');font-weight:500 700;font-display:swap}
 :root{
-  --bg:#f8f6f0;
-  --text:#2c302c;
-  --accent:#205c47;
-  --gold:#b89758;
-  --muted:#646b64;
-  --card:#ffffffdd;
-  --stroke:#dcd8cc;
-  --gold-soft:#fff2cc;
-  --gold-line:#e6b85c;
-  --serif:"Noto Serif SC",serif;
-  --mono:"SF Mono",Consolas,"Noto Sans SC",monospace;
+  --bg:#f8f6f0;--text:#2c302c;--accent:#205c47;--gold:#b89758;--muted:#646b64;
+  --card:#ffffff;--gold-soft:#fff2cc;--gold-line:#e6b85c;--line:#dcd8cc;
+  --serif:"Deck Serif","Noto Serif SC",Songti SC,SimSun,serif;
+  --mono:"SF Mono",Consolas,ui-monospace,"Deck Serif",monospace;
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;padding:0;font-family:var(--serif);background:var(--bg);color:var(--text)}
 .stage{position:relative;width:100vw;height:100vh;overflow:hidden}
 .slide-wrap{position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform-origin:center;transform:translate(-50%,-50%) scale(1)}
-.slide{position:absolute;inset:0;padding:82px 96px 104px;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;display:flex;flex-direction:column}
+.slide{position:absolute;inset:0;padding:76px 96px 88px;opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;display:flex;flex-direction:column;background:var(--bg)}
 .slide.active{opacity:1;visibility:visible}
-.slide.cover{justify-content:center}
-h1{font-size:72px;font-weight:600;color:var(--accent);margin:0 0 26px;letter-spacing:-.01em}
-h2{font-size:34px;font-weight:500;color:var(--gold);margin:0 0 32px}
-p,li{font-size:22px;line-height:1.7;color:var(--text);margin:0}
+p,li{font-size:21px;line-height:1.65;color:var(--text);margin:0}
+.hdr{display:flex;align-items:flex-end;gap:20px;padding-bottom:14px;border-bottom:1px solid var(--line);flex:0 0 auto}
+.hdr .num{flex:0 0 auto;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#f8f6f0;font-family:var(--mono);font-size:21px}
+.hdr h3{margin:0;font-size:36px;font-weight:600;color:var(--accent);line-height:1.22}
+.hdr .sub{margin:6px 0 0;font-size:17px;color:var(--muted);line-height:1.45}
+.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:13px;color:var(--accent);border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:999px;padding:7px 16px;font-family:var(--mono);white-space:nowrap}
+.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:14px;margin-top:18px}
+footer{font-family:var(--mono);font-size:12.5px;letter-spacing:.5px;color:var(--muted);flex:0 0 auto;padding-top:10px;border-top:1px solid var(--line);margin-top:10px;display:flex;justify-content:space-between;gap:24px}
+footer .src{opacity:.85}
+.back{position:absolute;left:96px;top:40px;font-family:var(--mono);font-size:14px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--gold-line);padding-bottom:2px}
 
-.hdr{display:flex;align-items:center;gap:22px;padding-bottom:20px;border-bottom:1px solid var(--stroke);flex:0 0 auto}
-.hdr .num{flex:0 0 auto;width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#f8f6f0;font-family:var(--mono);font-size:24px;letter-spacing:1px}
-.hdr h3{margin:0;font-size:44px;font-weight:600;color:var(--accent);line-height:1.2}
-.hdr .sub{margin:6px 0 0;font-size:20px;color:var(--muted)}
-.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:17px;color:var(--accent);border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:999px;padding:8px 20px;font-family:var(--mono)}
+/* 布局 */
+.col2{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.col2.w6{grid-template-columns:1.25fr 1fr}
+.col3{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.col4{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stack{display:flex;flex-direction:column;gap:12px;min-height:0;justify-content:center}
+.stack>.card{flex:0 0 auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;display:flex;flex-direction:column;gap:6px;min-height:0}
+.card.gold{border-left:3px solid var(--gold-line)}
+.card.hi{background:#eef4f0;border-left:3px solid var(--accent)}
+.card h4{margin:0;font-size:23px;font-weight:600;color:var(--accent);line-height:1.3}
+.card h4 .g{color:var(--gold)}
+.card .k{font-family:var(--mono);font-size:11.5px;letter-spacing:1.2px;color:var(--gold)}
+.card ul{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.card ul li{font-size:17.5px;line-height:1.58;padding-left:14px;position:relative}
+.card ul li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.card ul li b{color:var(--accent);font-weight:600}
+.card p{font-size:17.5px;line-height:1.6}
+.card p b{color:var(--accent)}
 
-/* —— 封面 —— */
-.cover .eyebrow{font-family:var(--mono);font-size:20px;letter-spacing:3px;color:var(--gold);margin-bottom:22px}
-.cover .lede{font-size:26px;line-height:1.6;color:var(--muted);max-width:60ch;margin-top:8px}
-.cover .meta{display:flex;align-items:center;gap:16px;margin-top:44px}
-.pill{font-family:var(--mono);font-size:17px;letter-spacing:1px;padding:9px 22px;border-radius:999px;border:1px dashed var(--gold-line);background:var(--gold-soft);color:#7a5b12}
-.pill.solid{border-style:solid;border-color:var(--accent);background:transparent;color:var(--accent)}
+.note{background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:8px;padding:11px 17px;font-size:17px;line-height:1.6;flex:0 0 auto}
+.note b{color:#7a5a12}
+.note.plain{background:#f1f4f2;border-color:var(--line)}
 
-/* —— 占位骨牌 —— */
-.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:22px;margin-top:30px}
-.slots{display:grid;grid-template-columns:1fr 1fr;gap:26px;flex:1 1 auto;min-height:0}
-.slot{background:var(--card);border:1px dashed var(--stroke);border-radius:18px;padding:28px 30px;display:flex;flex-direction:column;gap:10px}
-.slot .k{font-family:var(--mono);font-size:15px;letter-spacing:2px;color:var(--gold)}
-.slot .t{font-size:28px;font-weight:600;color:var(--accent)}
-.slot .d{font-size:19px;line-height:1.6;color:var(--muted)}
-.slot .line{margin-top:auto;height:1px;background:repeating-linear-gradient(90deg,var(--stroke) 0 8px,transparent 8px 16px)}
+/* 表格 */
+.tbl{width:100%;border-collapse:collapse;font-size:16px}
+.tbl th{background:#eceee9;color:var(--accent);font-weight:600;text-align:left;padding:8px 11px;border:1px solid var(--line);font-size:15.5px}
+.tbl td{padding:7px 11px;border:1px solid var(--line);line-height:1.45;vertical-align:top}
+.tbl td b{color:var(--accent)}
+.tbl tr:nth-child(even) td{background:#fbfaf6}
+.tbl .c{text-align:center}
 
-.empty{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;border:1px dashed var(--stroke);border-radius:18px;background:#ffffffee}
-.empty .big{font-size:46px;font-weight:600;color:#c9c3b4}
-.empty .d{font-size:20px;color:var(--muted);text-align:center;line-height:1.7}
+/* 图 */
+.dg{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 20px;display:flex;flex-direction:column;min-height:0;gap:8px;justify-content:center}
+.dg .cap{font-family:var(--mono);font-size:11.5px;letter-spacing:1.2px;color:var(--gold);flex:0 0 auto}
+.dg .rowx{display:flex;align-items:center;justify-content:center;gap:10px;flex:0 0 auto}
+.dg .colx{display:flex;flex-direction:column;align-items:center;gap:0;flex:1 1 auto;justify-content:center;min-height:0}
+.n{background:#eef4f0;border:1px solid #c9d8ce;border-radius:8px;padding:9px 15px;font-size:17px;line-height:1.35;text-align:center;flex:0 0 auto}
+.n b{color:var(--accent);font-weight:600}
+.n.fill{background:var(--accent);border-color:var(--accent);color:#f8f6f0}
+.n.fill b{color:#fff}
+.n.gold{background:var(--gold-soft);border-color:var(--gold-line)}
+.n.dash{border-style:dashed;background:#fbfaf6}
+.n.sm{font-size:15px;padding:7px 12px}
+.n .s{display:block;font-size:15px;color:var(--muted);line-height:1.3;margin-top:2px}
+.n.fill .s{color:#d8e6de}
+.varr{position:relative;height:22px;width:100%;flex:0 0 auto}
+.varr::before{content:'';position:absolute;left:50%;margin-left:-9px;top:0;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:13px solid var(--gold)}
+.varr.lbl::after{content:attr(data-l);position:absolute;left:calc(50% + 12px);top:-2px;font-family:var(--mono);font-size:11px;color:var(--gold);white-space:nowrap}
+.vline{width:1px;height:12px;background:var(--gold-line);flex:0 0 auto}
+.harr{position:relative;width:32px;height:14px;flex:0 0 auto}
+.harr::before{content:'';position:absolute;left:12px;top:0;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid var(--gold)}
+.brace{position:relative;border-top:1px solid var(--gold-line);height:8px;flex:0 0 auto}
+.pin{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--gold-soft);border:1px solid var(--gold-line);font-family:var(--mono);font-size:12px;color:#7a5a12;flex:0 0 auto}
 
-.nav-hint{position:absolute;right:96px;bottom:56px;font-family:var(--mono);font-size:15px;letter-spacing:1px;color:var(--muted)}
-footer{font-family:var(--mono);font-size:15px;letter-spacing:1px;color:var(--muted);text-align:center;flex:0 0 auto;padding-top:18px}
-.back{position:absolute;left:96px;top:52px;font-family:var(--mono);font-size:16px;letter-spacing:1px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--gold-line);padding-bottom:2px}
-.progress{position:fixed;left:0;bottom:0;height:3px;background:var(--gold);width:0;transition:width .3s ease;z-index:9}
+/* 追加组件：流程箭头、星级、明细小表 */
+.flow{display:flex;align-items:stretch;gap:0;flex:0 0 auto}
+.flow .stp{flex:1 1 0;background:var(--card);border:1px solid var(--line);border-right:none;padding:10px 14px 10px 22px;position:relative;display:flex;flex-direction:column;gap:3px}
+.flow .stp:first-child{border-radius:8px 0 0 8px;padding-left:16px}
+.flow .stp:last-child{border-right:1px solid var(--line);border-radius:0 8px 8px 0}
+.flow .stp::after{content:'';position:absolute;right:-11px;top:50%;margin-top:-11px;width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:11px solid var(--line);z-index:2}
+.flow .stp:last-child::after{display:none}
+.flow .stp .k{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--gold)}
+.flow .stp .t{font-size:17px;font-weight:600;color:var(--accent);line-height:1.3}
+.flow .stp .d{font-size:14px;color:var(--muted);line-height:1.4}
+.flow .stp.hi{background:#eef4f0}
+.stars{color:var(--gold);letter-spacing:2px;font-size:15px}
+.mini-tbl{width:100%;border-collapse:collapse;font-size:15.5px}
+.mini-tbl th{background:#eceee9;color:var(--accent);text-align:left;padding:6px 9px;border:1px solid var(--line);font-size:15px}
+.mini-tbl td{padding:5px 9px;border:1px solid var(--line);line-height:1.4}
+.mini-tbl td.n1{color:#b04a2f;font-weight:600}
+.mini-tbl td.n0{color:var(--accent);font-weight:600}
+
+.bars{display:flex;height:38px;border-radius:7px;overflow:hidden;border:1px solid var(--line);flex:0 0 auto}
+.bars div{display:flex;align-items:center;justify-content:center;font-size:13.5px;color:#fff;font-weight:500;white-space:nowrap}
+.bars .b1{background:#2c6e54}.bars .b2{background:#5d8d78}.bars .b3{background:#b04a2f}.bars .b4{background:#b89758}.bars .b5{background:#5b6b64}
+
+.body:has(> .col3){justify-content:center}
+.col3{flex:0 0 auto}
+
+/* 收紧：图框与卡片按内容高度居中，不再拉满整列 */
+.n b{font-size:19px}
 </style>
 </head>
 <body>
 <div class="stage">
 <div class="slide-wrap">
-
-  <!-- 封面 -->
-  <div class="slide cover">
+  <!-- ===== 01 总览 ===== -->
+  <div class="slide">
     <a class="back" href="./index.html">← 返回目录</a>
-    <div class="eyebrow">GROUP TAX VALUE · 04</div>
-    <h1>常见退出方式涉税</h1>
-    <p class="lede">股权转让、减资、清算、回购等退出路径的税负比较与要点。</p>
-    <div class="meta">
-      <span class="pill">待建设 · IN PROGRESS</span>
-      <span class="pill solid">退出</span>
+    <div class="hdr">
+      <div class="num">01</div>
+      <div>
+        <h3>公司收缩：六条退路，一个共同问题——税去哪儿了</h3>
+        <p class="sub">收缩期的每个动作都要回答：税是「消失」了、「迟到」了，还是「转移」给了交易对手</p>
+      </div>
+      <div class="badge">PART 03 · 6 章 12 页</div>
     </div>
-    <div class="nav-hint">← → / 空格 翻页</div>
+    <div class="body">
+      <div class="dg" style="flex:1 1 auto;gap:12px;justify-content:center">
+        <div class="cap">EXIT MAP · 第 13–18 章</div>
+        <div class="col3" style="flex:0 0 auto;gap:14px">
+          <div class="card hi" style="justify-content:center">
+            <div class="k">STAGE 01 · 第 13 章</div>
+            <h4>① 卖资产还是卖股权</h4>
+            <ul>
+              <li>资产收购：五个税种叠加，交易环节税负最重</li>
+              <li>化卖资产为卖股权：只留企业所得税与印花税</li>
+              <li><b>少交的税没消失，埋在下家的清算里</b></li>
+            </ul>
+            <p style="color:var(--gold);font-size:15.5px">税负转嫁</p>
+          </div>
+          <div class="card hi" style="justify-content:center">
+            <div class="k">STAGE 02 · 第 14–15 章</div>
+            <h4>② 股权退出</h4>
+            <ul>
+              <li>个人股东：20%，受让方代扣，「先税务、后工商」</li>
+              <li>公司股东：分红法、转增法、撤资三选一</li>
+              <li><b>退出前先看：留存收益能不能先分掉</b></li>
+            </ul>
+            <p style="color:var(--gold);font-size:15.5px">20% 与 25% 的差别</p>
+          </div>
+          <div class="card hi" style="justify-content:center">
+            <div class="k">STAGE 03 · 第 16–18 章</div>
+            <h4>③ 消灭主体还是重组主体</h4>
+            <ul>
+              <li>注销：两个层面的清算所得税</li>
+              <li>合并分立：无须法律清算，六税种各有优惠</li>
+              <li>剥离：买卖、划转、投资、分立四条路</li>
+            </ul>
+            <p style="color:var(--gold);font-size:15.5px">显性成本 vs 时间成本</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;flex:0 0 auto">
+          <div class="card" style="justify-content:center"><div class="k">第 13 章</div><h4 style="font-size:18px">资产出售与收购</h4><p style="font-size:14.5px;color:var(--muted)">化卖资产为卖股权＝税负转嫁</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 14 章</div><h4 style="font-size:18px">个人股东退出</h4><p style="font-size:14.5px;color:var(--muted)">先税务、后工商；核定收入</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 15 章</div><h4 style="font-size:18px">公司股东退出</h4><p style="font-size:14.5px;color:var(--muted)">分红法 / 转增法 / 撤资</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 16 章</div><h4 style="font-size:18px">企业注销</h4><p style="font-size:14.5px;color:var(--muted)">公司＋股东两层清算所得</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 17 章</div><h4 style="font-size:18px">合并与分立</h4><p style="font-size:14.5px;color:var(--muted)">无须法律清算</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 18 章</div><h4 style="font-size:18px">资产剥离</h4><p style="font-size:14.5px;color:var(--muted)">买卖 / 划转 / 投资 / 分立</p></div>
+        </div>
+      </div>
+    </div>
+    <footer><span>退出 · 常见退出方式涉税</span><span><span class="src">依据：《一本书看透股权节税》第三部分 · 笔记 6 篇</span>　<span class="pg"></span></span></footer>
   </div>
 
-  <!-- 第二章占位 -->
+  <!-- ===== 02 第13章 A 资产收购的税负 ===== -->
   <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">02</div>
+      <div>
+        <h3>第 13 章｜一块地，直接卖要交 3.86 亿的税</h3>
+        <p class="sub">聪聪地产要拿下笨笨置业的一块地：先看法律能不能转，再算税算到不能接受，最后才想到换路径</p>
+      </div>
+      <div class="badge">CH 13 · 资产收购</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 直接转让土地（第一方案）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="rowx" style="gap:16px;align-items:flex-start">
+              <div class="n" style="min-width:250px"><b>笨笨置业</b><span class="s">土地历史成本 2 亿<br>2016 年 5 月前取得</span></div>
+              <div class="n gold" style="min-width:250px"><b>聪聪地产</b><span class="s">买方 · 受让土地使用权</span></div>
+            </div>
+            <div class="rowx"><div class="varr" style="width:100%"></div></div>
+            <div class="n fill" style="min-width:420px"><b>交易总价 9 亿（含税）</b><span class="s">不含税收入约 8.26 亿</span></div>
+          </div>
+          <div class="rowx" style="gap:10px;align-items:stretch;margin-top:6px">
+            <div class="n sm" style="min-width:180px">法律障碍<span class="s">开发投入 0.2 亿，未达 25%，不得转让</span></div>
+            <div class="n sm gold" style="min-width:180px">税负障碍<span class="s">卖方一侧 3.86 亿，买方一侧 0.25 亿</span></div>
+          </div>
+          <div class="cap" style="margin-top:8px">税负构成 · 3.86 亿里谁占大头</div>
+          <div class="bars">
+            <div class="b3" style="flex:0 0 58.8%">土地增值税 2.27 亿 · 59%</div>
+            <div class="b1" style="flex:0 0 24.8%">企业所得税 24.8%</div>
+            <div class="b2" style="flex:0 0 14.5%">增值税 14.5%</div>
+            <div class="b4" style="flex:0 0 1.9%"></div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="k">SELLER · 出售方笨笨置业 合计 3.86 亿</div>
+            <h4>五税叠加</h4>
+            <table class="mini-tbl">
+              <tr><th>税种</th><th>金额（元）</th><th>算式</th></tr>
+              <tr><td>增值税</td><td>56 146 789</td><td>8.26 亿 × 9%</td></tr>
+              <tr><td>附加税费</td><td>6 737 615</td><td>增值税 × 12%</td></tr>
+              <tr><td>土地增值税</td><td>227 062 381</td><td>增值额 × 50% − 扣除 × 15%</td></tr>
+              <tr><td>印花税</td><td>412 844</td><td>不含税收入 × 0.5‰</td></tr>
+              <tr><td>企业所得税</td><td>95 885 093</td><td>（收入−成本−税费）× 25%</td></tr>
+              <tr><td><b>合计</b></td><td><b>386 244 721</b></td><td><b>约占交易价 43%</b></td></tr>
+            </table>
+          </div>
+          <div class="note"><b>买方一侧再交 0.25 亿</b>：契税 2 477 万（8.26 亿 × 3%）＋印花税 41 万。同一笔交易，两个纳税人，合计超过 4 亿。</div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 13 章 资产出售和资产收购</span><span><span class="src">案例 21 聪聪地产</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 03 第13章 B 税负转嫁 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">03</div>
+      <div>
+        <h3>第 13 章｜卖股权只交两个税，但税没有消失</h3>
+        <p class="sub">换路径后卖方一侧少交 2.52 亿——这笔税转成了下家土地成本的「缺口」，只等清算时一次性补上</p>
+      </div>
+      <div class="badge">CH 13 · 税负转嫁</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 改为卖股权（第二方案）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="rowx" style="gap:16px;align-items:flex-start">
+              <div class="n" style="min-width:230px"><b>笨笨集团</b><span class="s">持有笨笨置业 100% 股权</span></div>
+              <div class="n gold" style="min-width:230px"><b>聪聪地产</b><span class="s">支付 9 亿股权转让款</span></div>
+            </div>
+            <div class="rowx"><div class="varr" style="width:100%"></div></div>
+            <div class="n" style="min-width:400px"><b>笨笨置业（仅换股东、改名字）</b><span class="s">土地还在账上，账面成本仍是 2.2 亿</span></div>
+          </div>
+          <div class="note plain" style="margin-top:6px"><b>省下来的税</b>：增值税及附加 0.63 亿、土地增值税 2.27 亿、契税 0.25 亿 —— 交易环节只留企业所得税与印花税，合计少缴约 <b>2.52 亿</b>。</div>
+        </div>
+        <div class="stack">
+          <div class="card gold">
+            <div class="k">SECOND STAGE · 清算时才见分晓</div>
+            <h4>9 亿买地，只能扣 2.2 亿</h4>
+            <ul>
+              <li>聪聪地产以为土地成本是 9 亿，税务机关只认 <b>2.2 亿</b>（股权交易不改变资产账面成本）</li>
+              <li>多出的 <b>6.8 亿</b>增值要在土增税清算时补出来</li>
+              <li>更麻烦的是<b>超率累进</b>：上家增值 4 亿本适用 50%，下家持有再增值 5 亿，合计 9 亿适用 <b>60%</b></li>
+              <li>结论：<b>「化卖资产为卖股权」不是纳税筹划，而是税负转嫁</b></li>
+            </ul>
+          </div>
+          <div class="note"><b>全链条税负理念三条</b>：① 一定要建全链条模型，不能只看自己这一环节；② 只有算出全链条总税负，才知道税是「消失了」还是「迟到了」；③ 递延纳税能拿到货币时间价值，但<b>可能会把纳税主体换人</b>。</div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 13 章 资产出售和资产收购</span><span><span class="src">全链条税负 · 反税负转嫁</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 04 第14章 A 个人转让六要素 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
     <div class="hdr">
       <div class="num">04</div>
       <div>
-        <h3>常见退出方式涉税 · 内容框架</h3>
-        <p class="sub">先把骨架留好，内容后续逐页填充</p>
+        <h3>第 14 章｜个人转让股权：20%，但六个要素都要对</h3>
+        <p class="sub">股权转让不涉增值税、土增税、契税，只有所得税与印花税——难点全在个税的六个要素上</p>
       </div>
-      <div class="badge">OUTLINE · TO BE FILLED</div>
+      <div class="badge">CH 14 · 个人股东退出</div>
     </div>
     <div class="body">
-      <div class="slots">
-        <div class="slot">
-          <div class="k">SLOT 01 · EXIT</div>
-          <div class="t">股权转让</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
-        </div>
-        <div class="slot">
-          <div class="k">SLOT 02 · EXIT</div>
-          <div class="t">减资退出</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
-        </div>
-        <div class="slot">
-          <div class="k">SLOT 03 · EXIT</div>
-          <div class="t">清算注销</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
-        </div>
-        <div class="slot">
-          <div class="k">SLOT 04 · EXIT</div>
-          <div class="t">对赌与回购</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
-        </div>
+      <div class="col3">
+        <div class="card"><div class="k">要素 1 · 计税依据</div><h4>收入 − 原值 − 合理费用</h4>
+          <p>收入含违约金、补偿金及各种名目的款项；<b>转增已缴过个税的，转增额＋税费构成新原值</b>；原值凭证缺失可核定。</p></div>
+        <div class="card"><div class="k">要素 2 · 税率</div><h4>财产转让所得 20%</h4>
+          <p>不并入综合所得，单独按 20% 计算；协议双方各自按所载金额 0.5‰ 贴花。</p></div>
+        <div class="card gold"><div class="k">要素 3 · 纳税主体</div><h4>受让方代扣代缴</h4>
+          <p>受让方不论是公司<b>还是个人</b>，都有代扣义务。未扣：税款仍向转让方追缴，对扣缴人处<b>应扣未扣税款 50% 至 3 倍</b>罚款。</p></div>
+        <div class="card"><div class="k">要素 4 · 纳税地点</div><h4>被投资企业主管税务机关</h4>
+          <p>不是转让方所在地，也不是受让方所在地——跟着标的公司走。</p></div>
+        <div class="card gold"><div class="k">要素 5 · 纳税方式</div><h4>按次计算，不能盈亏互抵</h4>
+          <p>投两个项目：一个赚 1 亿、一个亏 2 亿，总体亏钱，<b>盈利那个仍要交 2 000 万个税</b>。</p></div>
+        <div class="card"><div class="k">要素 6 · 纳税时间</div><h4>六个节点，孰早原则</h4>
+          <p>付款、协议生效、实际履行股东职责、判决登记公告生效、四类特殊行为完成、税局认定的其他情形——任一发生即产生义务。</p></div>
       </div>
-      <div class="empty">
-        <div class="big">内容待建设</div>
-        <div class="d">确定本节提纲后，逐页补要点、法规依据与测算模型<br>（与集团税务价值其他章节共用同一套版式）</div>
-      </div>
+      <div class="note" style="flex:0 0 auto"><b>征管闭环</b>：个人转让股权办理变更登记，市场监管部门要<b>查验完税凭证</b>（个人所得税法第十五条）——这就是「先税务、后工商」的制度基础，阴阳合同在工商环节就被卡住。</div>
     </div>
-    <footer></footer>
+    <footer><span>第 14 章 股权退出之个人股东退出</span><span><span class="src">总局 2014 年第 67 号公告</span>　<span class="pg"></span></span></footer>
   </div>
 
+  <!-- ===== 05 第14章 B 核定收入 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">05</div>
+      <div>
+        <h3>第 14 章｜收入偏低会被核定：三个指标，缺一不核</h3>
+        <p class="sub">「明显偏低」＋「没有正当理由」两个条件同时具备才核定；核定方法有先后顺序</p>
+      </div>
+      <div class="badge">CH 14 · 核定收入</div>
+    </div>
+    <div class="body">
+      <div class="col3">
+        <div class="card">
+          <div class="k">指标 1 · 明显偏低（8 种）</div>
+          <h4>看七个数＋一条兜底</h4>
+          <ul>
+            <li>低于对应净资产份额</li>
+            <li>低于初始投资成本</li>
+            <li>低于取得股权支付的价款及税费</li>
+            <li>低于同条件下同一股东／其他股东／同类行业</li>
+            <li>不合理无偿让渡；税局认定的其他情形</li>
+          </ul>
+        </div>
+        <div class="card gold">
+          <div class="k">硬核资产 20% 规则</div>
+          <h4>土地房产等占比超 20%，要评估报告</h4>
+          <p>被投资企业的土地使用权、房屋、未销售房产、知识产权、探矿权、采矿权、股权等<b>占资产总额 20% 以上</b>，税务机关可要求提供评估报告，按评估价确定净资产公允价值份额。</p>
+        </div>
+        <div class="card">
+          <div class="k">指标 2 · 正当理由（4 类）</div>
+          <h4>有理由，偏低也不核</h4>
+          <ul>
+            <li>股权激励：章程或文件规定、价格真实、限本企业员工、限内部转让</li>
+            <li>政策调整：出具有效文件证明经营受重大影响</li>
+            <li>近亲属间：配偶、父母、子女、祖孙、兄弟姐妹及抚养赡养人</li>
+            <li>自由裁量：能提供有效证据的其他合理情形</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dg" style="flex:0 0 auto">
+        <div class="cap">SEQUENCE · 依次核定，前一法不行才用后一法</div>
+        <div class="flow">
+          <div class="stp hi"><div class="k">METHOD 01</div><div class="t">净资产核定法</div><div class="d">按每股净资产或对应净资产份额核定</div></div>
+          <div class="stp"><div class="k">METHOD 02</div><div class="t">类比法</div><div class="d">参照同一企业其他股东、同类行业企业转让收入</div></div>
+          <div class="stp"><div class="k">METHOD 03</div><div class="t">其他合理方法</div><div class="d">前两法确有困难时，由税务机关采用</div></div>
+        </div>
+      </div>
+      <div class="note" style="flex:0 0 auto"><b>案例里的触发条件（酒仙网络）</b>：被投资企业持有房产等硬核资产、占比超过 20%，转让价低于对应净资产份额且无正当理由 → 税局按评估价核定，转让方於龙华最终确认个税 <b>788.45 万</b>，由受让方刘晟东代扣。<b>不想被核定，唯一的路是落到四类正当理由里，并且拿得出证据。</b></div>
+    </div>
+    <footer><span>第 14 章 股权退出之个人股东退出</span><span><span class="src">67 号公告第十一至十四条</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 06 第15章 A 三法对比 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">06</div>
+      <div>
+        <h3>第 15 章｜公司股东退出：先分红，还是先转增，还是先撤资</h3>
+        <p class="sub">同样的股权，卖之前做不做一步「分红」，税负能差一倍——但前提是标的公司有现金、其他股东同意</p>
+      </div>
+      <div class="badge">CH 15 · 公司股东退出</div>
+    </div>
+    <div class="body">
+      <div class="dg" style="flex:0 0 auto">
+        <div class="cap">STRUCTURE · 三条路径</div>
+        <div class="flow">
+          <div class="stp hi"><div class="k">PATH 01 · 分红法</div><div class="t">① 先分红 → ② 再卖股权</div><div class="d">公司股东分红可享免税；转让价随净资产下降</div></div>
+          <div class="stp"><div class="k">PATH 02 · 转增法</div><div class="t">① 盈余公积转增 → ② 再卖股权</div><div class="d">转增后原值提高（个人需先缴 20%）；留存公积不得低于注册资本 25%</div></div>
+          <div class="stp"><div class="k">PATH 03 · 撤资</div><div class="t">① 老股东撤资 → ② 新股东再投资</div><div class="d">34 号公告：相当于留存收益部分按股息，其余按转让</div></div>
+        </div>
+      </div>
+      <div class="col3">
+        <div class="card"><div class="k">分红法</div><h4>最常用，但要看现金</h4>
+          <ul>
+            <li>公司股东取得的股息<b>可申请免税</b></li>
+            <li>弊端：其他股东未必同意；个人股东分红要缴 20%</li>
+            <li>需要标的公司有<b>充足可分配现金</b>（分红后再投资可解）</li>
+            <li><b>盈余公积不能随便分</b>，这部分要交税</li>
+          </ul></div>
+        <div class="card"><div class="k">转增法</div><h4>用公积金把原值做大</h4>
+          <ul>
+            <li>盈余公积转增：留存部分不得少于注册资本的 <b>25%</b></li>
+            <li>不能转增的部分，仍然要交税</li>
+            <li>个人股东转增环节需先缴 20%，除非属四类可缓免公司</li>
+          </ul></div>
+        <div class="card gold"><div class="k">撤资</div><h4>两步走，程序最重</h4>
+          <ul>
+            <li>老股东撤资 → 新股东再投资</li>
+            <li>撤资款中相当于留存收益的部分按<b>股息所得</b>处理</li>
+            <li>要经历减资与增资两次工商变更，减资还需<b>公告</b></li>
+          </ul></div>
+      </div>
+      <div class="note" style="flex:0 0 auto"><b>依据</b>：计算股权转让所得时，<b>不得扣除</b>被投资企业未分配利润等留存收益中按该股权可能分配的金额（国税函〔2010〕79 号第三条）；撤资分回按 34 号公告第五条拆成「股息＋投资转让」两段。</div>
+    </div>
+    <footer><span>第 15 章 股东退出之公司股东退出</span><span><span class="src">案例 25 联想控股 · 案例 26 鱼美饮食</span>　<span class="pg"></span></span></footer>
+  </div>
+  <!-- ===== 07 第15章 B 全链条测算 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">07</div>
+      <div>
+        <h3>第 15 章｜先分红的真正价值：把「不能扣」变成「可以扣」</h3>
+        <p class="sub">豆豆科技：3 亿受让的股权里藏着 2 亿未分配利润——转让时这块一分钱不能扣，分红后却能变成可扣除的投资损失</p>
+      </div>
+      <div class="badge">CH 15 · 全链条视角</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 张氏 → 豆豆科技 → 赵氏</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="rowx" style="gap:16px;align-items:flex-start">
+              <div class="n" style="min-width:230px"><b>张氏公司</b><span class="s">受让 100% 股权，成本 3 亿</span></div>
+              <div class="n gold" style="min-width:230px"><b>赵氏公司</b><span class="s">最终受让方</span></div>
+            </div>
+            <div class="rowx"><div class="varr" style="width:100%"></div></div>
+            <div class="n fill" style="min-width:420px"><b>豆豆科技</b><span class="s">净资产 3 亿 ＝ 实收资本 1 亿 ＋ 未分配利润 2 亿</span></div>
+          </div>
+          <div class="rowx" style="gap:10px;align-items:stretch;margin-top:6px">
+            <div class="n sm" style="min-width:190px">动作 1 · 全部分红<span class="s">2 亿，申请股息红利免税</span></div>
+            <div class="n sm" style="min-width:190px">动作 2 · 按净资产转让<span class="s">1 亿，形成损失 2 亿</span></div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card gold">
+            <div class="k">两方案对照</div>
+            <h4>差的不是税率，是「能不能扣」</h4>
+            <table class="mini-tbl">
+              <tr><th>方案</th><th>收入</th><th>扣除</th><th>结果</th></tr>
+              <tr><td>直接转让</td><td>3 亿</td><td>成本 3 亿</td><td>所得 0；<b>2 亿留存收益白送</b></td></tr>
+              <tr><td>先分红再转让</td><td>分红 2 亿＋转让 1 亿</td><td>成本 3 亿</td><td>分红<b>免税</b>；损失 2 亿可扣</td></tr>
+            </table>
+            <p style="margin-top:4px">2 亿损失可抵减其他所得，按 25% 折 <b>5 000 万</b>税款——这是分红法真正的收益。</p>
+          </div>
+          <div class="note"><b>底层规则</b>：股权转让所得<b>不得扣除</b>留存收益中按该股权可能分配的金额（79 号第三条）。所以留存收益只有两条出路：<b>先分掉（免税）</b>，或<b>烂在转让价里（不能扣）</b>。</div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 15 章 股东退出之公司股东退出</span><span><span class="src">国税函〔2010〕79 号第三条 · 财税〔2009〕60 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 08 第16章 A 注销流程 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">08</div>
+      <div>
+        <h3>第 16 章｜注销：五步走完，主体才真正消失</h3>
+        <p class="sub">解散→清算→清税→税务注销→工商注销。简易注销可以免清税证明，普通注销必须先把税清干净</p>
+      </div>
+      <div class="badge">CH 16 · 企业注销</div>
+    </div>
+    <div class="body">
+      <div class="flow" style="flex:0 0 auto">
+        <div class="stp hi"><div class="k">STEP 01</div><div class="t">宣布解散</div><div class="d">股东会决议解散，停止与清算无关的经营</div></div>
+        <div class="stp"><div class="k">STEP 02</div><div class="t">法律清算</div><div class="d">成立清算组、编资产负债表、通知公告债权人、处理未了业务</div></div>
+        <div class="stp"><div class="k">STEP 03</div><div class="t">税务清税申报</div><div class="d">清算所得申报、土增清算前置、结清各税</div></div>
+        <div class="stp"><div class="k">STEP 04</div><div class="t">税务注销登记</div><div class="d">取得清税证明后办理</div></div>
+        <div class="stp"><div class="k">STEP 05</div><div class="t">工商注销登记</div><div class="d">一般注销在税务注销后申请</div></div>
+      </div>
+      <div class="col2" style="flex:1 1 auto">
+        <div class="card gold">
+          <div class="k">简易注销 · 免清税证明</div>
+          <h4>三种情形之一即可</h4>
+          <ul>
+            <li>未办理过涉税事宜</li>
+            <li>办过涉税事宜，但<b>未领用发票、无欠税及罚款</b></li>
+            <li>无欠税且无其他未办结事项，已缴销发票、结清税款</li>
+          </ul>
+          <p>符合条件可直接向市场监管部门申请，不必先到税务。</p>
+        </div>
+        <div class="card">
+          <div class="k">普通注销 · 先税后照</div>
+          <h4>税务清算要做四件事</h4>
+          <ul>
+            <li>就<b>清算期清算所得</b>申报缴纳企业所得税</li>
+            <li><b>土地增值税清算</b>未办结的，须在申请税务注销前完成</li>
+            <li>结清各税种应纳税款、多退（免）税款、滞纳金与罚款</li>
+            <li>缴销发票和其他税务证件</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 16 章 股东退出之企业注销</span><span><span class="src">案例 27 麦冬营销</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 09 第16章 B 两层清算所得 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">09</div>
+      <div>
+        <h3>第 16 章｜注销要交两次税：公司一次，股东再一次</h3>
+        <p class="sub">公司层面算清算所得，股东层面算分配所得——公司股东拿到的股息部分还能免税，个人股东不能</p>
+      </div>
+      <div class="badge">CH 16 · 两层清算</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 麦冬营销清算（案例 27）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="n fill" style="min-width:400px"><b>资产可变现价值 1 200 万</b><span class="s">清算费用 30 万 · 工资社保补偿 36 万 · 清算税金及附加 33.5 万</span></div>
+            <div class="varr"></div>
+            <div class="n gold" style="min-width:400px"><b>剩余资产 1 100.5 万</b><span class="s">1 200 − 30 − 36 − 33.5（本例清算所得税为 0）</span></div>
+            <div class="varr"></div>
+            <div class="rowx" style="gap:14px;align-items:flex-start">
+              <div class="n sm" style="min-width:190px">麦冬饮料 80%<span class="s">分得 880.4 万 · 成本 400 万</span></div>
+              <div class="n sm" style="min-width:190px">东先生 20%<span class="s">分得 220.1 万 · 出资 100 万</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">LAYER 01 · 公司层面</div>
+            <h4>清算期＝一个独立纳税年度</h4>
+            <ul>
+              <li>清算所得 ＝ 资产处置损益 ＋ 负债清偿损益 − 清算费用 − 清算税金及附加 ＋ 其他</li>
+              <li>应纳税额 ＝（清算所得 − 免税/不征税收入 − 其他免税所得 − 弥补以前年度亏损）× 25%</li>
+              <li>期间：实际生产经营终止之日 → 清算事务办理完毕之日</li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <div class="k">LAYER 02 · 股东层面（现金收支视角）</div>
+            <h4>公司股东拆两段，个人股东一笔算</h4>
+            <ul>
+              <li><b>公司股东</b>（财税〔2009〕60 号）：留存收益对应部分＝股息所得（240 万，<b>可免税</b>）；余额超成本部分＝投资转让所得（240.4 万，照缴）</li>
+              <li><b>个人股东</b>（总局 2011 年第 41 号）：（220.1 − 100）× 20% ＝ <b>24.02 万</b>，按财产转让所得一次算</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="note" style="flex:0 0 auto"><b>合伙企业注销不同</b>：没有企业所得税这一层，清算所得直接作为<b>合伙企业经营所得</b>穿透到合伙人——按约定分配比例分，个人合伙人按 5%–35% 五级超额累进，不是 20%。<b>注销环节的税负差异，本质是主体形式差异。</b></div>
+    </div>
+    <footer><span>第 16 章 股东退出之企业注销</span><span><span class="src">财税〔2009〕60 号 · 总局 2011 年第 41 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 10 第17章 A 合并 vs 注销 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">10</div>
+      <div>
+        <h3>第 17 章｜子公司变分公司：注销，还是吸收合并</h3>
+        <p class="sub">工商上都要注销，但吸收合并免法律清算、经营不断、债权债务自动承继，六税种还有优惠</p>
+      </div>
+      <div class="badge">CH 17 · 合并分立</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 火火素碳 → 火火集团（案例 28）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="n fill" style="min-width:380px"><b>火火集团（母公司）</b><span class="s">拟吸收合并全资子公司</span></div>
+            <div class="varr"></div>
+            <div class="rowx" style="gap:16px;align-items:flex-start">
+              <div class="colx" style="flex:1 1 0;gap:4px">
+                <div class="n" style="min-width:150px">路径 A · 普通注销<span class="s">需法律清算</span></div>
+                <div class="n sm" style="min-width:150px">债权债务须清理<span class="s">未到期债务要提前清偿或协商转移</span></div>
+                <div class="n sm" style="min-width:150px">停止经营<span class="s">清算期内不得开展无关经营</span></div>
+              </div>
+              <div class="colx" style="flex:1 1 0;gap:4px">
+                <div class="n gold" style="min-width:150px">路径 B · 吸收合并<span class="s">免法律清算</span></div>
+                <div class="n sm" style="min-width:150px">债权债务自动承继<span class="s">通知＋公告＋提供担保即可</span></div>
+                <div class="n sm" style="min-width:150px">经营不中断<span class="s">合同变更签约主体后继续有效</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="k">税负对照 · 同一动作两种结局</div>
+            <h4>合并的优惠集中在「资产过户」这一段</h4>
+            <table class="mini-tbl">
+              <tr><th>税种</th><th>普通注销</th><th>吸收合并</th><th>依据</th></tr>
+              <tr><td>企业所得税</td><td class="n1">交</td><td class="n0">符合条件可递延</td><td>财税〔2009〕59 号</td></tr>
+              <tr><td>个人所得税</td><td class="n1">交</td><td class="n0">有争议，各地口径不同</td><td>41 号 · 67 号</td></tr>
+              <tr><td>增值税</td><td class="n1">交</td><td class="n0">整体转移不交，进项可迁移</td><td>财税〔2016〕36 号</td></tr>
+              <tr><td>土地增值税</td><td class="n1">交</td><td class="n0">非房企暂免</td><td>财税〔2018〕57 号</td></tr>
+              <tr><td>契税</td><td class="n1">交</td><td class="n0">免税</td><td>财税〔2018〕17 号</td></tr>
+              <tr><td>印花税</td><td class="n1">交</td><td class="n0">改制免于贴花</td><td>财税〔2003〕183 号</td></tr>
+            </table>
+          </div>
+          <div class="note"><b>别忘了前提</b>：这些优惠都要走「特殊性税务处理」备案口径，且要求<b>合理商业目的</b>、股权支付比例达标、<b>12 个月内不改变实质经营活动</b>。另外土增税暂免只对<b>非房地产开发企业</b>——房企合并照样要交。</div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 17 章 企业重组之合并分立</span><span><span class="src">财税〔2009〕59 号 · 财税〔2018〕57 号、17 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 11 第17章 B 分立与个人股东 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">11</div>
+      <div>
+        <h3>第 17 章｜分立：企业不交，个人股东要不要交？</h3>
+        <p class="sub">两户企业走特殊重组、各方股东才是真正的涉税点。四种观点，实务争议集中在个人股东</p>
+      </div>
+      <div class="badge">CH 17 · 分立</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 长龄机械分立（案例 29）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="n fill" style="min-width:380px"><b>夏氏父子（股东）</b><span class="s">分立后同时持有两户企业</span></div>
+            <div class="varr"></div>
+            <div class="rowx" style="gap:14px;align-items:flex-start">
+              <div class="n" style="min-width:190px">长龄机械（存续）<span class="s">保留其余资产与负债</span></div>
+              <div class="n gold" style="min-width:190px">长龄自动化（新设）<span class="s">分得厂房 839.42 万＋土地使用权 228.57 万<br>负债 0</span></div>
+            </div>
+          </div>
+          <div class="note plain" style="margin-top:6px">分立前债权债务由分立后的长龄机械实际享有和承担；两户企业均按<b>特殊性税务处理</b>，资产过户环节的税负被递延。</div>
+        </div>
+        <div class="stack">
+          <div class="card gold">
+            <div class="k">个人股东 · 四种观点</div>
+            <h4>只有观点 4 能同时解释「不重复征税」</h4>
+            <table class="mini-tbl">
+              <tr><th>观点</th><th>主张</th><th>征税</th><th>依据／优惠</th></tr>
+              <tr><td>1</td><td>未发生股权转让，无纳税义务</td><td class="n0">否</td><td>—</td></tr>
+              <tr><td>2</td><td>按股权转让所得缴个税</td><td class="n1">是</td><td>67 号，无优惠</td></tr>
+              <tr><td>3</td><td>按非货币资产投资缴个税</td><td class="n1">是</td><td>财税〔2015〕41 号，可 5 年递延</td></tr>
+              <tr><td><b>4</b></td><td><b>视为被分立企业的分配／收回投资</b></td><td class="n1">是</td><td>总局 2011 年第 41 号</td></tr>
+            </table>
+          </div>
+          <div class="note"><b>分解理论</b>：分立＝长龄机械<b>减资</b>并向股东分配部分资产 → 股东按<b>收回投资</b>处理 → 再以该资产<b>投资设立</b>长龄自动化。按观点 4，若分出资产公允价 2 000 万，夏氏父子需缴个税 <b>360 万</b>。<br><b>企业层面能递延，股东层面往往不能——这是分立的真实成本。</b></div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 17 章 企业重组之合并分立</span><span><span class="src">财税〔2009〕59 号 · 总局 2011 年第 41 号 · 财税〔2015〕41 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 12 第18章 资产剥离四路径 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">12</div>
+      <div>
+        <h3>第 18 章｜资产剥离：四条路，算两笔账</h3>
+        <p class="sub">买卖、划转、投资、分立——不是看哪个税最少，而是显性税负与时间成本一起算</p>
+      </div>
+      <div class="badge">CH 18 · 资产剥离</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 五一重工 B 类资产 → 五一商管（案例 31）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="n fill" style="min-width:360px"><b>五一重工</b><span class="s">剥离对象可以是房产、土地，也可以是股权、商标、专利、设备、存货</span></div>
+            <div class="rowx" style="gap:0"><div class="varr" style="width:25%"></div><div class="varr" style="width:25%"></div><div class="varr" style="width:25%"></div><div class="varr" style="width:25%"></div></div>
+            <div class="rowx" style="gap:8px;align-items:stretch">
+              <div class="n sm" style="min-width:120px">买卖<span class="s">正常纳税<br>流程最快</span></div>
+              <div class="n sm" style="min-width:120px">划转<span class="s">2 次优惠<br>★★</span></div>
+              <div class="n sm" style="min-width:120px">投资<span class="s">2 次优惠<br>★★★</span></div>
+              <div class="n sm gold" style="min-width:120px">分立<span class="s">2 次优惠<br>★★★★</span></div>
+            </div>
+            <div class="varr"></div>
+            <div class="n" style="min-width:360px"><b>五一商管</b><span class="s">资产接收方</span></div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">两个维度一起算</div>
+            <h4>显性成本看税，隐性成本看时间</h4>
+            <ul>
+              <li><b>显性</b>：五个税种逐一测算，注意「1−」是递延不是免</li>
+              <li><b>隐性</b>：股东会、登报、评估、工商、国土房产、债权人、税局备案，每一道都要时间</li>
+              <li>分立税最省但耗时最长（★★★★），买卖税最重但一个月能办完</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="flex:0 0 auto">
+        <div class="k">四路径 × 五税种 速查（1＝要交　1−＝递延/可申请优惠　0＝不交）</div>
+        <table class="mini-tbl">
+          <tr><th>事项</th><th>买卖</th><th>划转</th><th>投资</th><th>分立</th><th>事项</th><th>买卖</th><th>划转</th><th>投资</th><th>分立</th></tr>
+          <tr><td>企业所得税</td><td class="n1">1</td><td class="n0">1−</td><td class="n0">1−</td><td class="n0">1−</td><td>股东会</td><td>看章程</td><td>看章程</td><td>看章程</td><td class="n1">需要</td></tr>
+          <tr><td>增值税</td><td class="n1">1</td><td class="n1">1</td><td class="n1">1</td><td class="n1">1</td><td>登报公告</td><td>否</td><td>否</td><td>否</td><td class="n1">需要</td></tr>
+          <tr><td>土地增值税</td><td class="n1">1</td><td class="n1">1</td><td class="n0">1−</td><td class="n0">1−</td><td>评估报告</td><td>一般不需</td><td>一般需要</td><td class="n1">需要</td><td>一般不需</td></tr>
+          <tr><td>契税</td><td class="n1">1</td><td class="n0">0</td><td class="n0">0</td><td class="n0">0</td><td>工商／国土</td><td>仅国土</td><td>仅国土</td><td class="n1">都要</td><td class="n1">都要</td></tr>
+          <tr><td>印花税</td><td class="n1">1</td><td class="n1">1</td><td class="n1">1</td><td class="n1">1</td><td>债权人／税局</td><td>不需</td><td>2 次优惠</td><td>2 次优惠</td><td class="n1">2 次优惠</td></tr>
+          <tr><td>流程耗时</td><td>★</td><td>★★</td><td>★★★</td><td class="n1">★★★★</td><td colspan="5">「1−」＝递延纳税或可申请特殊处理，<b>税没消失，只是晚交</b>；下家能否按公允价扣除，决定这笔税最终由谁承担</td></tr>
+        </table>
+      </div>
+    </div>
+    <footer><span>第 18 章 企业重组之资产剥离</span><span><span class="src">案例 31 五一重工 · 四种模式的税负与时间成本</span>　<span class="pg"></span></span></footer>
+  </div>
 </div>
 </div>
-<div class="progress" id="progress"></div>
 <script>
 const slides=document.querySelectorAll('.slide');
 let idx=0;
 function render(){
   slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
-  slides.forEach((s,i)=>{const f=s.querySelector('footer');if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;});
-  const p=document.getElementById('progress');
-  if(p)p.style.width=((idx+1)/slides.length*100)+'%';
+  slides.forEach((s,i)=>{const f=s.querySelector('footer .pg');if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;});
 }
 document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){idx=Math.min(idx+1,slides.length-1);render()}
   if(e.key==='ArrowLeft'||e.key==='PageUp'){idx=Math.max(idx-1,0);render()}
 });
 document.querySelector('.slide-wrap').addEventListener('click',e=>{
-  const rect=e.target.getBoundingClientRect();
-  if(e.clientX-rect.left>rect.width/2) idx=Math.min(idx+1,slides.length-1);
-  else idx=Math.max(idx-1,0);
+  if(e.target.closest('a'))return;
+  const r=e.target.getBoundingClientRect();
+  if(e.clientX-r.left>r.width/2) idx=Math.min(idx+1,slides.length-1); else idx=Math.max(idx-1,0);
   render();
 });
 render();
@@ -153,8 +722,7 @@ function fit(){
   const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
   document.querySelector('.slide-wrap').style.transform='translate(-50%,-50%) scale('+s+')';
 }
-window.addEventListener('resize',fit);
-fit();
+window.addEventListener('resize',fit);fit();
 </script>
 </body>
 </html>
