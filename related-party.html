@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>关联交易 · 集团税务价值</title>
+<title>关联交易 · 集团税务价值 06</title>
 <style>
 /* emerald-editorial template | 与 group-tax deck 统一风格 */
-@font-face{font-family:'Noto Serif SC';src:url('fonts/notoserif-cn-r5.woff2') format('woff2');font-weight:300 700;font-display:swap}
-@font-face{font-family:'Noto Sans SC';src:url('fonts/notosans-cn-r5.woff2') format('woff2');font-weight:300 700;font-display:swap}
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-r.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-sb.woff2') format('woff2');font-weight:500 700;font-display:swap}
 :root{
   --bg:#f8f6f0;
   --text:#2c302c;
@@ -18,49 +18,134 @@
   --stroke:#dcd8cc;
   --gold-soft:#fff2cc;
   --gold-line:#e6b85c;
-  --serif:"Noto Serif SC",serif;
-  --mono:"SF Mono",Consolas,"Noto Sans SC",monospace;
+  --red:#a5453a;
+  --serif:"Deck Serif","Noto Serif SC",Songti SC,SimSun,serif;
+  --mono:"SF Mono",Consolas,ui-monospace,"Deck Serif",monospace;
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;padding:0;font-family:var(--serif);background:var(--bg);color:var(--text)}
 .stage{position:relative;width:100vw;height:100vh;overflow:hidden}
 .slide-wrap{position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform-origin:center;transform:translate(-50%,-50%) scale(1)}
-.slide{position:absolute;inset:0;padding:82px 96px 104px;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;display:flex;flex-direction:column}
+.slide{position:absolute;inset:0;padding:82px 96px 96px;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s ease;display:flex;flex-direction:column}
 .slide.active{opacity:1;visibility:visible}
 .slide.cover{justify-content:center}
-h1{font-size:72px;font-weight:600;color:var(--accent);margin:0 0 26px;letter-spacing:-.01em}
-h2{font-size:34px;font-weight:500;color:var(--gold);margin:0 0 32px}
+h1{font-size:76px;font-weight:600;color:var(--accent);margin:0 0 26px;letter-spacing:-.01em}
 p,li{font-size:22px;line-height:1.7;color:var(--text);margin:0}
 
-.hdr{display:flex;align-items:center;gap:22px;padding-bottom:20px;border-bottom:1px solid var(--stroke);flex:0 0 auto}
-.hdr .num{flex:0 0 auto;width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#f8f6f0;font-family:var(--mono);font-size:24px;letter-spacing:1px}
-.hdr h3{margin:0;font-size:44px;font-weight:600;color:var(--accent);line-height:1.2}
-.hdr .sub{margin:6px 0 0;font-size:20px;color:var(--muted)}
-.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:17px;color:var(--accent);border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:999px;padding:8px 20px;font-family:var(--mono)}
+.hdr{display:flex;align-items:center;gap:22px;padding-bottom:18px;border-bottom:1px solid var(--stroke);flex:0 0 auto}
+.hdr .num{flex:0 0 auto;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#f8f6f0;font-family:var(--mono);font-size:23px;letter-spacing:1px}
+.hdr h3{margin:0;font-size:40px;font-weight:600;color:var(--accent);line-height:1.2}
+.hdr .sub{margin:7px 0 0;font-size:19px;color:var(--muted)}
+.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:16px;color:var(--accent);border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:999px;padding:8px 20px;font-family:var(--mono)}
 
 /* —— 封面 —— */
 .cover .eyebrow{font-family:var(--mono);font-size:20px;letter-spacing:3px;color:var(--gold);margin-bottom:22px}
-.cover .lede{font-size:26px;line-height:1.6;color:var(--muted);max-width:60ch;margin-top:8px}
-.cover .meta{display:flex;align-items:center;gap:16px;margin-top:44px}
+.cover .lede{font-size:27px;line-height:1.65;color:var(--muted);max-width:64ch;margin-top:6px}
+.cover .meta{display:flex;align-items:center;gap:16px;margin-top:46px}
 .pill{font-family:var(--mono);font-size:17px;letter-spacing:1px;padding:9px 22px;border-radius:999px;border:1px dashed var(--gold-line);background:var(--gold-soft);color:#7a5b12}
 .pill.solid{border-style:solid;border-color:var(--accent);background:transparent;color:var(--accent)}
+.cover .rule{height:1px;background:linear-gradient(90deg,var(--gold-line),transparent);margin:40px 0 0;max-width:900px}
 
-/* —— 占位骨牌 —— */
-.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:22px;margin-top:30px}
-.slots{display:grid;grid-template-columns:1fr 1fr;gap:26px;flex:1 1 auto;min-height:0}
-.slot{background:var(--card);border:1px dashed var(--stroke);border-radius:18px;padding:28px 30px;display:flex;flex-direction:column;gap:10px}
-.slot .k{font-family:var(--mono);font-size:15px;letter-spacing:2px;color:var(--gold)}
-.slot .t{font-size:28px;font-weight:600;color:var(--accent)}
-.slot .d{font-size:19px;line-height:1.6;color:var(--muted)}
-.slot .line{margin-top:auto;height:1px;background:repeating-linear-gradient(90deg,var(--stroke) 0 8px,transparent 8px 16px)}
+.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:16px;margin-top:24px}
+.lede-s{font-size:21px;line-height:1.65;color:var(--muted);max-width:118ch}
+.lede-s b{color:var(--accent);font-weight:600}
 
-.empty{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;border:1px dashed var(--stroke);border-radius:18px;background:#ffffffee}
-.empty .big{font-size:46px;font-weight:600;color:#c9c3b4}
-.empty .d{font-size:20px;color:var(--muted);text-align:center;line-height:1.7}
+/* —— 判断链：四段 —— */
+.pipe{display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr 44px 1fr;align-items:stretch;gap:0;flex:0 0 auto}
+.pipe .st{background:#fff;border:1px solid var(--stroke);border-top:3px solid var(--accent);border-radius:11px;padding:9px 16px;display:flex;align-items:center;justify-content:center}
+.pipe .st .k{font-family:var(--mono);font-size:13px;letter-spacing:2px;color:var(--gold)}
+.pipe .st .t{font-size:21px;font-weight:600;color:var(--accent);line-height:1.3;display:flex;align-items:center;gap:10px}
+.pipe .st .sq{font-family:var(--mono);font-size:12px;letter-spacing:1px;color:#7a5b12;background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:999px;padding:3px 9px}
+.pipe .st .d{font-size:16px;line-height:1.5;color:var(--muted)}
+.pipe .ar{display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:26px}
 
-.nav-hint{position:absolute;right:96px;bottom:56px;font-family:var(--mono);font-size:15px;letter-spacing:1px;color:var(--muted)}
-footer{font-family:var(--mono);font-size:15px;letter-spacing:1px;color:var(--muted);text-align:center;flex:0 0 auto;padding-top:18px}
-.back{position:absolute;left:96px;top:52px;font-family:var(--mono);font-size:16px;letter-spacing:1px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--gold-line);padding-bottom:2px}
+/* —— 双轨 —— */
+.rails{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.rail .chain{gap:6px}
+.rail{background:#fff;border:1px solid var(--stroke);border-radius:14px;padding:14px 22px;display:flex;flex-direction:column;gap:9px}
+.rail .rhed{display:flex;align-items:center;gap:12px}
+.rail .rhed .tag{font-family:var(--mono);font-size:13px;letter-spacing:1.5px;color:#7a5b12;background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:999px;padding:4px 14px}
+.rail .rhed h4{margin:0;font-size:23px;font-weight:600;color:var(--accent)}
+.rail .chain{display:flex;flex-direction:column;gap:5px;flex:1 1 auto;justify-content:center;min-height:0}
+.rail .chain>*{flex:0 0 auto}
+.chip{background:#f4f8f5;border:1px solid #cfdcd4;border-radius:9px;padding:7px 14px;font-size:17px;line-height:1.35;color:#1d3a2f}
+.chip.alt{background:var(--gold-soft);border-color:var(--gold-line);color:#6d5518}
+.chip .s{display:block;font-size:14.5px;color:var(--muted);margin-top:1px}
+.chip.dash{background:#fff;border-style:dashed;color:var(--text)}
+.dn2{width:0;height:0;align-self:center;margin:4px 0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:11px solid var(--gold)}
+
+/* —— 刻度线 —— */
+.scalebox{background:#fff;border:1px solid var(--stroke);border-radius:14px;padding:14px 26px 8px;flex:0 0 auto;display:flex;flex-direction:column;gap:4px}
+.scalebox .cap{display:flex;align-items:baseline;gap:14px}
+.scalebox .cap b{font-size:21px;color:var(--accent);font-weight:600}
+.scalebox .cap span{font-family:var(--mono);font-size:14px;color:var(--gold);letter-spacing:1px}
+.scalebox svg{width:100%;height:154px;display:block}
+
+/* —— 三栏列表 —— */
+.cols3{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1.02fr 1fr;gap:22px}
+.panel{background:#fff;border:1px solid var(--stroke);border-radius:14px;padding:18px 24px;display:flex;flex-direction:column;gap:10px;min-height:0}
+.panel .ph{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.panel .ph .k{font-family:var(--mono);font-size:13px;letter-spacing:1.5px;color:var(--gold)}
+.panel .ph h4{margin:0;font-size:24px;font-weight:600;color:var(--accent)}
+.rows{display:flex;flex-direction:column;gap:7px;flex:1 1 auto;min-height:0;justify-content:flex-start}
+.row2{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;padding:7px 0;border-bottom:1px dashed #e8e4d8}
+.row2:last-child{border-bottom:0}
+.row2 .i{font-family:var(--mono);font-size:14px;color:var(--gold);padding-top:3px}
+.row2 .x{font-size:17.5px;line-height:1.5;color:var(--text)}
+.row2 .x b{color:var(--accent);font-weight:600}
+.row2 .x em{font-style:normal;font-family:var(--mono);color:#8a3b2e;font-size:16px}
+.mono-num{font-family:var(--mono);color:#8a3b2e}
+
+/* —— 五要素 + 规则 —— */
+.duo{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.rulelist{display:flex;flex-direction:column;gap:9px;flex:1 1 auto;justify-content:center}
+.rule{background:#f9f8f3;border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:10px 16px;font-size:17.5px;line-height:1.5;color:var(--text)}
+.rule b{color:var(--accent)}
+.rule span{display:block;font-size:15px;color:var(--muted);margin-top:2px}
+
+/* —— 表 —— */
+.matrix{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:14px;justify-content:center}
+table.m{width:100%;border-collapse:collapse;table-layout:fixed}
+table.m th,table.m td{border:1px solid var(--stroke);padding:13px 16px;font-size:18px;line-height:1.55;vertical-align:top;text-align:left}
+table.m thead th{background:var(--accent);color:#f4f1e8;font-weight:500;font-size:17px}
+table.m tbody th{background:#eef2ee;color:var(--accent);font-weight:600;font-size:18px}
+table.m td b{color:var(--accent)}
+table.m td em{font-style:normal;font-family:var(--mono);font-size:16px;color:#8a3b2e}
+
+/* —— 四象限 —— */
+.quad{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:18px}
+.q{background:#fff;border:1px solid var(--stroke);border-left:3px solid var(--accent);border-radius:12px;padding:16px 22px;display:flex;flex-direction:column;gap:6px;justify-content:center}
+.q ul{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:5px}
+.q ul li{font-size:16px;line-height:1.5;color:var(--text);padding-left:16px;position:relative}
+.q ul li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.q ul li b{color:#8a3b2e}
+.q.gold{border-left-color:var(--gold)}
+.q .k{font-family:var(--mono);font-size:13px;letter-spacing:1.5px;color:var(--gold)}
+.q h4{margin:0;font-size:22px;font-weight:600;color:var(--accent);line-height:1.35}
+.q p{font-size:16.5px;line-height:1.55;color:var(--muted)}
+.q p b{color:#8a3b2e;font-weight:600}
+
+/* —— 三卡 —— */
+.cards3{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card3{background:#fff;border:1px solid var(--stroke);border-top:4px solid var(--gold);border-radius:14px;padding:22px 24px;display:flex;flex-direction:column;gap:9px}
+.card3 .k{font-family:var(--mono);font-size:13px;letter-spacing:2px;color:var(--gold)}
+.card3 h4{margin:0;font-size:27px;font-weight:600;color:var(--accent)}
+.card3 p{font-size:17px;line-height:1.6;color:var(--muted)}
+.card3 .pts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;flex:1 1 auto;justify-content:flex-start}
+.card3 .pts li{font-size:16.5px;line-height:1.55;color:var(--text);padding-left:18px;position:relative}
+.card3 .pts li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.card3 .pts li b{color:var(--accent)}
+.card3 .src{margin-top:auto;font-size:14.5px;line-height:1.55;color:var(--muted);border-top:1px dashed var(--stroke);padding-top:9px}
+
+.strip{background:#fff;border:1px solid var(--stroke);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:13px 20px;font-size:17px;line-height:1.6;color:var(--muted);flex:0 0 auto}
+.strip b{color:#7a5b12}
+.warnbar{background:#fdf6e6;border:1px solid var(--gold-line);border-radius:12px;padding:14px 22px;font-size:18px;line-height:1.6;color:#6d5518;flex:0 0 auto}
+.warnbar b{color:#8a3b2e}
+.foot-note{margin-top:auto;font-size:15px;line-height:1.6;color:var(--muted);border-top:1px dashed var(--stroke);padding-top:11px}
+
+.nav-hint{position:absolute;right:96px;bottom:44px;font-family:var(--mono);font-size:14px;letter-spacing:1px;color:var(--muted)}
+footer{font-family:var(--mono);font-size:14px;letter-spacing:1px;color:var(--muted);flex:0 0 auto;padding-top:14px;border-top:1px solid var(--stroke);margin-top:14px;display:flex;justify-content:space-between}
+.back{position:absolute;left:96px;top:50px;font-family:var(--mono);font-size:16px;letter-spacing:1px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--gold-line);padding-bottom:2px}
 .progress{position:fixed;left:0;bottom:0;height:3px;background:var(--gold);width:0;transition:width .3s ease;z-index:9}
 </style>
 </head>
@@ -71,59 +156,384 @@ footer{font-family:var(--mono);font-size:15px;letter-spacing:1px;color:var(--mut
   <!-- 封面 -->
   <div class="slide cover">
     <a class="back" href="./index.html">← 返回目录</a>
-    <div class="eyebrow">GROUP TAX VALUE · 06</div>
+    <div class="eyebrow">GROUP TAX VALUE · 06 · RELATED PARTY</div>
     <h1>关联交易</h1>
-    <p class="lede">关联交易的定价、申报与特别纳税调整风险管控。</p>
+    <p class="lede">关联交易的问题从来不是“能不能做”，而是三件事：谁是关联方、定价是否落在独立交易区间、判断过程留没留痕。把认定、验证、申报三层想全，才敢在税局面前讲这套逻辑。</p>
     <div class="meta">
-      <span class="pill">待建设 · IN PROGRESS</span>
-      <span class="pill solid">关联交易</span>
+      <span class="pill">2026.11 版</span>
+      <span class="pill solid">管理 · 关联交易与转让定价</span>
     </div>
+    <div class="rule"></div>
     <div class="nav-hint">← → / 空格 翻页</div>
   </div>
 
-  <!-- 第二章占位 -->
+  <!-- 01 判断总图 -->
+  <div class="slide">
+    <div class="hdr">
+      <div class="num">01</div>
+      <div>
+        <h3>一张图：关联交易是否合理，按四段判断</h3>
+        <p class="sub">先认定、再双轨验证、然后落到独立交易区间、最后才是结论与出口</p>
+      </div>
+      <div class="badge">THE FRAMEWORK</div>
+    </div>
+    <div class="body">
+      <div class="pipe">
+        <div class="st"><div class="t"><span class="sq">01</span>认定</div></div>
+        <div class="ar">→</div>
+        <div class="st"><div class="t"><span class="sq">02</span>双轨验证</div></div>
+        <div class="ar">→</div>
+        <div class="st"><div class="t"><span class="sq">03</span>落区间</div></div>
+        <div class="ar">→</div>
+        <div class="st"><div class="t"><span class="sq">04</span>结论与出口</div></div>
+      </div>
+
+      <div class="rails">
+        <div class="rail">
+          <div class="rhed"><span class="tag">PROFIT SIDE</span><h4>利润水平一侧</h4></div>
+          <div class="chain">
+            <div class="chip">企业整体利润 ＋ 关联交易占比<span class="s">先看盈利结构，再看关联分量</span></div>
+            <div class="dn2"></div>
+            <div class="chip alt">关联交易利润率 <b>VS</b> 非关联交易利润率<span class="s">同一企业内部“自己比自己”</span></div>
+            <div class="dn2"></div>
+            <div class="chip dash">得出关联交易利润率，交给右侧同一把尺子</div>
+          </div>
+        </div>
+        <div class="rail">
+          <div class="rhed"><span class="tag">FUNCTION SIDE</span><h4>功能与可比一侧</h4></div>
+          <div class="chain">
+            <div class="chip">功能判断 ＋ 关联交易类型<span class="s">研发 / 制造 / 分销 / 服务：谁创造价值</span></div>
+            <div class="dn2"></div>
+            <div class="chip">整体功能定位<span class="s">同一笔交易，定位不同结论完全不同</span></div>
+            <div class="dn2"></div>
+            <div class="chip alt">对标分析<span class="s">可比企业搜索、筛选、差异调整</span></div>
+            <div class="dn2"></div>
+            <div class="chip dash">得出可比企业的四分位区间</div>
+          </div>
+        </div>
+      </div>
+      <div class="scalebox">
+        <div class="cap"><b>两侧汇合：关联交易利润率 VS 独立交易区间</b><span>ARM'S LENGTH RANGE</span></div>
+        <svg viewBox="0 0 1600 160" preserveAspectRatio="xMidYMid meet" role="img" aria-label="独立交易区间刻度线">
+          <text x="660" y="26" font-size="19" fill="#205c47" text-anchor="middle">安全区 · 独立交易区间（Arm&#39;s Length Range）</text>
+          <path d="M310 38 L310 52 L1010 52 L1010 38" fill="none" stroke="#b89758" stroke-width="2"/>
+          <rect x="310" y="52" width="700" height="58" fill="#205c47" fill-opacity="0.06"/>
+          <line x1="90" y1="110" x2="1520" y2="110" stroke="#2c302c" stroke-width="2"/>
+          <polygon points="1520,110 1504,103 1504,117" fill="#2c302c"/>
+          <text x="1592" y="116" font-size="17" fill="#646b64" text-anchor="end">利润水平</text>
+          <line x1="90" y1="102" x2="90" y2="118" stroke="#2c302c" stroke-width="2"/>
+          <text x="90" y="88" font-size="16" fill="#646b64" text-anchor="middle">0</text>
+          <line x1="310" y1="98" x2="310" y2="122" stroke="#b89758" stroke-width="2.5"/>
+          <text x="310" y="86" font-size="17" fill="#6d5518" text-anchor="middle">下四分位值</text>
+          <line x1="660" y1="90" x2="660" y2="130" stroke="#205c47" stroke-width="4"/>
+          <text x="660" y="86" font-size="17" fill="#205c47" text-anchor="middle">中位值</text>
+          <line x1="1010" y1="98" x2="1010" y2="122" stroke="#b89758" stroke-width="2.5"/>
+          <text x="1010" y="86" font-size="17" fill="#6d5518" text-anchor="middle">上四分位值</text>
+          <circle cx="196" cy="110" r="6" fill="#a5453a"/>
+          <line x1="196" y1="116" x2="196" y2="132" stroke="#a5453a" stroke-width="1.5"/>
+          <text x="196" y="150" font-size="17" fill="#a5453a" text-anchor="middle">稽查风险 · 单一功能企业须备文档</text>
+          <circle cx="1250" cy="110" r="6" fill="#a5453a"/>
+          <line x1="1250" y1="116" x2="1250" y2="132" stroke="#a5453a" stroke-width="1.5"/>
+          <text x="1250" y="150" font-size="17" fill="#a5453a" text-anchor="middle">利润过高 · 交易对手方不利</text>
+        </svg>
+      </div>
+      <div class="foot-note">图为利润水平（交易净利润法）视角：左侧利润率比对、右侧功能与可比分析，最终都要落到同一把尺子上。可比非受控价格法、成本加成法、利润分割法的验证路径见 04 页。</div>
+    </div>
+    <footer><span>集团税务价值 · 06 关联交易</span><span class="pg"></span></footer>
+  </div>
+
+  <!-- 02 认定 -->
+  <div class="slide">
+    <div class="hdr">
+      <div class="num">02</div>
+      <div>
+        <h3>认定：7 类关联关系 × 5 类关联交易</h3>
+        <p class="sub">关联关系看“有没有共同利益”，关联交易看“交易的是什么”——两步都成立，才进入定价判断</p>
+      </div>
+      <div class="badge">IDENTIFICATION</div>
+    </div>
+    <div class="body">
+      <div class="cols3">
+        <div class="panel">
+          <div class="ph"><span class="k">RELATION · 42 号公告第二条</span><h4>7 类关联关系</h4></div>
+          <div class="rows">
+            <div class="row2"><div class="i">01</div><div class="x"><b>股权关系</b>　一方直接或间接持股 <span class="mono-num">≥25%</span>；或双方同为第三方持股 ≥25%（穿透：对中间方持股 ≥25% 时，按中间方对另一方比例计）</div></div>
+            <div class="row2"><div class="i">02</div><div class="x"><b>资金借贷</b>　双方借贷总额占<em>任一方</em>实收资本 <span class="mono-num">≥50%</span>，或一方全部借贷资金的 <span class="mono-num">≥10%</span> 由另一方担保（金融借贷除外）</div></div>
+            <div class="row2"><div class="i">03</div><div class="x"><b>特许权依赖</b>　一方主要生产经营活动须由另一方提供专利、非专利技术、商标、著作权才能进行</div></div>
+            <div class="row2"><div class="i">04</div><div class="x"><b>购销与劳务受控</b>　一方的购买、销售、接受或提供劳务由另一方控制（有权决定财务与经营政策并获取利益）</div></div>
+            <div class="row2"><div class="i">05</div><div class="x"><b>人员控制</b>　一方<em>半数以上</em>董事或高管由另一方任命、委派或兼任；或双方各自半数以上同为第三方任命</div></div>
+            <div class="row2"><div class="i">06</div><div class="x"><b>亲属关系</b>　夫妻、直系血亲、兄弟姐妹及其他抚养赡养关系的自然人，分别与双方存在上述关系之一</div></div>
+            <div class="row2"><div class="i">07</div><div class="x"><b>实质共同利益</b>　兜底条款：未达上述标准但实质具有其他共同利益</div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph"><span class="k">TRANSACTION · 五类交易</span><h4>5 类关联交易</h4></div>
+          <div class="rows">
+            <div class="row2"><div class="i">01</div><div class="x"><b>有形资产</b>使用权或所有权转让　<span>商品、产品、房屋建筑物、交通工具、机器设备、工具器具等</span></div></div>
+            <div class="row2"><div class="i">02</div><div class="x"><b>金融资产</b>转让　<span>应收账款、应收票据、其他应收款项、股权投资、债权投资、衍生金融工具</span></div></div>
+            <div class="row2"><div class="i">03</div><div class="x"><b>无形资产</b>使用权或所有权转让　<span>专利、非专利技术、商业秘密、商标、品牌、客户名单、销售渠道、特许经营权、政府许可、著作权</span></div></div>
+            <div class="row2"><div class="i">04</div><div class="x"><b>资金融通</b>　<span>各类长短期借贷（含集团资金池）、担保费、应计息预付款与延期收付款</span></div></div>
+            <div class="row2"><div class="i">05</div><div class="x"><b>劳务交易</b>　<span>市场调查、营销策划、代理、设计、咨询、行政管理、技术服务、合约研发、财务、审计、招聘、培训、集中采购等 15 项</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="strip"><b>三个必须先问清的点：</b>① 关联关系年度内变化的，按实际存续期间认定，不是整年算；② 借贷比例与实收资本都用<em>年度加权平均</em>计算；③ 仅因国家持股或国资部门委派董事高管形成的，不构成关联关系。</div>
+    </div>
+    <footer><span>集团税务价值 · 06 关联交易</span><span class="pg"></span></footer>
+  </div>
+
+  <!-- 03 功能可比 + 落区间 -->
+  <div class="slide">
+    <div class="hdr">
+      <div class="num">03</div>
+      <div>
+        <h3>功能、可比与落区间：分成两半的验证</h3>
+        <p class="sub">左半边定“谁被测试、跟谁比、怎么调”，右半边定“落在哪里算合理、落在外面怎么办”</p>
+      </div>
+      <div class="badge">COMPARABILITY</div>
+    </div>
+    <div class="body">
+      <div class="duo">
+        <div class="panel">
+          <div class="ph"><span class="k">FIVE FACTORS · 6 号公告第 15 条</span><h4>可比性分析五要素</h4></div>
+          <div class="rulelist">
+            <div class="rule"><b>交易特性</b><span>有形资产的物理特性与质量；无形资产类型与预期收益；劳务性质</span></div>
+            <div class="rule"><b>功能、风险与资产</b><span>研发、制造、分销、融资各环节执行什么、担什么风险、占什么资产</span></div>
+            <div class="rule"><b>合同条款</b><span>数量、价格、收付款条件、交货与售后；关注“签得起”与“做得到”是否一致</span></div>
+            <div class="rule"><b>经济环境</b><span>行业、市场规模、竞争程度、政府管制，以及成本节约、市场溢价等地域特殊因素</span></div>
+            <div class="rule"><b>经营策略</b><span>创新、多元化、协同效应、风险偏好、市场占有策略</span></div>
+          </div>
+          <div class="strip" style="margin-top:2px"><b>被测试方：</b>功能相对简单的一方（6 号公告第 23 条）——这是选可比企业前就要定下来的，不是事后补。</div>
+        </div>
+        <div class="panel">
+          <div class="ph"><span class="k">RANGE RULES · 6 号公告第 25–28 条</span><h4>落区间的五条规则</h4></div>
+          <div class="rulelist">
+            <div class="rule"><b>四分位区间</b><span>下四分位—中位值—上四分位；可比企业少于 4 家时区间不成立，须重找可比</span></div>
+            <div class="rule"><b>低于中位值即调</b><span>实际利润水平低于区间中位值的，原则上按不低于中位值调整（不是调到区间内就停）</span></div>
+            <div class="rule"><b>逐年测试</b><span>按可比利润水平，对被测试企业各年度逐年测试调整，不能用多年平均数掩盖单年异常</span></div>
+            <div class="rule"><b>哪些差异不调</b><span>营运资本占用差异不作调整；来料加工须还原料件与设备价值，调整幅度超 10% 应重选可比企业</span></div>
+            <div class="rule"><b>单一功能企业</b><span>来料/进料加工、分销、合约研发出现亏损，无论金额是否达标，都须备当年本地文档</span></div>
+          </div>
+          <div class="strip" style="margin-top:2px"><b>三条出口：</b>自行调整补税（填报《特别纳税调整自行缴纳税款表》）／预约定价安排求确定性／相互协商避免双重征税。</div>
+        </div>
+      </div>
+    </div>
+    <footer><span>集团税务价值 · 06 关联交易</span><span class="pg"></span></footer>
+  </div>
+
+  <!-- 04 方法 -->
+  <div class="slide">
+    <div class="hdr">
+      <div class="num">04</div>
+      <div>
+        <h3>方法选择：五种法定方法 ＋ 一条兜底</h3>
+        <p class="sub">方法没有高下，只有“能不能找到可比”和“被测试方功能是否够简单”两个约束</p>
+      </div>
+      <div class="badge">METHODS</div>
+    </div>
+    <div class="body">
+      <div class="matrix">
+        <table class="m">
+          <colgroup><col style="width:15%"><col style="width:27%"><col style="width:32%"><col style="width:26%"></colgroup>
+          <thead>
+            <tr><th>方法</th><th>通常适用</th><th>测试指标 / 计算口径</th><th>取证难点</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>可比非受控价格法<br><span style="font-family:var(--mono);font-size:14px;color:var(--muted)">CUP</span></th>
+              <td>全部交易类型；差异可控的购销、资金融通、特许权</td>
+              <td>直接以非关联方同类交易价格为准</td>
+              <td>很难找到交易条件、合同条款、经济环境都足够类似的独立交易</td>
+            </tr>
+            <tr>
+              <th>再销售价格法</th>
+              <td>简单分销、单纯购销，未做实质性增值加工</td>
+              <td>公平价 = 再销售价 ×（1 − 可比毛利率）</td>
+              <td>要求不再加工、不更换商标；毛利率受营销与售后功能影响大</td>
+            </tr>
+            <tr>
+              <th>成本加成法</th>
+              <td>有形资产使用权或所有权转让、资金融通、劳务</td>
+              <td>公平价 = 合理成本 ×（1 ＋ 可比成本加成率）</td>
+              <td>成本基数口径必须可比：是否含研发费、管理费、汇兑损益</td>
+            </tr>
+            <tr>
+              <th>交易净利润法<br><span style="font-family:var(--mono);font-size:14px;color:var(--muted)">TNMM</span></th>
+              <td>不拥有重大无形资产的企业：有形资产购销、无形资产受让、劳务</td>
+              <td>息税前利润率（EBIT/营业收入）、完全成本加成率（EBIT/完全成本）、资产收益率、贝里比率＝毛利 /（营业费用＋管理费用）</td>
+              <td>只查一方数据即可，功能差异要求低；但指标口径每年须一致，否则同比失真</td>
+            </tr>
+            <tr>
+              <th>利润分割法</th>
+              <td>各方均有独特贡献、业务高度整合、难以单独评估</td>
+              <td>一般分割法（按功能风险资产分）／剩余分割法（先给常规利润，剩余按贡献分）</td>
+              <td>贡献的计量与假设条件是否可靠，最难自证</td>
+            </tr>
+            <tr>
+              <th>其他方法<br><span style="font-family:var(--mono);font-size:14px;color:var(--muted)">兜底</span></th>
+              <td>无形资产与整体资产估值、无法用上述方法的情形</td>
+              <td>资产评估三法：成本法（重置）、市场法（可比成交）、收益法（未来收益折现）</td>
+              <td>收益法的折现率与经济年限假设，最容易被质疑</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="foot-note">依据：国家税务总局公告 2017 年第 6 号第 16–22 条（五种法定方法＋“其他符合独立交易原则的方法”兜底）。旧稿引用的《特别纳税调整实施办法（试行）》（国税发〔2009〕2 号）第四、五章已自 2017 年 5 月 1 日废止；“价值贡献分配法”并未单列为法定方法，只能归入兜底项。</div>
+      </div>
+    </div>
+    <footer><span>集团税务价值 · 06 关联交易</span><span class="pg"></span></footer>
+  </div>
+
+  <!-- 05 境内关联 -->
+  <div class="slide">
+    <div class="hdr">
+      <div class="num">05</div>
+      <div>
+        <h3>境内关联：不做文档，不等于不做判断</h3>
+        <p class="sub">这是最容易松懈的一块——同一集团境内成员之间，判断标准与跨境完全一样，只是义务更轻</p>
+      </div>
+      <div class="badge">DOMESTIC</div>
+    </div>
+    <div class="body">
+      <div class="quad">
+        <div class="q">
+          <div class="k">OBLIGATION</div>
+          <h4>豁免的只是“文档”，不是“申报”</h4>
+          <p>42 号公告第一条的申报义务没有境内外之分——与关联方有业务往来，就按业务类型填报适用的关联申报表。</p>
+          <ul><li>仅与境内关联方交易，可免主体、本地、特殊事项文档（第十八条）</li><li>免文档不等于免申报：G000000、G100000、G101000 三张必填照填</li><li>关联关系表仍须填起止日期，反映年度内存续变化</li></ul>
+        </div>
+        <div class="q">
+          <div class="k">SECTION 38 · 双条件</div>
+          <h4>不调整要同时满足两个条件</h4>
+          <p>6 号公告第 38 条：<b>实际税负相同</b>，<b>且</b>没有直接或间接导致国家总体税收收入减少，才原则上不作特别纳税调整。</p>
+          <ul><li>财政返还、区域优惠税率、亏损弥补、核定征收，任一都会打破“税负相同”</li><li>两地税率相同但一方有返还，实际税负已不同，仍可调整</li><li>少缴的是国家总体税收时才触发，地方间“搬家”原则上不动</li></ul>
+        </div>
+        <div class="q gold">
+          <div class="k">OTHER TAXES</div>
+          <h4>增值税没有这条豁免</h4>
+          <p>价格明显偏低且无正当理由，仍按法定顺序核定——第 38 条只管企业所得税。</p>
+          <ul><li>顺序：同类纳税人平均价格 → 其他纳税人同类价格 → 组成计税价格</li><li>资金池无偿拆借：所得税看第 38 条，增值税按贷款服务看利息</li><li>依据：增值税暂行条例第 7 条、财税〔2016〕36 号附件 1 第 44 条；消费税同理</li></ul>
+        </div>
+        <div class="q gold">
+          <div class="k">HOT SPOTS</div>
+          <h4>三个高发场景</h4>
+          <p>集团内部最容易“说不清”的三件事，往往也是税局最先问的三件事。</p>
+          <ul><li><b>集团资金池</b>：境内成员间无偿拆借，利息口径与资金占用天数</li><li><b>共享服务与集中采购</b>：先判是否受益性劳务，非受益性劳务不得计入分摊基数</li><li><b>关联股权转让</b>：平价或低价转让，须有评估报告支撑转让价格</li></ul>
+        </div>
+      </div>
+      <div class="warnbar"><b>一句话：</b>境内关联能省的只有文档准备的工作量，省不掉“定价要说得通”这件事——而且增值税那条线上，连第 38 条的庇护都没有。</div>
+    </div>
+    <footer><span>集团税务价值 · 06 关联交易</span><span class="pg"></span></footer>
+  </div>
+
+  <!-- 06 合规三张牌 -->
   <div class="slide">
     <div class="hdr">
       <div class="num">06</div>
       <div>
-        <h3>关联交易 · 内容框架</h3>
-        <p class="sub">先把骨架留好，内容后续逐页填充</p>
+        <h3>合规三张牌：申报、国别报告、同期资料</h3>
+        <p class="sub">三件事各有门槛与时限，漏一件就是“未按规定申报或准备同期资料”——这本身就是调查风险特征之一</p>
       </div>
-      <div class="badge">OUTLINE · TO BE FILLED</div>
+      <div class="badge">COMPLIANCE</div>
     </div>
     <div class="body">
-      <div class="slots">
-        <div class="slot">
-          <div class="k">SLOT 01 · RELATED PARTY</div>
-          <div class="t">关联方认定</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
+      <div class="cards3">
+        <div class="card3">
+          <div class="k">FILING · 每年 5 月 31 日前</div>
+          <h4>关联申报</h4>
+          <p>随企业所得税年度申报一并报送，22 张表按业务适用。</p>
+          <ul class="pts">
+            <li>三张<b>必填</b>：G000000 报告企业信息表、G100000 汇总表、G101000 关联关系表</li>
+            <li>无关联交易也要报，且三张必填表照填</li>
+            <li>关联关系表须填起止日期，反映年度内变化</li>
+            <li>G113010 / G113020 披露关联交易财务状况</li>
+          </ul>
+          <div class="src">42 号公告第一条、第九条；确有困难可依征管法第 27 条办延期</div>
         </div>
-        <div class="slot">
-          <div class="k">SLOT 02 · RELATED PARTY</div>
-          <div class="t">定价方法</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
+        <div class="card3">
+          <div class="k">CBCR · 次年 5 月 31 日前</div>
+          <h4>国别报告</h4>
+          <p>跨国集团最终控股企业且上一年度合并收入合计超 55 亿元，或被集团指定为报送企业。</p>
+          <ul class="pts">
+            <li>6 张表：所得与税收国别分布、成员实体名单、附加说明（各中英双份）</li>
+            <li>按<b>加总</b>数据填报，不是合并数；成员间股息不计收入</li>
+            <li>未达门槛但集团在别国准备的情形，税局调查时可要求提供</li>
+          </ul>
+          <div class="src">42 号公告第五条至第八条</div>
         </div>
-        <div class="slot">
-          <div class="k">SLOT 03 · RELATED PARTY</div>
-          <div class="t">同期资料</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
-        </div>
-        <div class="slot">
-          <div class="k">SLOT 04 · RELATED PARTY</div>
-          <div class="t">特别纳税调整</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
+        <div class="card3">
+          <div class="k">LOCAL FILE · 三种文档</div>
+          <h4>同期资料</h4>
+          <p>主体、本地、特殊事项三类，各自达标即备，可同时触发。</p>
+          <ul class="pts">
+            <li>主体文档：跨境关联且集团已备，或关联交易总额<b>超 10 亿</b>；集团会计年度终了起 12 个月内</li>
+            <li>本地文档：有形资产<b>2 亿</b>、金融资产<b>1 亿</b>、无形资产<b>1 亿</b>、其他合计<b>4000 万</b>；次年 6 月 30 日前</li>
+            <li>特殊事项：成本分摊协议、资本弱化（债资比超标需说明）</li>
+            <li>要求之日起 30 日内提供，保存 10 年；APA 覆盖部分可免</li>
+          </ul>
+          <div class="src">42 号公告第十条至第二十四条</div>
         </div>
       </div>
-      <div class="empty">
-        <div class="big">内容待建设</div>
-        <div class="d">确定本节提纲后，逐页补要点、法规依据与测算模型<br>（与集团税务价值其他章节共用同一套版式）</div>
+      <div class="strip"><b>利息这一笔别忽略：</b>特别纳税调整补税按基准利率<b>加 5 个百分点</b>计息；已按规定准备并提供同期资料的，可只按基准利率加收（6 号公告第 44 条）。文档不只是交差，直接折算成钱。</div>
+    </div>
+    <footer><span>集团税务价值 · 06 关联交易</span><span class="pg"></span></footer>
+  </div>
+
+  <!-- 07 风险与 BEPS -->
+  <div class="slide">
+    <div class="hdr">
+      <div class="num">07</div>
+      <div>
+        <h3>风险面：利润必须在价值创造地纳税</h3>
+        <p class="sub">BEPS 之后，判断标准从“合同怎么写”转向“谁真的创造了价值、在哪里创造”</p>
+      </div>
+      <div class="badge">BEPS &amp; RISK</div>
+    </div>
+    <div class="body">
+      <div class="cards3">
+        <div class="card3">
+          <div class="k">VALUE CHAIN</div>
+          <h4>价值链分析</h4>
+          <p>从设计、开发、制造、营销、销售、交货、结算到售后，逐环节说清业务流、物流、资金流与各方财务报表。</p>
+          <ul class="pts">
+            <li>各环节参与方的功能、风险、资产要能对上账</li>
+            <li>集团利润在全球价值链中的分配原则与分配结果</li>
+            <li>各参与方最近会计年度财务报表要对得上</li>
+            <li>集团利润在全球价值链中的分配原则与分配结果</li>
+            <li>重组、功能迁移、股权收购当年必须单独说明</li>
+          </ul>
+          <div class="src">42 号公告第十四条：本地文档须做价值链分析与地域特殊因素计量</div>
+        </div>
+        <div class="card3">
+          <div class="k">LOCATION SAVINGS</div>
+          <h4>地域特殊因素</h4>
+          <p>成本节约与市场溢价要计量、要归属，不能默认留在境内制造方（6 号公告第 27 条）。</p>
+          <ul class="pts">
+            <li>劳动力成本、环境成本、市场规模与竞争程度</li>
+            <li>消费者购买力、产品可替代性、政府管制</li>
+            <li>成本节约与市场溢价：谁贡献、归谁、怎么算</li>
+            <li>不分析地域因素，制造业利润就被默认留在境内</li>
+          </ul>
+          <div class="src">6 号公告第 27 条：可比企业处于不同经济环境时应分析成本节约与市场溢价</div>
+        </div>
+        <div class="card3">
+          <div class="k">INTANGIBLES</div>
+          <h4>无形资产的贡献</h4>
+          <p>只拥有法律所有权、不承担功能风险、不做价值贡献的，不参与无形资产收益分配。</p>
+          <ul class="pts">
+            <li>仅提供资金 → 只获得合理资金成本回报</li>
+            <li>特许权使用费须与经济利益匹配，否则全额调整</li>
+            <li>仅因融资上市附带利益向境外支付特许权使用费，全额调整</li>
+            <li>后续研发、维护、推广有贡献而未获补偿的，可适时调整</li>
+          </ul>
+          <div class="src">6 号公告第 30–33 条：无形资产贡献与特许权使用费调整</div>
+        </div>
+      </div>
+      <div class="duo" style="flex:0 0 auto">
+        <div class="strip"><b>五类高风险特征（6 号公告第 4 条）：</b>关联交易金额大或类型多；长期亏损、微利、跳跃性盈利；利润水平低于同行业；利润与功能风险不匹配、收益与成本不配比；与低税地区关联方交易。隐匿或抵消关联交易导致税收减少的，可按还原交易调整。</div>
+        <div class="strip"><b>走出去的三个动作：</b>① 文档先行——本地文档按年备，不留补做痕迹；② 用预约定价安排换确定性，单边、双边各有适用场景；③ 把集团转让定价政策写进内控流程，让业务、财务、税务同一套口径。</div>
       </div>
     </div>
-    <footer></footer>
+    <footer><span>集团税务价值 · 06 关联交易</span><span class="pg"></span></footer>
   </div>
 
 </div>
@@ -134,7 +544,10 @@ const slides=document.querySelectorAll('.slide');
 let idx=0;
 function render(){
   slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
-  slides.forEach((s,i)=>{const f=s.querySelector('footer');if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;});
+  slides.forEach((s,i)=>{
+    const f=s.querySelector('footer .pg');
+    if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;
+  });
   const p=document.getElementById('progress');
   if(p)p.style.width=((idx+1)/slides.length*100)+'%';
 }
@@ -143,6 +556,7 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft'||e.key==='PageUp'){idx=Math.max(idx-1,0);render()}
 });
 document.querySelector('.slide-wrap').addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
   const rect=e.target.getBoundingClientRect();
   if(e.clientX-rect.left>rect.width/2) idx=Math.min(idx+1,slides.length-1);
   else idx=Math.max(idx-1,0);
