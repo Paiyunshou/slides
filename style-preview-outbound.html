@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>对外支付涉税判断 · 风格备选</title>
+<style>
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-r.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-sb.woff2') format('woff2');font-weight:500 700;font-display:swap}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0}
+.stage{position:relative;width:100vw;height:100vh;overflow:hidden}
+.slide-wrap{position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform-origin:center;transform:translate(-50%,-50%) scale(1)}
+
+/* ===== 每一页自己定义变量，组件全部吃变量 ===== */
+.slide{position:absolute;inset:0;padding:82px 96px 96px;opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;display:flex;flex-direction:column;
+  background:var(--bg);color:var(--text);font-family:var(--serif)}
+.slide.active{opacity:1;visibility:visible}
+.slide.a{--bg:#fbfbf9;--text:#1b2430;--accent:#16324f;--muted:#5b6770;--line:#d5dae0;--card:#ffffff;
+  --warm:#8c6a34;--warm-soft:#f4efe3;--r:2px;--serif:"Deck Serif","Noto Serif SC",Songti SC,SimSun,serif;
+  --mono:"SF Mono",Consolas,ui-monospace,"Deck Serif",monospace;--cap:uppercase}
+.slide.b{--bg:#fdf6ec;--text:#33291f;--accent:#a33a2a;--muted:#7a6a58;--line:#e2d2ba;--card:#fffdf8;
+  --warm:#c08a3e;--warm-soft:#fbeed7;--r:12px;--serif:"Deck Serif","Noto Serif SC",Songti SC,SimSun,serif;
+  --mono:"SF Mono",Consolas,ui-monospace,"Deck Serif",monospace;--cap:none}
+.slide.c{--bg:#ffffff;--text:#111111;--accent:#111111;--muted:#6b6b6b;--line:#e3e3e3;--card:#ffffff;
+  --warm:#cf3b2b;--warm-soft:#f7f2ef;--r:0px;--serif:"Deck Serif","Noto Serif SC",Songti SC,SimSun,serif;
+  --mono:"SF Mono",Consolas,ui-monospace,"Deck Serif",monospace;--cap:uppercase}
+
+.hdr{display:flex;align-items:flex-end;gap:22px;padding-bottom:16px;border-bottom:var(--hb,1px) solid var(--line);flex:0 0 auto}
+.hdr .num{flex:0 0 auto;width:58px;height:58px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;
+  background:var(--accent);color:var(--bg);font-family:var(--mono);font-size:22px}
+.hdr h3{margin:0;font-size:36px;font-weight:600;color:var(--accent);line-height:1.25;letter-spacing:.5px}
+.hdr .sub{margin:6px 0 0;font-size:17px;color:var(--muted);line-height:1.5}
+.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:13px;letter-spacing:2px;text-transform:var(--cap);color:var(--accent);
+  border:1px solid var(--accent);border-radius:var(--r);padding:7px 14px;font-family:var(--mono);white-space:nowrap}
+.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:16px;margin-top:22px}
+footer{font-family:var(--mono);font-size:13px;letter-spacing:1px;color:var(--muted);flex:0 0 auto;padding-top:12px;
+  border-top:1px solid var(--line);margin-top:12px;display:flex;justify-content:space-between}
+
+.qual{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 18px;display:flex;align-items:center;gap:14px;flex:0 0 auto}
+.qual .lb{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;color:var(--warm);flex:0 0 auto;line-height:1.35;white-space:nowrap;text-transform:var(--cap)}
+.qual .grp{display:flex;gap:8px}
+.qual .p{border-radius:var(--r);padding:7px 14px;font-size:16.5px;line-height:1.35;border:1px solid var(--line);background:var(--bg);color:var(--text)}
+.qual .p.g1{border-left:3px solid var(--warm)}
+.qual .p.g2{border-left:3px solid var(--accent)}
+.qual .p.g3{border-left:3px solid var(--muted)}
+
+.branches{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.br{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 18px;display:flex;flex-direction:column;gap:6px;min-height:0;justify-content:space-between}
+.br .bt{font-size:19px;font-weight:600;line-height:1.3;flex:0 0 auto;padding-bottom:8px;border-bottom:2px solid var(--line)}
+.br.c1 .bt{color:var(--warm);border-bottom-color:var(--warm)}
+.br.c2 .bt{color:var(--accent);border-bottom-color:var(--accent)}
+.br.c3 .bt{color:var(--muted);border-bottom-color:var(--muted)}
+.br .bx{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:8px 12px;flex:0 0 auto}
+.br .bx .q{font-size:16.5px;font-weight:600;line-height:1.35}
+.br .bx .s{font-size:14px;color:var(--muted);line-height:1.45;margin-top:2px}
+.br .ar{position:relative;height:14px;flex:0 0 auto}
+.br .ar::before{content:'';position:absolute;left:50%;margin-left:-7px;top:2px;width:0;height:0;
+  border-left:7px solid transparent;border-right:7px solid transparent;border-top:9px solid var(--line)}
+.br .ar span{position:absolute;left:calc(50% + 14px);top:-4px;font-family:var(--mono);font-size:11.5px;color:var(--warm)}
+.br .rs{border-radius:var(--r);padding:9px 12px;font-size:15px;line-height:1.5;flex:0 0 auto;
+  background:var(--warm-soft);border-left:3px solid var(--warm)}
+.slide.c .br .rs{background:#fafafa;border-left:3px solid var(--warm)}
+.br .rs b{font-weight:600;color:var(--text)}
+
+.join{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r);padding:11px 18px;display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.join .st{display:flex;flex-direction:column;gap:2px;flex:1 1 0}
+.join .st .t{font-size:16px;font-weight:600;color:var(--accent);line-height:1.3}
+.join .st .s{font-size:13.5px;color:var(--muted);line-height:1.4}
+.join .ax{flex:0 0 auto;color:var(--warm);font-size:17px;font-family:var(--mono)}
+
+/* C 风格额外收紧一点，体现极简 */
+.slide.c .hdr h3{letter-spacing:0}
+.slide.c .br .bt{border-bottom-width:1px}
+.slide.c .qual .p{background:#fff}
+</style>
+</head>
+<body>
+<div class="stage">
+<div class="slide-wrap">
+
+  <!-- ===== A 行政蓝 ===== -->
+  <div class="slide a">
+    <div class="hdr">
+      <div class="num">01</div>
+      <div>
+        <h3>一条判断链：先定性，再算税，最后看备案</h3>
+        <p class="sub">方案 A · 行政蓝 —— 深藏青＋冷灰细线，像税局文书与审计底稿，克制、可打印</p>
+      </div>
+      <div class="badge">STYLE A</div>
+    </div>
+    <div class="body">
+      <div class="qual">
+        <div class="lb">STEP 01<br>交易定性</div>
+        <div class="grp">
+          <span class="p g1">特许权使用费 · 利息 · 股息红利 · 租金</span>
+          <span class="p g2">劳务 · 技术服务 · 咨询 · 管理服务</span>
+          <span class="p g3">财产转让（股权 / 不动产 / 软件著作权）</span>
+        </div>
+      </div>
+      <div class="branches">
+        <div class="br c1">
+          <div class="bt">① 消极所得支线</div>
+          <div class="bx"><div class="q">是境内所得吗？</div><div class="s">负担、支付所得的企业或机构场所在境内 → 境内所得</div></div>
+          <div class="ar"><span>是</span></div>
+          <div class="bx"><div class="q">构成常设机构吗？</div><div class="s">设管理场所 / 分支机构 / 非独立代理 → 构成</div></div>
+          <div class="ar"><span>否</span></div>
+          <div class="rs"><b>常设机构</b>：归属利润 25%，不适用预提<br><b>非常设机构</b>：预提 10%；享协定按限制税率孰低</div>
+        </div>
+        <div class="br c2">
+          <div class="bt">② 劳务与技术支线</div>
+          <div class="bx"><div class="q">人员来华了吗？</div><div class="s">全部在境外完成、人不入境 → 不征税</div></div>
+          <div class="ar"><span>来了</span></div>
+          <div class="bx"><div class="q">时间够阈值吗？</div><div class="s">工程起止满 6 个月；劳务任何 12 个月满 183 天</div></div>
+          <div class="ar"><span>够</span></div>
+          <div class="rs"><b>构成</b>：营业利润 25%，核定利润率 15–30% / 30–50% / 不低于 15%<br><b>不构成</b>：不征税，协定待遇留存备查</div>
+        </div>
+        <div class="br c3">
+          <div class="bt">③ 财产转让支线</div>
+          <div class="bx"><div class="q">标的在境内吗？</div><div class="s">不动产看所在地；股权看被投资企业所在地</div></div>
+          <div class="ar"><span>在</span></div>
+          <div class="bx"><div class="q">是否间接转让？</div><div class="s">境外转让境外股权，价值来自中国应税财产</div></div>
+          <div class="rs"><b>直接</b>：差额 × 10% 预提<br><b>间接</b>：可能重新定性（2015 年 7 号）<br><b>不在境内</b>：不征税</div>
+        </div>
+      </div>
+      <div class="join">
+        <div class="st"><div class="t">增值税：另一条腿</div><div class="s">与所得税结论无关</div></div>
+        <span class="ax">→</span>
+        <div class="st"><div class="t">代扣 6% 或零税率</div><div class="s">完全在境外不扣</div></div>
+        <span class="ax">→</span>
+        <div class="st"><div class="t">备案：单笔超 5 万美元</div><div class="s">一次备案分次可用</div></div>
+        <span class="ax">→</span>
+        <div class="st"><div class="t">留存资料</div><div class="s">合同·发票·人天台账</div></div>
+      </div>
+    </div>
+    <footer><span>对外支付涉税判断 · 风格备选</span><span class="pg"></span></footer>
+  </div>
+
+  <!-- ===== B 暖砂朱红 ===== -->
+  <div class="slide b">
+    <div class="hdr">
+      <div class="num">01</div>
+      <div>
+        <h3>一条判断链：先定性，再算税，最后看备案</h3>
+        <p class="sub">方案 B · 暖砂朱红 —— 米黄纸感＋砖红强调，接近你笔记里手绘判断图的温度</p>
+      </div>
+      <div class="badge">STYLE B</div>
+    </div>
+    <div class="body">
+      <div class="qual">
+        <div class="lb">STEP 01<br>交易定性</div>
+        <div class="grp">
+          <span class="p g1">特许权使用费 · 利息 · 股息红利 · 租金</span>
+          <span class="p g2">劳务 · 技术服务 · 咨询 · 管理服务</span>
+          <span class="p g3">财产转让（股权 / 不动产 / 软件著作权）</span>
+        </div>
+      </div>
+      <div class="branches">
+        <div class="br c1">
+          <div class="bt">① 消极所得支线</div>
+          <div class="bx"><div class="q">是境内所得吗？</div><div class="s">负担、支付所得的企业或机构场所在境内 → 境内所得</div></div>
+          <div class="ar"><span>是</span></div>
+          <div class="bx"><div class="q">构成常设机构吗？</div><div class="s">设管理场所 / 分支机构 / 非独立代理 → 构成</div></div>
+          <div class="ar"><span>否</span></div>
+          <div class="rs"><b>常设机构</b>：归属利润 25%，不适用预提<br><b>非常设机构</b>：预提 10%；享协定按限制税率孰低</div>
+        </div>
+        <div class="br c2">
+          <div class="bt">② 劳务与技术支线</div>
+          <div class="bx"><div class="q">人员来华了吗？</div><div class="s">全部在境外完成、人不入境 → 不征税</div></div>
+          <div class="ar"><span>来了</span></div>
+          <div class="bx"><div class="q">时间够阈值吗？</div><div class="s">工程起止满 6 个月；劳务任何 12 个月满 183 天</div></div>
+          <div class="ar"><span>够</span></div>
+          <div class="rs"><b>构成</b>：营业利润 25%，核定利润率 15–30% / 30–50% / 不低于 15%<br><b>不构成</b>：不征税，协定待遇留存备查</div>
+        </div>
+        <div class="br c3">
+          <div class="bt">③ 财产转让支线</div>
+          <div class="bx"><div class="q">标的在境内吗？</div><div class="s">不动产看所在地；股权看被投资企业所在地</div></div>
+          <div class="ar"><span>在</span></div>
+          <div class="bx"><div class="q">是否间接转让？</div><div class="s">境外转让境外股权，价值来自中国应税财产</div></div>
+          <div class="rs"><b>直接</b>：差额 × 10% 预提<br><b>间接</b>：可能重新定性（2015 年 7 号）<br><b>不在境内</b>：不征税</div>
+        </div>
+      </div>
+      <div class="join">
+        <div class="st"><div class="t">增值税：另一条腿</div><div class="s">与所得税结论无关</div></div>
+        <span class="ax">→</span>
+        <div class="st"><div class="t">代扣 6% 或零税率</div><div class="s">完全在境外不扣</div></div>
+        <span class="ax">→</span>
+        <div class="st"><div class="t">备案：单笔超 5 万美元</div><div class="s">一次备案分次可用</div></div>
+        <span class="ax">→</span>
+        <div class="st"><div class="t">留存资料</div><div class="s">合同·发票·人天台账</div></div>
+      </div>
+    </div>
+    <footer><span>对外支付涉税判断 · 风格备选</span><span class="pg"></span></footer>
+  </div>
+
+  <!-- ===== C 极简墨 ===== -->
+  <div class="slide c">
+    <div class="hdr">
+      <div class="num">01</div>
+      <div>
+        <h3>一条判断链：先定性，再算税，最后看备案</h3>
+        <p class="sub">方案 C · 极简墨 —— 纯白、墨字、只用一条朱红做标记，图表感最强</p>
+      </div>
+      <div class="badge">STYLE C</div>
+    </div>
+    <div class="body">
+      <div class="qual">
+        <div class="lb">STEP 01<br>交易定性</div>
+        <div class="grp">
+          <span class="p g1">特许权使用费 · 利息 · 股息红利 · 租金</span>
+          <span class="p g2">劳务 · 技术服务 · 咨询 · 管理服务</span>
+          <span class="p g3">财产转让（股权 / 不动产 / 软件著作权）</span>
+        </div>
+      </div>
+      <div class="branches">
+        <div class="br c1">
+          <div class="bt">① 消极所得支线</div>
+          <div class="bx"><div class="q">是境内所得吗？</div><div class="s">负担、支付所得的企业或机构场所在境内 → 境内所得</div></div>
+          <div class="ar"><span>是</span></div>
+          <div class="bx"><div class="q">构成常设机构吗？</div><div class="s">设管理场所 / 分支机构 / 非独立代理 → 构成</div></div>
+          <div class="ar"><span>否</span></div>
+          <div class="rs"><b>常设机构</b>：归属利润 25%，不适用预提<br><b>非常设机构</b>：预提 10%；享协定按限制税率孰低</div>
+        </div>
+        <div class="br c2">
+          <div class="bt">② 劳务与技术支线</div>
+          <div class="bx"><div class="q">人员来华了吗？</div><div class="s">全部在境外完成、人不入境 → 不征税</div></div>
+          <div class="ar"><span>来了</span></div>
+          <div class="bx"><div class="q">时间够阈值吗？</div><div class="s">工程起止满 6 个月；劳务任何 12 个月满 183 天</div></div>
+          <div class="ar"><span>够</span></div>
+          <div class="rs"><b>构成</b>：营业利润 25%，核定利润率 15–30% / 30–50% / 不低于 15%<br><b>不构成</b>：不征税，协定待遇留存备查</div>
+        </div>
+        <div class="br c3">
+          <div class="bt">③ 财产转让支线</div>
+          <div class="bx"><div class="q">标的在境内吗？</div><div class="s">不动产看所在地；股权看被投资企业所在地</div></div>
+          <div class="ar"><span>在</span></div>
+          <div class="bx"><div class="q">是否间接转让？</div><div class="s">境外转让境外股权，价值来自中国应税财产</div></div>
+          <div class="rs"><b>直接</b>：差额 × 10% 预提<br><b>间接</b>：可能重新定性（2015 年 7 号）<br><b>不在境内</b>：不征税</div>
+        </div>
+      </div>
+      <div class="join">
+        <div class="st"><div class="t">增值税：另一条腿</div><div class="s">与所得税结论无关</div></div>
+        <span class="ax">→</span>
+        <div class="st"><div class="t">代扣 6% 或零税率</div><div class="s">完全在境外不扣</div></div>
+        <span class="ax">→</span>
+        <div class="st"><div class="t">备案：单笔超 5 万美元</div><div class="s">一次备案分次可用</div></div>
+        <span class="ax">→</span>
+        <div class="st"><div class="t">留存资料</div><div class="s">合同·发票·人天台账</div></div>
+      </div>
+    </div>
+    <footer><span>对外支付涉税判断 · 风格备选</span><span class="pg"></span></footer>
+  </div>
+
+</div>
+</div>
+<script>
+const slides=document.querySelectorAll('.slide');
+let idx=0;
+function render(){
+  slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
+  slides.forEach((s,i)=>{const f=s.querySelector('footer .pg');if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;});
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){idx=Math.min(idx+1,slides.length-1);render()}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){idx=Math.max(idx-1,0);render()}
+});
+document.querySelector('.slide-wrap').addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  const r=e.target.getBoundingClientRect();
+  if(e.clientX-r.left>r.width/2) idx=Math.min(idx+1,slides.length-1); else idx=Math.max(idx-1,0);
+  render();
+});
+render();
+function fit(){
+  const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+  document.querySelector('.slide-wrap').style.transform='translate(-50%,-50%) scale('+s+')';
+}
+window.addEventListener('resize',fit);fit();
+</script>
+</body>
+</html>
