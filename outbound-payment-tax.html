@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>对外支付涉税判断 · 三步定税</title>
+<style>
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-r.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-sb.woff2') format('woff2');font-weight:500 700;font-display:swap}
+:root{
+  --bg:#fbfbf9;--text:#1b2430;--accent:#16324f;--muted:#5b6770;
+  --line:#d5dae0;--card:#ffffff;--warm:#8c6a34;--warm-soft:#f4efe3;--warm-line:#c9b28c;
+  --r:2px;
+  --serif:"Deck Serif","Noto Serif SC",Songti SC,SimSun,serif;
+  --mono:"SF Mono",Consolas,ui-monospace,"Deck Serif",monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0;font-family:var(--serif);background:var(--bg);color:var(--text)}
+.stage{position:relative;width:100vw;height:100vh;overflow:hidden}
+.slide-wrap{position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform-origin:center;transform:translate(-50%,-50%) scale(1)}
+.slide{position:absolute;inset:0;padding:82px 96px 96px;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s ease;display:flex;flex-direction:column;background:var(--bg)}
+.slide.active{opacity:1;visibility:visible}
+p,li{font-size:22px;line-height:1.7;color:var(--text);margin:0}
+
+.hdr{display:flex;align-items:flex-end;gap:22px;padding-bottom:16px;border-bottom:1px solid var(--line);flex:0 0 auto}
+.hdr .num{flex:0 0 auto;width:58px;height:58px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;background:var(--accent);color:var(--bg);font-family:var(--mono);font-size:22px}
+.hdr h3{margin:0;font-size:36px;font-weight:600;color:var(--accent);line-height:1.25;letter-spacing:.5px}
+.hdr .sub{margin:6px 0 0;font-size:17px;color:var(--muted);line-height:1.5}
+.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:13px;letter-spacing:2px;color:var(--accent);border:1px solid var(--accent);border-radius:var(--r);padding:7px 14px;font-family:var(--mono);white-space:nowrap}
+.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:16px;margin-top:22px}
+footer{font-family:var(--mono);font-size:13px;letter-spacing:1px;color:var(--muted);flex:0 0 auto;padding-top:12px;border-top:1px solid var(--line);margin-top:12px;display:flex;justify-content:space-between}
+.back{position:absolute;left:96px;top:50px;font-family:var(--mono);font-size:15px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--warm-line);padding-bottom:2px}
+
+/* ===== 第 1 页：判断链 ===== */
+.qual{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 18px;display:flex;align-items:center;gap:14px;flex:0 0 auto}
+.qual .lb{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;color:var(--warm);flex:0 0 auto;line-height:1.35;white-space:nowrap}
+.qual .grp{display:flex;gap:8px}
+.qual .p{border-radius:var(--r);padding:7px 14px;font-size:16.5px;line-height:1.35;border:1px solid var(--line);background:var(--bg);color:var(--text)}
+.qual .p.g1{border-left:3px solid var(--warm)}
+.qual .p.g2{border-left:3px solid var(--accent)}
+.qual .p.g3{border-left:3px solid var(--muted)}
+.branches{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.br{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 18px;display:flex;flex-direction:column;gap:6px;min-height:0;justify-content:space-between}
+.br .bt{font-size:19px;font-weight:600;line-height:1.3;flex:0 0 auto;padding-bottom:8px;border-bottom:2px solid var(--line)}
+.br.c1 .bt{color:var(--warm);border-bottom-color:var(--warm)}
+.br.c2 .bt{color:var(--accent);border-bottom-color:var(--accent)}
+.br.c3 .bt{color:var(--muted);border-bottom-color:var(--muted)}
+.br .bx{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:8px 12px;flex:0 0 auto}
+.br .bx .q{font-size:16.5px;font-weight:600;line-height:1.35}
+.br .bx .s{font-size:14px;color:var(--muted);line-height:1.45;margin-top:2px}
+.br .ar{position:relative;height:14px;flex:0 0 auto}
+.br .ar::before{content:'';position:absolute;left:50%;margin-left:-7px;top:2px;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:9px solid var(--line)}
+.br .ar span{position:absolute;left:calc(50% + 14px);top:-4px;font-family:var(--mono);font-size:11.5px;color:var(--warm)}
+.br .rs{border-radius:var(--r);padding:9px 12px;font-size:15px;line-height:1.5;flex:0 0 auto;background:var(--warm-soft);border-left:3px solid var(--warm)}
+.br .rs b{font-weight:600;color:var(--text)}
+.join{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r);padding:11px 18px;display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.join .st{display:flex;flex-direction:column;gap:2px;flex:1 1 0}
+.join .st .t{font-size:16px;font-weight:600;color:var(--accent);line-height:1.3}
+.join .st .s{font-size:13.5px;color:var(--muted);line-height:1.4}
+.join .ax{flex:0 0 auto;color:var(--warm);font-size:17px;font-family:var(--mono)}
+
+/* ===== 第 2 页：所得税 ===== */
+.two{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1.06fr 1fr;gap:20px}
+.pnl{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;display:flex;flex-direction:column;gap:9px;min-height:0}
+.pnl .k{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;color:var(--warm)}
+.pnl h4{margin:0;font-size:24px;font-weight:600;color:var(--accent);line-height:1.3}
+.srows{display:flex;flex-direction:column;gap:8px;flex:1 1 auto;min-height:0;justify-content:space-between}
+.srow{display:grid;grid-template-columns:148px 1fr;gap:14px;align-items:start;border-bottom:1px dashed var(--line);padding-bottom:7px}
+.srow:last-child{border-bottom:none;padding-bottom:0}
+.srow .l{font-size:16.5px;font-weight:600;color:var(--accent);line-height:1.45}
+.srow .r{font-size:16px;line-height:1.5;color:var(--text)}
+.srow .r em{font-style:normal;color:#a8462f;font-weight:600}
+.mini{background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--warm-line);border-radius:var(--r);padding:10px 14px;flex:0 0 auto}
+.mini .q{font-size:16.5px;font-weight:600;color:var(--warm);line-height:1.35}
+.mini .d{font-size:14.5px;line-height:1.5;color:var(--text);margin-top:3px}
+.mini .d b{color:var(--accent)}
+.two2{display:flex;flex-direction:column;gap:9px;min-height:0;flex:1 1 auto;justify-content:space-between}
+.strip{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r);padding:11px 18px;font-size:15.5px;line-height:1.6;color:var(--muted);flex:0 0 auto}
+.strip b{color:var(--accent)}
+
+/* ===== 第 3 页：增值税与备案 ===== */
+.quad{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:16px}
+.q{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r);padding:13px 18px;display:flex;flex-direction:column;gap:6px;min-height:0;justify-content:center}
+.q.warm{border-left-color:var(--warm)}
+.q .k{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;color:var(--warm)}
+.q h4{margin:0;font-size:22px;font-weight:600;color:var(--accent);line-height:1.3}
+.q ul{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.q ul li{font-size:15.5px;line-height:1.55;padding-left:15px;position:relative}
+.q ul li::before{content:"—";position:absolute;left:0;color:var(--warm)}
+.q ul li b{color:#a8462f;font-weight:600}
+</style>
+</head>
+<body>
+<div class="stage">
+<div class="slide-wrap">
+
+  <!-- ========== 01 判断链 ========== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">01</div>
+      <div>
+        <h3>一条判断链：先定性，再算税，最后看备案</h3>
+        <p class="sub">定性决定走哪条支线；企业所得税与增值税是两条腿，各自判、各自扣，互不替代</p>
+      </div>
+      <div class="badge">JUDGEMENT MAP</div>
+    </div>
+    <div class="body">
+
+      <div class="qual">
+        <div class="lb">STEP 01<br>交易定性</div>
+        <div class="grp">
+          <span class="p g1">特许权使用费 · 利息 · 股息红利 · 有形动产租金</span>
+          <span class="p g2">劳务 · 技术服务 · 咨询 · 管理服务</span>
+          <span class="p g3">财产转让（股权 / 不动产 / 软件著作权）</span>
+        </div>
+      </div>
+
+      <div class="branches">
+        <div class="br c1">
+          <div class="bt">① 消极所得支线</div>
+          <div class="bx"><div class="q">是境内所得吗？</div><div class="s">负担、支付所得的企业或机构场所在境内 → 境内所得；个人看住所地</div></div>
+          <div class="ar"><span>是</span></div>
+          <div class="bx"><div class="q">构成常设机构吗？</div><div class="s">设管理场所 / 分支机构 / 非独立代理 → 构成</div></div>
+          <div class="ar"><span>否</span></div>
+          <div class="rs"><b>常设机构</b>：归属利润按 25%，不适用预提<br><b>非常设机构</b>：预提 10%；享协定按限制税率孰低（须居民身份证明 + 受益所有人）</div>
+        </div>
+
+        <div class="br c2">
+          <div class="bt">② 劳务与技术支线</div>
+          <div class="bx"><div class="q">人员来华了吗？</div><div class="s">全部在境外完成、人不入境 → 不征税</div></div>
+          <div class="ar"><span>来了</span></div>
+          <div class="bx"><div class="q">时间够阈值吗？</div><div class="s">工程按起止满 6 个月；劳务按任何 12 个月累计满 183 天</div></div>
+          <div class="ar"><span>够</span></div>
+          <div class="rs"><b>构成常设机构</b>：营业利润 25%，按核定利润率（工程·设计·咨询 15–30%；管理服务 30–50%；其他不低于 15%）<br><b>不构成</b>：不征税，协定待遇自行判断、资料留存备查</div>
+        </div>
+
+        <div class="br c3">
+          <div class="bt">③ 财产转让支线</div>
+          <div class="bx"><div class="q">标的在境内吗？</div><div class="s">不动产看所在地；股权看被投资企业所在地；动产看转让方机构场所所在地</div></div>
+          <div class="ar"><span>在</span></div>
+          <div class="bx"><div class="q">是否间接转让？</div><div class="s">境外转让境外股权，但价值主要来自中国应税财产、无合理商业目的</div></div>
+          <div class="rs"><b>直接转让</b>：差额 × 10% 预提<br><b>间接转让</b>：可能被重新定性为直接转让（2015 年 7 号公告），先做商业目的测试<br><b>不在境内</b>：不征税</div>
+        </div>
+      </div>
+
+      <div class="join">
+        <div class="st"><div class="t">增值税：另一条腿</div><div class="s">是否属于境内应税行为，与所得税结论无关</div></div>
+        <span class="ax">→</span>
+        <div class="st"><div class="t">代扣 6% 或零税率</div><div class="s">完全在境外发生不扣；国际运输等适用零税率</div></div>
+        <span class="ax">→</span>
+        <div class="st"><div class="t">备案：单笔超 5 万美元</div><div class="s">服务贸易对外支付税务备案，一次备案分次可用</div></div>
+        <span class="ax">→</span>
+        <div class="st"><div class="t">留存资料</div><div class="s">合同、发票、受益所有人、居民证明、人天台账</div></div>
+      </div>
+
+    </div>
+    <footer><span>对外支付涉税判断 · 三步定税</span><span class="pg"></span></footer>
+  </div>
+
+  <!-- ========== 02 所得税 ========== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">02</div>
+      <div>
+        <h3>企业所得税：先看来源地，再看常设机构，最后才谈协定</h3>
+        <p class="sub">顺序颠倒最容易出错——没先判来源地就谈协定，或把常设机构的营业利润当成预提所得税</p>
+      </div>
+      <div class="badge">CIT · 10% / 25%</div>
+    </div>
+    <div class="body">
+      <div class="two">
+        <div class="pnl">
+          <div class="k">SOURCE RULE · 实施条例第 7 条</div>
+          <h4>五类所得，各自的来源地判定</h4>
+          <div class="srows">
+            <div class="srow"><div class="l">销售货物</div><div class="r">交易活动发生地</div></div>
+            <div class="srow"><div class="l">提供劳务</div><div class="r">劳务发生地——人在哪里干活，所得就在哪里</div></div>
+            <div class="srow"><div class="l">股息红利</div><div class="r">分配所得的企业所在地（看分配方，不看收款方）</div></div>
+            <div class="srow"><div class="l">利息、租金、<br>特许权使用费</div><div class="r">负担、支付所得的企业或机构场所所在地；个人看住所地</div></div>
+            <div class="srow"><div class="l">转让财产</div><div class="r">不动产看不动产所在地；动产看转让方机构场所所在地；<em>权益性投资看被投资企业所在地</em></div></div>
+            <div class="srow"><div class="l">其他所得</div><div class="r">由国务院财政、税务主管部门确定</div></div>
+          </div>
+        </div>
+
+        <div class="pnl">
+          <div class="k">PE · 常设机构</div>
+          <h4>两个时间阈值与两种结局</h4>
+          <div class="two2">
+            <div class="mini">
+              <div class="q">工程承包：起止时间满 6 个月</div>
+              <div class="d">关联且连续的项目合并计算，拆分合同无效；分包商以自己合同单独计算；独立监理单独计算。</div>
+            </div>
+            <div class="mini">
+              <div class="q">劳务：任何 12 个月内累计满 183 天</div>
+              <div class="d">多人同时入境<b>不累计</b>，一人一天算一天；项目跨 12 个月时，只要任一 12 个月超线，整个合同期间都构成。</div>
+            </div>
+            <div class="mini">
+              <div class="q">构成：营业利润 25%，按核定利润率</div>
+              <div class="d">账簿健全可查账；实务多为核定——工程·设计·咨询 <b>15–30%</b>，管理服务 <b>30–50%</b>，其他不低于 <b>15%</b>（国税发〔2010〕19 号）。</div>
+            </div>
+            <div class="mini">
+              <div class="q">不构成：不征税，协定待遇留存备查</div>
+              <div class="d">自行判断、申报享受、资料留存（2019 年 35 号）：居民身份证明、合同决议支付凭证、受益所有人资料；税局后续管理问不到资料＝不享受。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="strip"><b>外籍个人别漏看</b>：183 天不是免税线——境外企业支付的报酬，只要由其在华常设机构负担，不论停留几天都属境内所得（协定第十五条、75 号文）；签约时就要提醒对方为派遣人员申报。</div>
+    </div>
+    <footer><span>对外支付涉税判断 · 三步定税</span><span class="pg"></span></footer>
+  </div>
+
+  <!-- ========== 03 增值税与备案 ========== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">03</div>
+      <div>
+        <h3>增值税与备案：所得税不征，不代表不用扣增值税</h3>
+        <p class="sub">两条腿各自独立；扣缴之日起 7 日内解缴，逾期按日加收滞纳金</p>
+      </div>
+      <div class="badge">VAT 6% · 备案</div>
+    </div>
+    <div class="body">
+      <div class="quad">
+        <div class="q">
+          <div class="k">VAT · 境内应税行为</div>
+          <h4>四种情形，命中一种就要扣</h4>
+          <ul>
+            <li>销售货物：<b>起运地或所在地</b>在境内</li>
+            <li>销售或租赁不动产、转让自然资源使用权：<b>标的所在地</b>在境内</li>
+            <li>销售金融商品：在<b>境内发行</b>，或销售方为境内单位和个人</li>
+            <li>销售服务、无形资产：<b>在境内消费</b>，或销售方为境内单位和个人</li>
+          </ul>
+        </div>
+        <div class="q">
+          <div class="k">CALC · 怎么算</div>
+          <h4>不扣与代扣的界线</h4>
+          <ul>
+            <li>完全在境外发生且与境内货物无关（如境外现场服务）→ <b>不代扣</b></li>
+            <li>其余：价款 ÷（1＋6%）× 6%，<b>换算不含税后计税</b></li>
+            <li>国际运输有资质：适用零税率，<b>不扣增值税</b>但需合同备案＋资质留存</li>
+            <li>对方无资质或无法证明：按 6% 扣，或按指定扣缴处理</li>
+          </ul>
+        </div>
+        <div class="q warm">
+          <div class="k">SURTAX · 已取消</div>
+          <h4>城建税及附加不再代扣</h4>
+          <ul>
+            <li>2021 年 9 月 1 日城建税法施行起，境外单位或个人在境内销售劳务、服务、无形资产，<b>不属于城建税征税范围</b></li>
+            <li>依据：城建税法 + 财政部 税务总局 2021 年第 28 号</li>
+            <li>此前的处理是「增值税＋附加一并代扣」，老口径别再用</li>
+          </ul>
+        </div>
+        <div class="q warm">
+          <div class="k">FILING · 外汇前置</div>
+          <h4>备案门槛与一次备案</h4>
+          <ul>
+            <li>单笔支付<b>等值 5 万美元以上</b>（不含本数）→ 办服务贸易等项目对外支付税务备案</li>
+            <li>2021 年 19 号公告：<b>一次备案</b>，同一合同分次支付只备首次，备案表无须税局审核</li>
+            <li>不超过 5 万美元：不备案，但<b>扣缴义务不变</b></li>
+            <li>银行凭备案表办理付汇，无表不予办理</li>
+          </ul>
+        </div>
+      </div>
+      <div class="strip"><b>合同评审就定下五件套</b>：对方税收居民身份证明（年度有效）、受益所有人资料、合同与形式发票、人天/工时台账、扣缴申报表；扣缴义务发生之日起 <b>7 日内</b>解缴入库。</div>
+    </div>
+    <footer><span>对外支付涉税判断 · 三步定税</span><span class="pg"></span></footer>
+  </div>
+
+</div>
+</div>
+<div id="progress" style="position:fixed;left:0;bottom:0;height:3px;background:#16324f;width:0;z-index:9"></div>
+<script>
+const slides=document.querySelectorAll('.slide');
+let idx=0;
+function render(){
+  slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
+  slides.forEach((s,i)=>{const f=s.querySelector('footer .pg');if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;});
+  const p=document.getElementById('progress');if(p)p.style.width=((idx+1)/slides.length*100)+'%';
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){idx=Math.min(idx+1,slides.length-1);render()}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){idx=Math.max(idx-1,0);render()}
+});
+document.querySelector('.slide-wrap').addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  const r=e.target.getBoundingClientRect();
+  if(e.clientX-r.left>r.width/2) idx=Math.min(idx+1,slides.length-1); else idx=Math.max(idx-1,0);
+  render();
+});
+render();
+function fit(){
+  const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+  document.querySelector('.slide-wrap').style.transform='translate(-50%,-50%) scale('+s+')';
+}
+window.addEventListener('resize',fit);fit();
+</script>
+</body>
+</html>
