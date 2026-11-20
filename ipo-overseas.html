@@ -3,149 +3,874 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>上市与境外架构 · 集团税务价值</title>
+<title>投融资 · 增资扩股涉税 · 第二部分 公司扩张</title>
 <style>
-/* emerald-editorial template | 与 group-tax deck 统一风格 */
-@font-face{font-family:'Noto Serif SC';src:url('fonts/notoserif-cn-r5.woff2') format('woff2');font-weight:300 700;font-display:swap}
-@font-face{font-family:'Noto Sans SC';src:url('fonts/notosans-cn-r5.woff2') format('woff2');font-weight:300 700;font-display:swap}
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-r.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-sb.woff2') format('woff2');font-weight:500 700;font-display:swap}
 :root{
-  --bg:#f8f6f0;
-  --text:#2c302c;
-  --accent:#205c47;
-  --gold:#b89758;
-  --muted:#646b64;
-  --card:#ffffffdd;
-  --stroke:#dcd8cc;
-  --gold-soft:#fff2cc;
-  --gold-line:#e6b85c;
-  --serif:"Noto Serif SC",serif;
-  --mono:"SF Mono",Consolas,"Noto Sans SC",monospace;
+  --bg:#f8f6f0;--text:#2c302c;--accent:#205c47;--gold:#b89758;--muted:#646b64;
+  --card:#ffffff;--gold-soft:#fff2cc;--gold-line:#e6b85c;--line:#dcd8cc;
+  --serif:"Deck Serif","Noto Serif SC",Songti SC,SimSun,serif;
+  --mono:"SF Mono",Consolas,ui-monospace,"Deck Serif",monospace;
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;padding:0;font-family:var(--serif);background:var(--bg);color:var(--text)}
 .stage{position:relative;width:100vw;height:100vh;overflow:hidden}
 .slide-wrap{position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform-origin:center;transform:translate(-50%,-50%) scale(1)}
-.slide{position:absolute;inset:0;padding:82px 96px 104px;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;display:flex;flex-direction:column}
+.slide{position:absolute;inset:0;padding:76px 96px 88px;opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;display:flex;flex-direction:column;background:var(--bg)}
 .slide.active{opacity:1;visibility:visible}
-.slide.cover{justify-content:center}
-h1{font-size:72px;font-weight:600;color:var(--accent);margin:0 0 26px;letter-spacing:-.01em}
-h2{font-size:34px;font-weight:500;color:var(--gold);margin:0 0 32px}
-p,li{font-size:22px;line-height:1.7;color:var(--text);margin:0}
+p,li{font-size:21px;line-height:1.65;color:var(--text);margin:0}
+.hdr{display:flex;align-items:flex-end;gap:20px;padding-bottom:14px;border-bottom:1px solid var(--line);flex:0 0 auto}
+.hdr .num{flex:0 0 auto;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#f8f6f0;font-family:var(--mono);font-size:21px}
+.hdr h3{margin:0;font-size:36px;font-weight:600;color:var(--accent);line-height:1.22}
+.hdr .sub{margin:6px 0 0;font-size:17px;color:var(--muted);line-height:1.45}
+.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:13px;color:var(--accent);border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:999px;padding:7px 16px;font-family:var(--mono);white-space:nowrap}
+.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:14px;margin-top:18px}
+footer{font-family:var(--mono);font-size:12.5px;letter-spacing:.5px;color:var(--muted);flex:0 0 auto;padding-top:10px;border-top:1px solid var(--line);margin-top:10px;display:flex;justify-content:space-between;gap:24px}
+footer .src{opacity:.85}
+.back{position:absolute;left:96px;top:40px;font-family:var(--mono);font-size:14px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--gold-line);padding-bottom:2px}
 
-.hdr{display:flex;align-items:center;gap:22px;padding-bottom:20px;border-bottom:1px solid var(--stroke);flex:0 0 auto}
-.hdr .num{flex:0 0 auto;width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#f8f6f0;font-family:var(--mono);font-size:24px;letter-spacing:1px}
-.hdr h3{margin:0;font-size:44px;font-weight:600;color:var(--accent);line-height:1.2}
-.hdr .sub{margin:6px 0 0;font-size:20px;color:var(--muted)}
-.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:17px;color:var(--accent);border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:999px;padding:8px 20px;font-family:var(--mono)}
+/* 布局 */
+.col2{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.col2.w6{grid-template-columns:1.25fr 1fr}
+.col3{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.col4{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stack{display:flex;flex-direction:column;gap:12px;min-height:0;justify-content:center}
+.stack>.card{flex:0 0 auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;display:flex;flex-direction:column;gap:6px;min-height:0}
+.card.gold{border-left:3px solid var(--gold-line)}
+.card.hi{background:#eef4f0;border-left:3px solid var(--accent)}
+.card h4{margin:0;font-size:25px;font-weight:600;color:var(--accent);line-height:1.3}
+.card h4 .g{color:var(--gold)}
+.card .k{font-family:var(--mono);font-size:11.5px;letter-spacing:1.2px;color:var(--gold)}
+.card ul{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.card ul li{font-size:20.5px;line-height:1.62;padding-left:14px;position:relative}
+.card ul li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.card ul li b{color:var(--accent);font-weight:600}
+.card p{font-size:19.5px;line-height:1.62}
+.card p b{color:var(--accent)}
 
-/* —— 封面 —— */
-.cover .eyebrow{font-family:var(--mono);font-size:20px;letter-spacing:3px;color:var(--gold);margin-bottom:22px}
-.cover .lede{font-size:26px;line-height:1.6;color:var(--muted);max-width:60ch;margin-top:8px}
-.cover .meta{display:flex;align-items:center;gap:16px;margin-top:44px}
-.pill{font-family:var(--mono);font-size:17px;letter-spacing:1px;padding:9px 22px;border-radius:999px;border:1px dashed var(--gold-line);background:var(--gold-soft);color:#7a5b12}
-.pill.solid{border-style:solid;border-color:var(--accent);background:transparent;color:var(--accent)}
+.note{background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:8px;padding:11px 17px;font-size:17px;line-height:1.6;flex:0 0 auto}
+.note b{color:#7a5a12}
+.note.plain{background:#f1f4f2;border-color:var(--line)}
 
-/* —— 占位骨牌 —— */
-.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:22px;margin-top:30px}
-.slots{display:grid;grid-template-columns:1fr 1fr;gap:26px;flex:1 1 auto;min-height:0}
-.slot{background:var(--card);border:1px dashed var(--stroke);border-radius:18px;padding:28px 30px;display:flex;flex-direction:column;gap:10px}
-.slot .k{font-family:var(--mono);font-size:15px;letter-spacing:2px;color:var(--gold)}
-.slot .t{font-size:28px;font-weight:600;color:var(--accent)}
-.slot .d{font-size:19px;line-height:1.6;color:var(--muted)}
-.slot .line{margin-top:auto;height:1px;background:repeating-linear-gradient(90deg,var(--stroke) 0 8px,transparent 8px 16px)}
+/* 表格 */
+.tbl{width:100%;border-collapse:collapse;font-size:16px}
+.tbl th{background:#eceee9;color:var(--accent);font-weight:600;text-align:left;padding:8px 11px;border:1px solid var(--line);font-size:15.5px}
+.tbl td{padding:7px 11px;border:1px solid var(--line);line-height:1.45;vertical-align:top}
+.tbl td b{color:var(--accent)}
+.tbl tr:nth-child(even) td{background:#fbfaf6}
+.tbl .c{text-align:center}
 
-.empty{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;border:1px dashed var(--stroke);border-radius:18px;background:#ffffffee}
-.empty .big{font-size:46px;font-weight:600;color:#c9c3b4}
-.empty .d{font-size:20px;color:var(--muted);text-align:center;line-height:1.7}
+/* 图 */
+.dg{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 20px;display:flex;flex-direction:column;min-height:0;gap:8px;justify-content:center}
+.dg .cap{font-family:var(--mono);font-size:12.5px;letter-spacing:1.2px;color:var(--gold);flex:0 0 auto}
+.dg .rowx{display:flex;align-items:center;justify-content:center;gap:10px;flex:0 0 auto}
+.dg .colx{display:flex;flex-direction:column;align-items:center;gap:0;flex:1 1 auto;justify-content:center;min-height:0}
+.n{background:#eef4f0;border:1px solid #c9d8ce;border-radius:8px;padding:10px 16px;font-size:19.5px;line-height:1.35;text-align:center;flex:0 0 auto}
+.n b{color:var(--accent);font-weight:600}
+.n.fill{background:var(--accent);border-color:var(--accent);color:#f8f6f0}
+.n.fill b{color:#fff}
+.n.gold{background:var(--gold-soft);border-color:var(--gold-line)}
+.n.dash{border-style:dashed;background:#fbfaf6}
+.n.sm{font-size:17px;padding:8px 13px}
+.n .s{display:block;font-size:16px;color:var(--muted);line-height:1.3;margin-top:2px}
+.n.fill .s{color:#d8e6de}
+.varr{position:relative;height:22px;width:100%;flex:0 0 auto}
+.varr::before{content:'';position:absolute;left:50%;margin-left:-9px;top:0;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:13px solid var(--gold)}
+.varr.lbl::after{content:attr(data-l);position:absolute;left:calc(50% + 12px);top:-2px;font-family:var(--mono);font-size:11px;color:var(--gold);white-space:nowrap}
+.vline{width:1px;height:12px;background:var(--gold-line);flex:0 0 auto}
+.harr{position:relative;width:32px;height:14px;flex:0 0 auto}
+.harr::before{content:'';position:absolute;left:12px;top:0;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid var(--gold)}
+.brace{position:relative;border-top:1px solid var(--gold-line);height:8px;flex:0 0 auto}
+.pin{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--gold-soft);border:1px solid var(--gold-line);font-family:var(--mono);font-size:12px;color:#7a5a12;flex:0 0 auto}
 
-.nav-hint{position:absolute;right:96px;bottom:56px;font-family:var(--mono);font-size:15px;letter-spacing:1px;color:var(--muted)}
-footer{font-family:var(--mono);font-size:15px;letter-spacing:1px;color:var(--muted);text-align:center;flex:0 0 auto;padding-top:18px}
-.back{position:absolute;left:96px;top:52px;font-family:var(--mono);font-size:16px;letter-spacing:1px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--gold-line);padding-bottom:2px}
-.progress{position:fixed;left:0;bottom:0;height:3px;background:var(--gold);width:0;transition:width .3s ease;z-index:9}
+/* 追加组件：流程箭头、星级、明细小表 */
+.flow{display:flex;align-items:stretch;gap:0;flex:0 0 auto;width:100%}
+.flow .stp{flex:1 1 0;min-width:0;background:var(--card);border:1px solid var(--line);border-right:none;padding:10px 14px 10px 22px;position:relative;display:flex;flex-direction:column;gap:3px}
+.flow .stp:first-child{border-radius:8px 0 0 8px;padding-left:16px}
+.flow .stp:last-child{border-right:1px solid var(--line);border-radius:0 8px 8px 0}
+.flow .stp::after{content:'';position:absolute;right:-11px;top:50%;margin-top:-11px;width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:11px solid var(--line);z-index:2}
+.flow .stp:last-child::after{display:none}
+.flow .stp .k{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--gold)}
+.flow .stp .t{font-size:17px;font-weight:600;color:var(--accent);line-height:1.3}
+.flow .stp .d{font-size:14px;color:var(--muted);line-height:1.4}
+.flow .stp.hi{background:#eef4f0}
+.stars{color:var(--gold);letter-spacing:2px;font-size:15px}
+.mini-tbl{width:100%;border-collapse:collapse;font-size:15.5px}
+.mini-tbl th{background:#eceee9;color:var(--accent);text-align:left;padding:6px 9px;border:1px solid var(--line);font-size:15px}
+.mini-tbl td{padding:5px 9px;border:1px solid var(--line);line-height:1.4}
+.mini-tbl td.n1{color:#b04a2f;font-weight:600}
+.mini-tbl td.n0{color:var(--accent);font-weight:600}
+
+.bars{display:flex;height:38px;border-radius:7px;overflow:hidden;border:1px solid var(--line);flex:0 0 auto}
+.bars div{display:flex;align-items:center;justify-content:center;font-size:13.5px;color:#fff;font-weight:500;white-space:nowrap}
+.bars .b1{background:#2c6e54}.bars .b2{background:#5d8d78}.bars .b3{background:#b04a2f}.bars .b4{background:#b89758}.bars .b5{background:#5b6b64}
+
+.body:has(> .col3){justify-content:center}
+.col3{flex:0 0 auto}
+
+/* 收紧：图框与卡片按内容高度居中，不再拉满整列 */
+.n b{font-size:19px}
+
+.col2>.card,.col3>.card,.col4>.card{justify-content:center}
+.col2>.card.hi{justify-content:center}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 26px;display:flex;flex-direction:column;min-height:0}
+.panel.todo{border:2px dashed var(--gold-line);background:repeating-linear-gradient(45deg,#fdfbf5,#fdfbf5 12px,#f8f6f0 12px,#f8f6f0 24px)}
 </style>
 </head>
 <body>
 <div class="stage">
 <div class="slide-wrap">
 
-  <!-- 封面 -->
-  <div class="slide cover">
+  <!-- ===== 01 总览 ===== -->
+  <div class="slide">
     <a class="back" href="./index.html">← 返回目录</a>
-    <div class="eyebrow">GROUP TAX VALUE · 05</div>
-    <h1>上市与境外架构</h1>
-    <p class="lede">上市前重组、境外持股架构与跨境税务合规要点。</p>
-    <div class="meta">
-      <span class="pill">待建设 · IN PROGRESS</span>
-      <span class="pill solid">上市与境外</span>
+    <div class="hdr">
+      <div class="num">01</div>
+      <div>
+        <h3>上市与境外：不是税变少了，是规则换了一套</h3>
+        <p class="sub">蝌蚪变青蛙——股权一旦变成股票，税目、税率、征管方式全部换轨，连「谁纳税」都变了</p>
+      </div>
+      <div class="badge">PART 04 · 5 章 15 页</div>
     </div>
-    <div class="nav-hint">← → / 空格 翻页</div>
+    <div class="body">
+      <div class="dg" style="flex:1 1 auto;gap:12px;justify-content:center">
+        <div class="cap">MAP · 第 19、23、24、29、30 章</div>
+        <div class="col3" style="flex:0 0 auto;gap:14px">
+          <div class="card hi" style="justify-content:center">
+            <div class="k">阶段一 · 第 19、23 章</div>
+            <h4>① 从有限公司到上市公司</h4>
+            <ul>
+              <li>上市前必做股份改制，净资产折股＝视同转增</li>
+              <li>股权变股票，登记机关从工商局变中登公司</li>
+              <li><b>流通股免税、限售股不免</b>——差别就在能不能随便卖</li>
+            </ul>
+            <p style="color:var(--gold);font-size:15.5px">换轨</p>
+          </div>
+          <div class="card hi" style="justify-content:center">
+            <div class="k">阶段二 · 第 24 章</div>
+            <h4>② 用股权留人</h4>
+            <ul>
+              <li>三方主体各有各的税：转让方、受让方、标的公司</li>
+              <li>员工掏钱入股也可能要缴 3%–45% 的工资薪金个税</li>
+              <li><b>递延纳税能否备案，决定未来能扣多少成本</b></li>
+            </ul>
+            <p style="color:var(--gold);font-size:15.5px">激励</p>
+          </div>
+          <div class="card hi" style="justify-content:center">
+            <div class="k">阶段三 · 第 29、30 章</div>
+            <h4>③ 跨出国境线</h4>
+            <ul>
+              <li>纯外资：分红 10%（协定可到 5%），转股 10%</li>
+              <li>走出去：返程投资四层、ODI 三层</li>
+              <li><b>跨境不是多交税，是多了预提、协定、反避税三层规则</b></li>
+            </ul>
+            <p style="color:var(--gold);font-size:15.5px">跨境</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:9px;flex:0 0 auto">
+          <div class="card" style="justify-content:center"><div class="k">第 19 章</div><h4 style="font-size:17px">上市基础税政</h4><p style="font-size:14px;color:var(--muted)">流通股与限售股</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 23 章</div><h4 style="font-size:17px">股份改制</h4><p style="font-size:14px;color:var(--muted)">净资产折股</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 24 章①</div><h4 style="font-size:17px">直接持股激励</h4><p style="font-size:14px;color:var(--muted)">三方主体</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 24 章②</div><h4 style="font-size:17px">101 号递延</h4><p style="font-size:14px;color:var(--muted)">七个条件</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 24 章③</div><h4 style="font-size:17px">合伙与期权</h4><p style="font-size:14px;color:var(--muted)">两个争议</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 29 章</div><h4 style="font-size:17px">纯外资架构</h4><p style="font-size:14px;color:var(--muted)">分红与转股</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 30 章</div><h4 style="font-size:17px">走出去架构</h4><p style="font-size:14px;color:var(--muted)">返程与 ODI</p></div>
+        </div>
+        <div class="note" style="flex:0 0 auto"><b>末两页（境外持股平台、中外中结构）留白待补</b>：这两块书里没有独立成章，等你把拍的资料给我，我按同样的版式补上架构图与税负测算。</div>
+      </div>
+    </div>
+    <footer><span>资本市场 · 上市与境外架构</span><span><span class="src">案例 32 梦想公司 · 案例 40–48</span>　<span class="pg"></span></span></footer>
   </div>
 
-  <!-- 第二章占位 -->
+  <!-- ===== 02 第19章 A 流通股与限售股 ===== -->
   <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">02</div>
+      <div>
+        <h3>第 19 章｜同一只股票，流通股免税，限售股不免</h3>
+        <p class="sub">白妞在二级市场买卖股票不缴个税，付豪上市前持有的股份一解禁就要缴 20%——区别只在「能不能随时卖」</p>
+      </div>
+      <div class="badge">CH 19 · 基础税政</div>
+    </div>
+    <div class="body">
+      <div class="dg" style="flex:0 0 auto">
+        <div class="cap">STRUCTURE · 三类股东（案例 32 梦想公司）</div>
+        <div class="col3" style="flex:0 0 auto;gap:14px">
+          <div class="n" style="min-width:200px">高帅 · 未上市阶段<span class="s">持有有限公司股权，登记在市场监管局</span></div>
+          <div class="n gold" style="min-width:200px">付豪 · 跨越上市<span class="s">上市前的股权，上市后变成限售股</span></div>
+          <div class="n fill" style="min-width:200px">白妞 · 上市后进入<span class="s">二级市场买入，登记在中登公司</span></div>
+        </div>
+      </div>
+      <div class="card" style="flex:1 1 auto">
+        <div class="k">三场景 × 四类主体 速查</div>
+        <table class="mini-tbl">
+          <tr>
+            <th style="width:13%">环节</th><th style="width:22%">未上市股权（个人）</th><th style="width:21%">上市流通股（个人）</th><th style="width:21%">上市限售股（个人）</th><th>居民企业法人股东</th>
+          </tr>
+          <tr><td>登记机关</td><td>市场监管局</td><td>中国结算（中登）</td><td>中国结算（中登）</td><td>按标的区分</td></tr>
+          <tr><td><b>转让·个税/企税</b></td><td class="n1">交 20%，无免税</td><td class="n0">免征个税</td><td class="n1">交 20%，无免税</td><td class="n1">交 25% 企业所得税</td></tr>
+          <tr><td>转让·增值税</td><td class="n0">不属征税范围</td><td class="n0">免（金融商品转让免税）</td><td class="n0">免</td><td>按金融商品转让，6%（一般纳税人）</td></tr>
+          <tr><td><b>分红·所得税</b></td><td class="n1">20%，无优惠</td><td class="n0">差别化：&lt;1 月全额、1 月–1 年 50%、&gt;1 年免</td><td class="n0">同流通股，按持股期限差别化</td><td class="n0">符合条件的股息红利免税</td></tr>
+          <tr><td>纳税地点</td><td>被投资企业主管税务机关</td><td>证券公司所在地（可自主选择）</td><td>证券公司／证券机构所在地</td><td>机构所在地</td></tr>
+          <tr><td>代扣代缴</td><td>受让方代扣</td><td>由证券机构代扣（持股期限由中登计算）</td><td>由证券机构代扣</td><td>自行申报</td></tr>
+        </table>
+      </div>
+      <div class="note" style="flex:0 0 auto"><b>一句话抓住</b>：上市把「股权」变成了「金融商品」——流动性上来了，增值税的征税范围也跟着来了（个人转让金融商品免税，但企业不免）；而<b>限售股是唯一被单独拎出来征个税的一类</b>，原因见下页。</div>
+    </div>
+    <footer><span>第 19 章 公司上市之基础税政</span><span><span class="src">财税字〔1998〕61 号 · 财税〔2015〕101 号 · 财税〔2009〕167 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 03 第19章 B 限售股的前世今生 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">03</div>
+      <div>
+        <h3>第 19 章｜限售股是怎么被单独拎出来的：两个避税案</h3>
+        <p class="sub">一个用「上市前改架构」，一个用「ETF 换份额」——两次漏洞，两个文件，把限售股彻底围起来</p>
+      </div>
+      <div class="badge">CH 19 · 反避税</div>
+    </div>
+    <div class="body">
+      <div class="col2">
+        <div class="card">
+          <div class="k">案例 A · 陈发树（财税〔2009〕167 号）</div>
+          <h4>上市前左手倒右手，27 亿一分税不缴</h4>
+          <ul>
+            <li>紫金矿业上市前，新华都系两家公司以 0.1 元/股把 3.5 亿股转给陈发树（实控人是同一人）</li>
+            <li>由「持股公司间接架构」变为「自然人直接架构」：原架构整体税负 25%＋20%＝40%；改后个人转让上市公司股票<b>免税</b></li>
+            <li>2009 年解禁后 3 个月套现 27 亿，成本仅 3 500 万，<b>本应缴 10.8 亿，实缴 0</b></li>
+            <li>→ 167 号：2010 年 1 月 1 日起，个人转让限售股按财产转让所得<b>20%</b>征税</li>
+          </ul>
+        </div>
+        <div class="card gold">
+          <div class="k">案例 B · ETF 换份额（财税〔2010〕70 号）</div>
+          <h4>换一种卖法，就绕过了 167 号</h4>
+          <ul>
+            <li>第一步：解禁后用限售股换 ETF 基金份额——167 号只管「转让限售股」，换 ETF 不在范围内</li>
+            <li>第二步：卖 ETF 份额——ETF 不是限售股，也不征税</li>
+            <li>→ 70 号：把受让未解禁限售股、继承分割取得、吸收合并转换等各类限售股<b>全部纳入</b></li>
+            <li>同时穷尽 9 种「转让实质」情形：集中交易、大宗交易、换 ETF、要约收购、现金选择权、协议转让、司法扣划、继承分割、偿还股改对价……</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card hi" style="flex:0 0 auto">
+        <div class="k">怎么算 · 与两条征管细节</div>
+        <h4>应纳税所得额＝转让收入 −（限售股原值 ＋ 合理税费）</h4>
+        <ul style="display:grid;grid-template-columns:1fr 1fr;gap:4px 26px">
+          <li>报送了原值资料：按实际原值据实扣除</li>
+          <li>未报送原值资料：<b>按转让收入的 15% 核定原值及合理税费</b>，即以收入的 85% 为应纳税所得额</li>
+          <li>自 2012 年 3 月 1 日起，上市公司向中登申请股份初始登记时，须报送限售股成本原值资料及鉴证报告</li>
+          <li>限售股转让纳税地点已调整为<b>上市公司所在地</b>，由证券机构代扣代缴</li>
+        </ul>
+      </div>
+    </div>
+      <div class="note" style="flex:0 0 auto"><b>两次修法，一个共同逻辑</b>：只要「转让」的经济实质存在，形式怎么变都会被重新纳入。而对企业法人股东来说，限售股从来没有免税待遇——167 号并不是给个人加税，而是<b>把个人拉回到与企业相同的水平线</b>。</div>
+    <footer><span>第 19 章 公司上市之基础税政</span><span><span class="src">财税〔2009〕167 号 · 财税〔2010〕70 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 04 第23章 A 净资产折股 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">04</div>
+      <div>
+        <h3>第 23 章｜股份改制：净资产折股，其实就是一次转增</h3>
+        <p class="sub">有限公司要 IPO，必须改成股份公司；按原账面净资产折股才能连续计算经营期——而折股在税法上就是转增资本</p>
+      </div>
+      <div class="badge">CH 23 · 股份改制</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 净资产折股（案例 39）</div>
+          <div class="colx" style="gap:10px;flex:0 0 auto">
+            <div class="n" style="min-width:520px">股改前 · 有限公司<span class="s">注册资本 1 271.86 ＋ 资本公积 114.26 ＋ 盈余公积 552.39 ＋ 未分配利润 13 311.29</span></div>
+            <div class="varr"></div>
+            <div class="n gold" style="min-width:520px">股改后 · 股份公司<span class="s">注册资本 7 500 ＋ 资本公积 7 749.8（盈余公积与未分配利润清零）</span></div>
+            <div class="n fill" style="min-width:520px">净资产合计不变 15 249.80 万<span class="s">变的只是四个科目之间的结构</span></div>
+          </div>
+          <div class="note plain" style="margin-top:6px">国家尚未给净资产折股单独政策，<b>只能套用转增资本的规则</b>——所以 02 分册第 12 章的结论全部适用。</div>
+        </div>
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">个人股东</div>
+            <h4>看折股有没有增加注册资本</h4>
+            <ul>
+              <li><b>增加注册资本</b>：要缴 20% 个税（财税〔2015〕116 号、总局 2015 年第 80 号明确）</li>
+              <li>符合条件的中小高新技术企业可<b>5 个公历年度分期</b>缴纳</li>
+              <li><b>不增加注册资本</b>（只转资本公积）：法规<b>未明确</b>——只规定了「转增股本」要缴，没规定「转增资本公积」也要缴</li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <div class="k">公司股东与合伙企业股东</div>
+            <h4>公司不交，合伙穿透</h4>
+            <ul>
+              <li>居民企业股东：符合条件的股息红利<b>免税收入</b>；且资本溢价转增部分不增计税基础（79 号）</li>
+              <li>但股东<b>没有选择折股金额的权利</b>——这是与自愿转增最大的区别</li>
+              <li>合伙企业股东：本身不缴税，穿透到合伙人，个人合伙人 20%、公司合伙人 25%</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 23 章 拟上市公司之股份改制</span><span><span class="src">财税〔2015〕116 号 · 总局 2015 年第 80 号 · 国税函〔2010〕79 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 05 第23章 B 股本规划 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
     <div class="hdr">
       <div class="num">05</div>
       <div>
-        <h3>上市与境外架构 · 内容框架</h3>
-        <p class="sub">先把骨架留好，内容后续逐页填充</p>
+        <h3>第 23 章｜股改前必须算清的一笔账：股本定多大</h3>
+        <p class="sub">折股金额不可事后调整，它同时决定了个税成本、发行空间和未来每股指标——四个维度一起算</p>
       </div>
-      <div class="badge">OUTLINE · TO BE FILLED</div>
+      <div class="badge">CH 23 · 股本规划</div>
     </div>
     <div class="body">
-      <div class="slots">
-        <div class="slot">
-          <div class="k">SLOT 01 · CAPITAL MARKET</div>
-          <div class="t">上市前重组</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
-        </div>
-        <div class="slot">
-          <div class="k">SLOT 02 · CAPITAL MARKET</div>
-          <div class="t">境外架构</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
-        </div>
-        <div class="slot">
-          <div class="k">SLOT 03 · CAPITAL MARKET</div>
-          <div class="t">跨境付汇</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
-        </div>
-        <div class="slot">
-          <div class="k">SLOT 04 · CAPITAL MARKET</div>
-          <div class="t">税收协定</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
-        </div>
+      <div class="col4" style="flex:0 0 auto">
+        <div class="card hi"><div class="k">维度 1</div><h4>税负成本</h4><p>折股金额越大，个人股东当期确认的转增所得越大；能适用 5 年分期的只有符合条件的中小高新技术企业。</p></div>
+        <div class="card"><div class="k">维度 2</div><h4>市值规划</h4><p>股本过大，每股收益被摊薄，影响发行定价；股本过小，又限制了后续送转空间。</p></div>
+        <div class="card"><div class="k">维度 3</div><h4>财务指标</h4><p>折股会改变资本公积与留存收益结构，影响净资产收益率、每股净资产等指标的可比性。</p></div>
+        <div class="card gold"><div class="k">维度 4</div><h4>股改后动作</h4><p>还要为股权激励、股权融资预留空间——这些动作的定价与税基都受折股时点影响。</p></div>
       </div>
-      <div class="empty">
-        <div class="big">内容待建设</div>
-        <div class="d">确定本节提纲后，逐页补要点、法规依据与测算模型<br>（与集团税务价值其他章节共用同一套版式）</div>
+      <div class="col2" style="flex:1 1 auto">
+        <div class="card">
+          <div class="k">为什么不能「先小后大」</div>
+          <h4>折股是一次性、不可逆的定价</h4>
+          <ul>
+            <li>折股完成后，注册资本就固化为股份总数，后续只能靠增发、送转调整</li>
+            <li>每一次后续调整，都要重新走一遍税负测算（转增、激励、融资各有规则）</li>
+            <li>所以股改前应该把 3–5 年的资本动作路径先画出来</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="k">与「自愿转增」的关键差别</div>
+          <h4>股东没有选择权，反而更好规划</h4>
+          <ul>
+            <li>自愿转增：股东可决定转多少，税负可主动控制</li>
+            <li>净资产折股：为满足「按原账面净资产折股」，金额基本被净资产规模锁定</li>
+            <li>因此税负测算必须在<b>改制方案设计阶段</b>完成，而不是等工商变更时才算</li>
+          </ul>
+        </div>
       </div>
     </div>
-    <footer></footer>
+      <div class="note" style="flex:0 0 auto"><b>一句话</b>：股本不是「越大越好」，而是<b>够用、税负可承受、还留得住激励空间</b>。四个维度里只要有任意一个没算清，股改之后就再没有便宜的修正机会。</div>
+    <footer><span>第 23 章 拟上市公司之股份改制</span><span><span class="src">股本规划四维度</span>　<span class="pg"></span></span></footer>
+  </div>
+  <!-- ===== 06 第24章 A 三方主体 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">06</div>
+      <div>
+        <h3>第 24 章｜股权激励有三方主体，别只盯着员工</h3>
+        <p class="sub">东易日盛给 30 名骨干 4 元/股，外部投资人 15 元/股——11 元的差价，三方各有各的税</p>
+      </div>
+      <div class="badge">CH 24 · 直接持股激励</div>
+    </div>
+    <div class="body">
+      <div class="dg" style="flex:0 0 auto">
+        <div class="cap">STRUCTURE · 东易日盛（002713）上市前最后一轮（案例 40）</div>
+        <div class="col3" style="flex:0 0 auto;gap:14px">
+          <div class="n" style="min-width:210px">东易天正（转让方）<span class="s">把股份转给 30 名骨干员工，4 元/股</span></div>
+          <div class="n gold" style="min-width:210px">30 名骨干员工（受让方）<span class="s">实际出资 4 元，公允价 15 元</span></div>
+          <div class="n fill" style="min-width:210px">东易日盛（标的公司）<span class="s">会计上确认股份支付 1 199 万元</span></div>
+        </div>
+      </div>
+      <div class="col3" style="flex:1 1 auto;gap:14px">
+        <div class="card">
+          <div class="k">主体 1 · 转让方</div>
+          <h4>低价转让，会不会被核定？</h4>
+          <ul>
+            <li>一般规则：计税依据明显偏低又无正当理由，税务机关有权核定（征管法第 35 条）</li>
+            <li>但股权激励经股东会审议、流程合规、符合商业惯例 → 属<b>「正当理由」</b>，可按 4 元/股计缴</li>
+            <li>若转让方是<b>个人</b>：67 号文明确「有证据证明转让价格合理真实、本企业员工持有的不能对外转让股权的内部转让」属正当理由</li>
+            <li>所以：钱要省，证据链要先备好</li>
+          </ul>
+        </div>
+        <div class="card hi">
+          <div class="k">主体 2 · 受让方（最容易踩坑）</div>
+          <h4>掏钱买便宜的股份，也可能要缴 3%–45%</h4>
+          <ul>
+            <li>实际出资额低于公允价的差额，实质是非现金形式的补贴 → <b>「工资、薪金所得」</b></li>
+            <li>判定核心是「是否因任职或受雇取得」，与是否以现金结算、由谁支付无关</li>
+            <li>不备案：取得时缴 3%–45%，未来卖股按 15 元/股扣成本</li>
+            <li>备案递延：取得时不缴，未来卖股按 4 元/股扣成本、20% 税率</li>
+          </ul>
+        </div>
+        <div class="card gold">
+          <div class="k">主体 3 · 标的公司</div>
+          <h4>会计上确认了费用，税前能不能扣</h4>
+          <ul>
+            <li>借：管理费用—股份支付 1 199 万；贷：资本公积—其他资本公积</li>
+            <li>总局 2012 年第 18 号：以本公司股票为标的的股权激励，等待期内不得扣除，<b>实际行权时</b>按公允价与行权价差额扣除</li>
+            <li>直接持股可扣；间接持股存在争议（下页）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      <div class="note" style="flex:0 0 auto"><b>同一笔 11 元差价，会计上一笔分录，税务上三个环节</b>：转让方要证明「低价有正当理由」，受让方要决定「当期缴还是递延」，标的公司要争取「这笔费用能不能扣」。三方各有各的动作，缺一环就补不回来。</div>
+    <footer><span>第 24 章 公司成熟之股权激励</span><span><span class="src">征管法第 35 条 · 总局 2014 年第 67 号 · 总局 2012 年第 18 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 07 第24章 B 101号递延 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">07</div>
+      <div>
+        <h3>第 24 章｜101 号文：七个条件换一个「递延」</h3>
+        <p class="sub">递延不是免税——它把 3%–45% 换成 20%，同时把未来的扣除成本从 15 元砍到 4 元</p>
+      </div>
+      <div class="badge">CH 24 · 递延纳税</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="card" style="justify-content:flex-start">
+          <div class="k">财税〔2016〕101 号 · 七个条件（须同时满足）</div>
+          <table class="mini-tbl">
+            <tr><th style="width:8%">#</th><th>条件</th></tr>
+            <tr><td>1</td><td>属于境内居民企业的股权激励计划</td></tr>
+            <tr><td>2</td><td>计划经公司董事会、股东（大）会审议通过</td></tr>
+            <tr><td>3</td><td>激励标的应为境内居民企业的<b>本公司股权</b></td></tr>
+            <tr><td>4</td><td>对象为董（股东）会决定的技术骨干和高管，累计不超最近 6 个月在职职工平均人数的 <b>30%</b></td></tr>
+            <tr><td>5</td><td>计划中列明时间条件：期权授予满 <b>3 年</b>且行权后持有满 <b>1 年</b>；限制性股票授予满 3 年且解禁后持有满 1 年；股权奖励获得之日起持有满 3 年</td></tr>
+            <tr><td>6</td><td>股票（权）期权自授予日至行权日不超过 <b>10 年</b></td></tr>
+            <tr><td>7</td><td>实施股权奖励的公司及标的公司行业不属《股权奖励税收优惠政策限制性行业目录》</td></tr>
+          </table>
+        </div>
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">两条原则 · 记住这两句就够了</div>
+            <h4>上环节交，下环节扣</h4>
+            <ul>
+              <li>取得激励股时<b>没</b>备案递延 → 当期按工资薪金缴 3%–45%</li>
+              <li>未来卖股时，税收成本按<b>公允价 15 元/股</b>扣除</li>
+            </ul>
+            <h4 style="margin-top:6px">上环节不交，下环节不扣</h4>
+            <ul>
+              <li>取得时<b>已</b>备案递延 → 当期 0</li>
+              <li>未来卖股按<b>实际出资 4 元/股</b>扣成本，全部所得按 20% 计缴</li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <div class="k">备案程序</div>
+            <ul>
+              <li><b>非上市公司</b>：行权／解禁／获得奖励之<b>次月 15 日内</b>报送递延纳税备案表、计划、决议、岗位说明</li>
+              <li>递延期间，扣缴义务人每年度终了后 <b>30 日内</b>报送递延纳税年度报告表</li>
+              <li><b>上市公司</b>：可申请在不超过 <b>12 个月</b>内缴税，次月 15 日内报送延期纳税备案表</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="note" style="flex:0 0 auto"><b>算一笔</b>：公允价值 15 元、出资 4 元、持股 100 万股，未来以 20 元卖出。不备案：当期工资薪金所得 1 100 万，按 45% 边际缴税，未来转让所得 500 万缴 100 万；备案递延：当期 0，未来转让所得 1 600 万缴 <b>320 万</b>。<b>递延不是省税，是把税期往后挪并换税率</b>——真正划算的场景是「未来价差不大于当期价差」。</div>
+    </div>
+    <footer><span>第 24 章 公司成熟之股权激励</span><span><span class="src">财税〔2016〕101 号 · 总局 2016 年第 62 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 08 第24章 C 有限合伙 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">08</div>
+      <div>
+        <h3>第 24 章｜换成有限合伙持股平台，101 号还管用吗</h3>
+        <p class="sub">润阳科技 7 名员工 2.6 元入股、公允价 15.44 元——隔了一层合伙企业，两个政策都卡住了</p>
+      </div>
+      <div class="badge">CH 24 · 间接持股</div>
+    </div>
+    <div class="body">
+      <div class="flow" style="flex:0 0 auto">
+        <div class="stp"><div class="k">STEP 01</div><div class="t">7 名员工增资合伙企业</div><div class="d">2.6 元/股进入安扬合伙、明茂合伙</div></div>
+        <div class="stp"><div class="k">STEP 02</div><div class="t">合伙企业再增资润阳科技</div><div class="d">合计约 171 万股，占比较小</div></div>
+        <div class="stp gold"><div class="k">STEP 03</div><div class="t">形成股份支付约 2 200 万</div><div class="d">按公允价 15.44 元/股计量，一次性计入 2017 年损益</div></div>
+      </div>
+      <div class="col2" style="flex:1 1 auto">
+        <div class="card">
+          <div class="k">争议一 · 标的公司（企业所得税）</div>
+          <h4>这 2 200 万，润阳科技能不能税前扣</h4>
+          <ul>
+            <li><b>观点 1 不予扣除</b>：18 号文限「以本公司股票为标的」，间接持股不符合；燕麦科技（688312）即按永久性差异纳税调增</li>
+            <li><b>观点 2 允许扣除</b>：标的仍是本公司股权，不能因员工持股方式不同而改变激励本质</li>
+            <li>实务多数企业按观点 2 处理，但<b>没有全国统一口径</b></li>
+          </ul>
+        </div>
+        <div class="card hi">
+          <div class="k">争议二 · 激励对象（个人所得税）</div>
+          <h4>这 7 名员工能不能备案递延</h4>
+          <ul>
+            <li><b>观点 1 不予备案</b>：101 号文限定「激励标的应为本公司股权」，间接持股不符</li>
+            <li><b>观点 2 允许备案</b>：101 号文并未对员工持股方式作出限制</li>
+            <li>润阳科技招股书披露其已办理递延备案——但并非所有企业都能办成</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note" style="flex:0 0 auto;border-left-color:#b04a2f"><b>实务结论（请注意这是「建议」不是「规定」）</b>：确定激励模式<b>之前</b>，先与主管税务机关沟通两件事——①标的公司的股份支付费用能否税前扣除；②员工能否按 101 号备案递延。这两个答案直接决定「直接持股」还是「合伙平台」的税负优劣，一旦方案落地就改不动了。</div>
+    </div>
+    <footer><span>第 24 章 公司成熟之股权激励</span><span><span class="src">案例 41 润阳科技（300920）</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 09 第24章 D 期权 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">09</div>
+      <div>
+        <h3>第 24 章｜期权模式：三个价格，决定三笔税</h3>
+        <p class="sub">授予日公允价 5 元、行权价 2 元、行权日公允价 10 元——每一个价差落在哪个环节，就按哪个税目缴</p>
+      </div>
+      <div class="badge">CH 24 · 期权</div>
+    </div>
+    <div class="body">
+      <div class="dg" style="flex:0 0 auto">
+        <div class="cap">TIMELINE · 汪汪新材期权激励（案例 42）</div>
+        <div class="col4" style="flex:0 0 auto;gap:10px">
+          <div class="n" style="min-width:0">2016.1.1 授予<span class="s">30 名高管 500 万份期权，行权价 2 元</span></div>
+          <div class="n" style="min-width:0">等待期 3 年<span class="s">授予日公允价 5 元，股份支付按 3 年摊销</span></div>
+          <div class="n gold" style="min-width:0">2019.1 行权<span class="s">27 人实际行权；行权日公允价 10 元</span></div>
+          <div class="n fill" style="min-width:0">未来转让<span class="s">按财产转让所得 20%</span></div>
+        </div>
+      </div>
+      <div class="col3" style="flex:1 1 auto;gap:14px">
+        <div class="card">
+          <div class="k">环节 1 · 授予日</div>
+          <h4>不征税，但会计上要记账</h4>
+          <ul>
+            <li>授予日员工尚未取得股权，无所得，不缴个税</li>
+            <li>会计上按授予日期权公允价值、估计离职率，在等待期内分摊股份支付</li>
+            <li>本例授予日公允价取 5 元/注册资本（近期外部投资人增资价）</li>
+          </ul>
+        </div>
+        <div class="card hi">
+          <div class="k">环节 2 · 行权日（关键）</div>
+          <h4>（10 − 2）× 股份数，并入工资薪金</h4>
+          <ul>
+            <li>行权价低于行权日公允价的差额，属<b>工资、薪金所得</b>，3%–45%</li>
+            <li>上市公司可自股票期权行权之日起，在不超过 <b>12 个月</b>内分期缴纳</li>
+            <li>非上市公司符合条件的，可按 101 号备案递延至转让时按 20%</li>
+            <li>行权后即为「限售股／普通股」，未来转让按第 19 章规则</li>
+          </ul>
+        </div>
+        <div class="card gold">
+          <div class="k">环节 3 · 标的公司与转让方</div>
+          <h4>谁出的股份，谁承担税</h4>
+          <ul>
+            <li>本例汪夫人通过凯莱合伙以 2 元/注册资本转给 27 人，公允价 10 元</li>
+            <li>转让方（合伙企业）本身不缴税，穿透到合伙人汪先生夫妇</li>
+            <li>标的公司按 18 号文，实际行权时按公允价与行权价差额确认工资薪金支出并税前扣除</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note" style="flex:0 0 auto"><b>期权的税务要点只有一句</b>：<b>行权日</b>是唯一的纳税时点，之前不征、之后按 20%。所以真正要规划的不是「给多少期权」，而是<b>行权价定多高、行权日选在哪一年</b>——这两个变量直接决定 3%–45% 的适用档位。</div>
+    </div>
+    <footer><span>第 24 章 公司成熟之股权激励</span><span><span class="src">财税〔2005〕35 号 · 财税〔2016〕101 号 · 总局 2012 年第 18 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 10 第29章 A 分红 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">10</div>
+      <div>
+        <h3>第 29 章｜纯外资分红：个人免税，公司 10% 起</h3>
+        <p class="sub">同一笔分红，外籍个人一分不缴，境外公司要被预提 10%——想降到 5%，得靠协定加「受益所有人」</p>
+      </div>
+      <div class="badge">CH 29 · 纯外资架构</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">股东是外籍个人 · 免税</div>
+            <h4>1994 年至今，一直免</h4>
+            <ul>
+              <li>外籍个人从外商投资企业取得的股息、红利<b>免征个税</b></li>
+              <li>2020 年外商投资法取消「外资不低于 25%」限制后，<b>外资比例不足 25% 的企业也可申请免税</b></li>
+              <li>本例乔斯公司 2021 年成立，德国人乔治可申请享受</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="k">股东是境外公司 · 三步定税率</div>
+            <h4>10% → 查协定 → 更低就申请</h4>
+            <ul>
+              <li>第 1 步：境内公司支付时<b>代扣代缴</b>预提所得税</li>
+              <li>第 2 步：查对方国家（地区）与中国的双边税收协定有无股息条款</li>
+              <li>第 3 步：无协定 10%；协定更低则申请协定税率并报备资料</li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <div class="k">再投资 · 暂不征预提税</div>
+            <p>境外投资者从境内居民企业分得的利润，用于<b>非禁止外商投资的项目和领域</b>直接再投资，暂不征收预提所得税，须及时报送资料。</p>
+          </div>
+        </div>
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 加一层香港，5% 是怎么来的</div>
+          <div class="colx" style="gap:6px;flex:0 0 auto">
+            <div class="n" style="min-width:320px">美国 · 特斯（最终股东）<span class="s">中美协定股息税率 10%</span></div>
+            <div class="varr"><span class="lbl">分红向上</span></div>
+            <div class="n gold" style="min-width:320px">中国香港 · 特斯公司<span class="s">内地与香港安排：股息 5%</span></div>
+            <div class="varr"><span class="lbl">分红向上</span></div>
+            <div class="n fill" style="min-width:320px">中国内地 · 乔斯公司<span class="s">分红时按 5% 预提，而非 10%</span></div>
+          </div>
+          <div class="note plain" style="margin-top:6px"><b>但 5% 不是白拿的</b>：申请协定待遇须提供税收居民身份证明，证明自己是所得的<b>「受益所有人」</b>。若香港公司只是导管，仍会被否。</div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 29 章 境外架构之纯外资架构</span><span><span class="src">外籍个人股息免税 · 内地与香港税收安排 · 受益所有人规则</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 11 第29章 B 转股 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">11</div>
+      <div>
+        <h3>第 29 章｜转股：个人 20% 无优惠，境外间接转让才是真漏洞</h3>
+        <p class="sub">亚美大宁一案，美国 CBM 在境外转让 BVI 公司股权赚了 4 亿美元，中国税务机关连知情都做不到</p>
+      </div>
+      <div class="badge">CH 29 · 转股与间接转让</div>
+    </div>
+    <div class="body">
+      <div class="col2" style="flex:0 0 auto">
+        <div class="card">
+          <div class="k">直接转股</div>
+          <h4>看转让方身份，定 20% 还是 10%</h4>
+          <ul>
+            <li><b>外籍个人</b>：财产转让所得 <b>20%</b>，国家<b>未给免税</b>（与分红不同）；有协定且更低的可申请</li>
+            <li><b>境外公司</b>：减按 <b>10%</b> 征收企业所得税；应税所得＝转让收入 − 股权净值（原实际出资成本或受让成本）</li>
+            <li>所得来源地看<b>被投资企业所在地</b>，与付款地无关</li>
+            <li>有协定的查「财产收益」条款，可能争取更低或免税</li>
+          </ul>
+        </div>
+        <div class="card gold">
+          <div class="k">先修一条路 · 亚美大宁的香港层</div>
+          <h4>为什么要绕道香港</h4>
+          <ul>
+            <li>2007 年亚美大陆（BVI）在港设亚美香港，拟把 56% 股权转给亚美香港</li>
+            <li>理由写得很直白：<b>调整架构后，投资收益汇出可享 5% 协定税率</b></li>
+            <li>这正是第 10 页那个香港 SPV 逻辑的实务版本</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dg" style="flex:1 1 auto;justify-content:center">
+        <div class="cap">CASE · 间接转让（2009 年美国 CBM → 泰国万浦）</div>
+        <div class="colx" style="gap:6px;flex:0 0 auto">
+          <div class="n" style="min-width:400px">美国 CBM（转让方）<span class="s">转让亚美大陆 78.4% 股权，收益约 4 亿美元</span></div>
+          <div class="varr"><span class="lbl">转让 BVI 公司股权，交易全在境外</span></div>
+          <div class="n gold" style="min-width:400px">亚美大陆（BVI）→ 亚美香港 → 亚美大宁（山西晋城）<span class="s">标的资产实际在中国境内</span></div>
+        </div>
+        <div class="note plain" style="margin-top:6px"><b>结果</b>：转让方是外国公司、受让方是外国公司、标的公司在 BVI，中方小股东不知情、税务机关不知情——<b>4 亿美元收益，一分钱没在中国缴</b>。这就是后来 698 号文、7 号公告「非居民间接转让中国应税财产」规则的由来。</div>
+      </div>
+    </div>
+    <footer><span>第 29 章 境外架构之纯外资架构</span><span><span class="src">企业所得税法实施条例第 7 条 · 总局 2015 年第 7 号公告</span>　<span class="pg"></span></span></footer>
+  </div>
+  <!-- ===== 12 第30章 A 返程投资 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">12</div>
+      <div>
+        <h3>第 30 章｜返程投资：四层架构，每一层都有活干</h3>
+        <p class="sub">周黑鸭：BVI 分槽喂马 → 开曼做上市主体 → BVI 做资产腾挪 → 香港拿 5% 协定</p>
+      </div>
+      <div class="badge">CH 30 · 返程投资</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 上市型返程投资架构（周黑鸭）</div>
+          <div class="colx" style="gap:5px;flex:0 0 auto">
+            <div class="n sm" style="min-width:330px">第 1 层 · BVI 公司（6 家）<span class="s">家族公司、股权激励池、兄弟姐妹池、元老池、2 只 PE——分槽喂马</span></div>
+            <div class="varr"></div>
+            <div class="n gold sm" style="min-width:330px">第 2 层 · 开曼公司【上市主体】<span class="s">港交所接受开曼／百慕大／香港／内地注册，开曼透明度优于 BVI</span></div>
+            <div class="varr"></div>
+            <div class="n sm" style="min-width:330px">第 3 层 · BVI 公司<span class="s">资产注入抽离不受上市地约束，卖 BVI 股权可避开香港 0.2% 印花税</span></div>
+            <div class="varr"></div>
+            <div class="n fill sm" style="min-width:330px">第 4 层 · 中国香港公司<span class="s">享受内地与香港安排：股息预提 5%，而非 10%</span></div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="k">为什么是 BVI 打头</div>
+            <ul>
+              <li>无税或税负极低、注册维护便宜、保密性强</li>
+              <li><b>分槽喂马</b>：不同股权池各自为独立公司，某一池变动不必牵动全体股东变更登记</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="k">为什么中间要开曼</div>
+            <ul>
+              <li>BVI 透明度低，资本市场接受度不如开曼／百慕大</li>
+              <li>上市主体放在开曼，法律体系完善、被港交所接受</li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <div class="k">第 3 层 BVI 干三件事</div>
+            <ul>
+              <li>资产可先注入 BVI，再由上市公司收购该公司完成注入</li>
+              <li>新业务另设 BVI，彼此隔离不互相牵累</li>
+              <li>卖香港公司 → 改卖 BVI 公司股权，省下千分之二印花税</li>
+            </ul>
+          </div>
+          <div class="note" style="border-left-color:#b04a2f"><b>香港层不是保险箱</b>：申请 5% 须提供税收居民身份证明并证明「受益所有人」，仅为导管的，不予享受。</div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 30 章 境外架构之走出去架构</span><span><span class="src">返程投资 · 内地与香港税收安排</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 13 第30章 B ODI ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">13</div>
+      <div>
+        <h3>第 30 章｜对外直接投资：三层架构，和四道关</h3>
+        <p class="sub">顶层去避税地、中间去协定国、底层去项目国；而税务只是四关里的一关</p>
+      </div>
+      <div class="badge">CH 30 · ODI</div>
+    </div>
+    <div class="body">
+      <div class="dg" style="flex:0 0 auto">
+        <div class="cap">STRUCTURE · 巨轮智能对外直接投资架构</div>
+        <div class="col3" style="flex:0 0 auto;gap:12px">
+          <div class="n" style="min-width:0">顶层 · BVI<span class="s">避税天堂：无税／低税、无外汇管制、保密性强</span></div>
+          <div class="n gold" style="min-width:0">中间 · 卢森堡<span class="s">税制规范透明、协定多、优惠低、实体化要求易满足</span></div>
+          <div class="n fill" style="min-width:0">底层 · 德国（项目所在国）<span class="s">有实质业务运作，可就地享受协定与抵免</span></div>
+        </div>
+      </div>
+      <div class="col2" style="flex:1 1 auto">
+        <div class="card">
+          <div class="k">中间层为什么必须加</div>
+          <h4>避开「税收黑名单」的反避税监管</h4>
+          <ul>
+            <li>欧盟、美国、OECD 会把无税或税率低于 9% 的辖区列入黑名单</li>
+            <li>黑名单公司会被施加更强的反避税监管与限制措施</li>
+            <li>实务常用中间地：<b>荷兰、卢森堡、比利时、爱尔兰、瑞士</b></li>
+            <li>香港另有一层价值：属地征税 16.5%、不对股息利息征预提税、无资本利得税、无 CFC 与资本弱化规则、亏损无限期结转</li>
+          </ul>
+        </div>
+        <div class="card hi">
+          <div class="k">境外所得税抵免 · 两个选择</div>
+          <h4>抵免层级 5 层，方法二选一</h4>
+          <ul>
+            <li><b>分国（地区）抵免</b>：以一个国家为维度计算抵免限额，同一层级不同国家的盈亏不得互抵</li>
+            <li><b>综合抵免</b>：以同一投资架构层级为维度，同层级不同国家的盈亏可以互抵</li>
+            <li>业务多元化后，可并行搭多个多层架构，按行业／业务分层，既享优惠又分散风险</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note" style="flex:0 0 auto;border-left-color:#b04a2f"><b>四道关</b>：外汇关、监管关、审批关、税务关。从税务维度，落地前至少要论证六件事——①要不要设 SPV（特殊目的实体）、多层架构；②SPV 设在哪；③境内外转让定价怎么安排；④投资收益是再投资还是做财富管理；⑤境外运营实体在当地怎么安排税务；⑥境内外资金如何融通。</div>
+    </div>
+    <footer><span>第 30 章 境外架构之走出去架构</span><span><span class="src">财税〔2017〕84 号 境外所得抵免</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 14 待补 境外持股平台 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">14</div>
+      <div>
+        <h3>境外持股平台 · 资料待补</h3>
+        <p class="sub">这一页留给你拍来的资料——架构图、持股比例、资金路径落地后，我按同样版式补齐</p>
+      </div>
+      <div class="badge">待补 · TO BE COMPLETED</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="panel todo" style="flex:1 1 auto;align-items:center;justify-content:center;text-align:center">
+          <div class="k" style="margin-bottom:14px">架构图占位</div>
+          <div style="font-size:28px;color:var(--muted);letter-spacing:6px">待 补 资 料</div>
+          <p style="max-width:520px;margin-top:16px;color:var(--muted)">请提供：①顶层／中间层／底层的注册地与公司名称；②各层持股比例与实际控制关系；③出资时点与资金流（是否返程、是否有代持）；④已经发生的分红或转股事件。</p>
+        </div>
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">已知要回答的四个问题</div>
+            <ol style="margin:0;padding-left:20px">
+              <li><b>分红出境</b>：预提 10% 还是 5%？中间层能否证明「受益所有人」</li>
+              <li><b>转股退出</b>：直接转让境内股权 10%，还是境外间接转让被 7 号公告重新定性</li>
+              <li><b>个人层面</b>：境内居民通过境外平台持股，CRS 信息交换与税收居民身份怎么认定</li>
+              <li><b>外汇合规</b>：返程投资是否已办 37 号文登记，未登记的利润如何回流</li>
+            </ol>
+          </div>
+          <div class="card gold">
+            <div class="k">与前面章节的接口</div>
+            <ul>
+              <li>第 10–11 页（第 29 章）的协定税率与受益所有人规则</li>
+              <li>第 12 页（第 30 章）的返程投资四层架构</li>
+              <li>05 分册只做「跨境持有」这一层，境内外一体架构放到后续专题</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><span>境外持股平台</span><span><span class="src">待补 · 资料来源：用户拍摄</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 15 待补 中外中结构 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">15</div>
+      <div>
+        <h3>中外中结构 · 资料待补</h3>
+        <p class="sub">境内 → 境外 → 再回境内持股，中间那一层「外」决定了协定、抵免和反避税三件事</p>
+      </div>
+      <div class="badge">待补 · TO BE COMPLETED</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="panel todo" style="flex:1 1 auto;align-items:center;justify-content:center;text-align:center">
+          <div class="k" style="margin-bottom:14px">架构图占位</div>
+          <div style="font-size:28px;color:var(--muted);letter-spacing:6px">待 补 资 料</div>
+          <p style="max-width:520px;margin-top:16px;color:var(--muted)">请提供：①「中—外—中」三层的实际注册地与名称；②境外中间层由谁持股（境内公司／境内个人／外籍身份）；③分红与再投资的资金路径；④设立时点与是否已办境外投资备案。</p>
+        </div>
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">这条结构要盯的三个点</div>
+            <ol style="margin:0;padding-left:20px">
+              <li><b>分红能不能递延</b>：境内公司分给境外中间层要预提 10%；境外中间层再把利润投回境内，可适用境外投资者再投资暂不征预提税</li>
+              <li><b>中间层是不是导管</b>：协定待遇需「受益所有人」测试，仅设一层空壳往往通不过</li>
+              <li><b>利润不分配行不行</b>：境外子公司长期不分配，可能触发受控外国企业规则，被视同分配征税</li>
+            </ol>
+          </div>
+          <div class="card gold">
+            <div class="k">与前面章节的接口</div>
+            <ul>
+              <li>第 10 页的香港 SPV 与 5% 协定</li>
+              <li>第 11 页的间接转让与 7 号公告</li>
+              <li>第 13 页的境外所得抵免五层与分国／综合抵免</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><span>中外中结构</span><span><span class="src">待补 · 资料来源：用户拍摄</span>　<span class="pg"></span></span></footer>
   </div>
 
 </div>
 </div>
-<div class="progress" id="progress"></div>
 <script>
 const slides=document.querySelectorAll('.slide');
 let idx=0;
 function render(){
   slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
-  slides.forEach((s,i)=>{const f=s.querySelector('footer');if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;});
-  const p=document.getElementById('progress');
-  if(p)p.style.width=((idx+1)/slides.length*100)+'%';
+  slides.forEach((s,i)=>{const f=s.querySelector('footer .pg');if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;});
 }
 document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){idx=Math.min(idx+1,slides.length-1);render()}
   if(e.key==='ArrowLeft'||e.key==='PageUp'){idx=Math.max(idx-1,0);render()}
 });
 document.querySelector('.slide-wrap').addEventListener('click',e=>{
-  const rect=e.target.getBoundingClientRect();
-  if(e.clientX-rect.left>rect.width/2) idx=Math.min(idx+1,slides.length-1);
-  else idx=Math.max(idx-1,0);
+  if(e.target.closest('a'))return;
+  const r=e.target.getBoundingClientRect();
+  if(e.clientX-r.left>r.width/2) idx=Math.min(idx+1,slides.length-1); else idx=Math.max(idx-1,0);
   render();
 });
 render();
@@ -153,8 +878,7 @@ function fit(){
   const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
   document.querySelector('.slide-wrap').style.transform='translate(-50%,-50%) scale('+s+')';
 }
-window.addEventListener('resize',fit);
-fit();
+window.addEventListener('resize',fit);fit();
 </script>
 </body>
 </html>
