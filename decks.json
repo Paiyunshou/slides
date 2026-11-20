@@ -1,6 +1,6 @@
 {
  "updated": "2026-11-20",
- "total": 10,
+ "total": 11,
  "recent": [
   {
    "t": "战略 · 公司设立股权架构考量",
@@ -60,6 +60,12 @@
    "t": "增值税期末留抵退税 · 2025 年新政要点",
    "m": "POLICY BRIEF · 2026.11 · 2 PAGES",
    "href": "https://paiyunshou.github.io/slides/vat-retention-refund.html",
+   "status": "done"
+  },
+  {
+   "t": "对外支付涉税判断 · 三步定税",
+   "m": "JUDGEMENT · 2026.11 · 3 PAGES",
+   "href": "https://paiyunshou.github.io/slides/outbound-payment-tax.html",
    "status": "done"
   }
  ],
