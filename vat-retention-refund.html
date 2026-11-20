@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>增值税期末留抵退税 · 2025 年新政要点</title>
+<style>
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-r.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-sb.woff2') format('woff2');font-weight:500 700;font-display:swap}
+:root{
+  --bg:#f8f6f0;--text:#2c302c;--accent:#205c47;--gold:#b89758;--muted:#646b64;
+  --stroke:#dcd8cc;--gold-soft:#fff2cc;--gold-line:#e6b85c;
+  --serif:"Deck Serif","Noto Serif SC",Songti SC,SimSun,serif;
+  --mono:"SF Mono",Consolas,ui-monospace,"Deck Serif",monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0;font-family:var(--serif);background:var(--bg);color:var(--text)}
+.stage{position:relative;width:100vw;height:100vh;overflow:hidden}
+.slide-wrap{position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform-origin:center;transform:translate(-50%,-50%) scale(1)}
+.slide{position:absolute;inset:0;padding:82px 96px 96px;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s ease;display:flex;flex-direction:column}
+.slide.active{opacity:1;visibility:visible}
+p,li{font-size:22px;line-height:1.7;color:var(--text);margin:0}
+
+.hdr{display:flex;align-items:center;gap:22px;padding-bottom:18px;border-bottom:1px solid var(--stroke);flex:0 0 auto}
+.hdr .num{flex:0 0 auto;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#f8f6f0;font-family:var(--mono);font-size:23px}
+.hdr h3{margin:0;font-size:38px;font-weight:600;color:var(--accent);line-height:1.25}
+.hdr .sub{margin:8px 0 0;font-size:18px;color:var(--muted);line-height:1.5}
+.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:15px;color:var(--accent);border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:999px;padding:8px 20px;font-family:var(--mono);white-space:nowrap}
+.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:18px;margin-top:24px}
+
+/* 三条路径 */
+.paths{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.path{background:#fff;border:1px solid var(--stroke);border-radius:16px;padding:24px 26px;display:flex;flex-direction:column;gap:12px}
+.path.p1{border-top:4px solid var(--accent)}
+.path.p2{border-top:4px solid var(--gold)}
+.path.p3{border-top:4px solid #8fa89a}
+.path .k{font-family:var(--mono);font-size:13px;letter-spacing:1.5px;color:var(--gold)}
+.path h4{margin:0;font-size:27px;font-weight:600;color:var(--accent);line-height:1.3}
+.path .rate{font-family:var(--mono);font-size:44px;font-weight:600;color:var(--accent);line-height:1.1}
+.path .rate small{font-size:16px;font-family:var(--serif);color:var(--muted);font-weight:400;display:block;margin-top:2px}
+.path .rows{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.path .row{display:flex;gap:10px;font-size:17px;line-height:1.6;color:var(--text)}
+.path .row b{flex:0 0 58px;color:var(--accent);font-weight:600}
+.path .fx{margin-top:auto;background:#f6f4ec;border-radius:10px;padding:12px 14px;font-size:16px;line-height:1.55;color:var(--muted)}
+.path .fx b{color:#7a5b12;font-weight:600}
+
+.strip{background:#fff;border:1px solid var(--stroke);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:14px 20px;font-size:16px;line-height:1.7;color:var(--muted)}
+.strip b{color:#7a5b12}
+
+/* 门槛页 */
+.gate{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1.02fr 1fr;gap:32px}
+.gates{display:flex;flex-direction:column;gap:12px}
+.gatecard{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:center;background:#fff;border:1px solid var(--stroke);border-radius:12px;padding:16px 20px;flex:1 1 0}
+.gatecard .n{font-family:var(--mono);font-size:26px;color:var(--gold);font-weight:600}
+.gatecard .t{font-size:19px;line-height:1.55;color:var(--text)}
+.gatecard .t b{color:var(--accent)}
+.right{display:flex;flex-direction:column;gap:14px;min-height:0}
+.box{background:#fff;border:1px solid var(--stroke);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:10px;flex:1 1 0;justify-content:center}
+.box .k{font-family:var(--mono);font-size:13px;letter-spacing:1.5px;color:var(--gold)}
+.box .tt{font-size:21px;font-weight:600;color:var(--accent);line-height:1.35}
+.box p{font-size:17px;line-height:1.6;color:var(--muted)}
+.box p b{color:var(--text);font-weight:600}
+.entry{font-family:var(--mono);font-size:17px;line-height:1.8;color:var(--text);background:#f6f4ec;border-radius:10px;padding:12px 16px}
+.entry span{color:var(--muted)}
+.warn{background:#fdf6e6;border:1px solid var(--gold-line);border-radius:12px;padding:14px 20px;font-size:17px;line-height:1.65;color:#6d5518}
+.warn b{color:#8a3b2e}
+
+footer{font-family:var(--mono);font-size:14px;letter-spacing:1px;color:var(--muted);flex:0 0 auto;padding-top:14px;border-top:1px solid var(--stroke);margin-top:14px;display:flex;justify-content:space-between}
+.back{position:absolute;left:96px;top:50px;font-family:var(--mono);font-size:16px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--gold-line);padding-bottom:2px}
+.progress{position:fixed;left:0;bottom:0;height:3px;background:var(--gold);width:0;transition:width .3s ease;z-index:9}
+</style>
+</head>
+<body>
+<div class="stage">
+<div class="slide-wrap">
+
+  <!-- 01 三条路径 -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">01</div>
+      <div>
+        <h3>三类纳税人，三条退税路径</h3>
+        <p class="sub">财政部 税务总局公告 2025 年第 7 号 · 2025 年 9 月申报期起施行，留抵退税由阶段性政策转为常态化制度</p>
+      </div>
+      <div class="badge">2025 NO.7</div>
+    </div>
+    <div class="body">
+      <div class="paths">
+        <div class="path p1">
+          <div class="k">PATH 01 · 优先通道</div>
+          <h4>制造业等 4 个行业</h4>
+          <div class="rate">100%<small>按月申请，无附加门槛</small></div>
+          <div class="rows">
+            <div class="row"><b>判定</b><span>制造业、科学研究和技术服务业、软件和信息技术服务业、生态保护和环境治理业的销售额占比 &gt; 50%（按前 12 个月算，不满 12 个月但满 3 个月按实际经营期）</span></div>
+            <div class="row"><b>门槛</b><span>只受第 2 页四条通用条件约束，不设存量、增量与 50 万元门槛</span></div>
+            <div class="row"><b>节奏</b><span>按月申请，符合条件即可在次月申报期内办理</span></div>
+            <div class="row"><b>注意</b><span>销售额按差额征税前的金额确定，可含稽查查补、评估调整销售额</span></div>
+          </div>
+          <div class="fx"><b>公式：</b>当期期末留抵税额 × 进项构成比例 × 100%</div>
+        </div>
+        <div class="path p2">
+          <div class="k">PATH 02 · 增量 60%</div>
+          <h4>房地产开发经营</h4>
+          <div class="rate">60%<small>只退第六个月新增部分</small></div>
+          <div class="rows">
+            <div class="row"><b>判定</b><span>房地产开发经营的销售额及预收款占比 &gt; 50%（预收款已参与计算的，不得重复计入销售额）</span></div>
+            <div class="row"><b>门槛</b><span>与 2019 年 3 月 31 日留抵相比，连续 6 个月新增留抵均 &gt; 0，且第 6 个月新增 ≥ 50 万元</span></div>
+            <div class="row"><b>基数</b><span>只退第 6 个月新增部分，不设 1 亿元分档</span></div>
+            <div class="row"><b>兜底</b><span>不符合上述门槛的，可改按「其他纳税人」分档退还</span></div>
+          </div>
+          <div class="fx"><b>公式：</b>（当期留抵 − 2019.3.31 留抵）× 进项构成比例 × 60%</div>
+        </div>
+        <div class="path p3">
+          <div class="k">PATH 03 · 分档退还</div>
+          <h4>其他纳税人</h4>
+          <div class="rate">60% / 30%<small>1 亿元为分档线</small></div>
+          <div class="rows">
+            <div class="row"><b>门槛</b><span>连续 6 个月期末留抵均 &gt; 0，且第 6 个月较上年 12 月 31 日新增 ≥ 50 万元</span></div>
+            <div class="row"><b>比例</b><span>新增留抵 ≤ 1 亿元的部分退 60%，超过 1 亿元的部分退 30%</span></div>
+            <div class="row"><b>构成比</b><span>只算当年 1 月至申请前所属期的七类扣税凭证占比，起算期不同于前两类</span></div>
+            <div class="row"><b>注意</b><span>连续 6 个月的计算期间，不得与已核准的退税申请重复</span></div>
+          </div>
+          <div class="fx"><b>公式：</b>（新增 ≤1 亿部分 × 构成比 × 60%）＋（超 1 亿部分 × 构成比 × 30%）</div>
+        </div>
+      </div>
+      <div class="strip"><b>三个易错点：</b>① 房企不符合第 2 条（连续 6 个月、50 万元门槛）的，可改按第 3 条申请；② 进项构成比例的起算期不同——前两类自 2019 年 4 月起算，其他纳税人从申请所属期当年 1 月起算，只看<b>七类扣税凭证</b>；③ 适用免抵退税办法的，须先办完免抵退再办留抵退税；适用免退税办法的，对应进项税额不得退还。</div>
+    </div>
+    <footer><span>增值税期末留抵退税 · 2025 年新政要点</span><span class="pg"></span></footer>
+  </div>
+
+  <!-- 02 门槛与选择 -->
+  <div class="slide">
+    <div class="hdr">
+      <div class="num">02</div>
+      <div>
+        <h3>四条硬门槛，一道单选题</h3>
+        <p class="sub">不论走哪条路径，四条通用条件必须同时满足；留抵退税与即征即退、先征后返只能二选一</p>
+      </div>
+      <div class="badge">CONDITIONS</div>
+    </div>
+    <div class="body">
+      <div class="gate">
+        <div class="gates">
+          <div class="gatecard"><div class="n">01</div><div class="t">纳税缴费信用级别为 <b>A 级或 B 级</b></div></div>
+          <div class="gatecard"><div class="n">02</div><div class="t">申请前 <b>36 个月</b>未发生骗取留抵退税、骗取出口退税或虚开增值税专用发票</div></div>
+          <div class="gatecard"><div class="n">03</div><div class="t">申请前 <b>36 个月</b>未因偷税被税务机关处罚<b>两次及以上</b></div></div>
+          <div class="gatecard"><div class="n">04</div><div class="t">2019 年 4 月 1 日起<b>未享受</b>增值税即征即退、先征后返（退）政策</div></div>
+        </div>
+        <div class="right">
+          <div class="box">
+            <div class="k">EITHER / OR</div>
+            <div class="tt">留抵退税 ↔ 即征即退、先征后返</div>
+            <p>两者互斥。想切换方向，须<b>一次性缴回</b>已退税款：缴回已享受的即征即退、先征后返税款后，可自全部缴回<b>次月起</b>申请留抵退税；反向亦然。</p>
+            <p>切换后自缴回次月起 <b>36 个月内不得再变更</b>——决策要一次做对。</p>
+          </div>
+          <div class="box">
+            <div class="k">ACCOUNTING</div>
+            <div class="tt">会计处理</div>
+            <div class="entry">借：银行存款<br>贷：应交税费——应交增值税（进项税额转出）<span>　// 核准退还后相应调减期末留抵</span></div>
+          </div>
+          <div class="warn"><b>两个时点：</b>核准后再次满足条件的可继续申请，但连续 6 个月的计算期间不得与已核准的申请重复；退税到账后发现适用有误的，应在<b>下个申报期结束前</b>缴回。</div>
+        </div>
+      </div>
+    </div>
+    <footer><span>增值税期末留抵退税 · 2025 年新政要点</span><span class="pg"></span></footer>
+  </div>
+
+</div>
+</div>
+<div class="progress" id="progress"></div>
+<script>
+const slides=document.querySelectorAll('.slide');
+let idx=0;
+function render(){
+  slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
+  slides.forEach((s,i)=>{const f=s.querySelector('footer .pg');if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;});
+  const p=document.getElementById('progress');if(p)p.style.width=((idx+1)/slides.length*100)+'%';
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){idx=Math.min(idx+1,slides.length-1);render()}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){idx=Math.max(idx-1,0);render()}
+});
+document.querySelector('.slide-wrap').addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  const r=e.target.getBoundingClientRect();
+  if(e.clientX-r.left>r.width/2) idx=Math.min(idx+1,slides.length-1); else idx=Math.max(idx-1,0);
+  render();
+});
+render();
+function fit(){
+  const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+  document.querySelector('.slide-wrap').style.transform='translate(-50%,-50%) scale('+s+')';
+}
+window.addEventListener('resize',fit);fit();
+</script>
+</body>
+</html>
