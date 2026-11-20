@@ -3,149 +3,804 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>增资扩股涉税 · 集团税务价值</title>
+<title>投融资 · 增资扩股涉税 · 第二部分 公司扩张</title>
 <style>
-/* emerald-editorial template | 与 group-tax deck 统一风格 */
-@font-face{font-family:'Noto Serif SC';src:url('fonts/notoserif-cn-r5.woff2') format('woff2');font-weight:300 700;font-display:swap}
-@font-face{font-family:'Noto Sans SC';src:url('fonts/notosans-cn-r5.woff2') format('woff2');font-weight:300 700;font-display:swap}
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-r.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-sb.woff2') format('woff2');font-weight:500 700;font-display:swap}
 :root{
-  --bg:#f8f6f0;
-  --text:#2c302c;
-  --accent:#205c47;
-  --gold:#b89758;
-  --muted:#646b64;
-  --card:#ffffffdd;
-  --stroke:#dcd8cc;
-  --gold-soft:#fff2cc;
-  --gold-line:#e6b85c;
-  --serif:"Noto Serif SC",serif;
-  --mono:"SF Mono",Consolas,"Noto Sans SC",monospace;
+  --bg:#f8f6f0;--text:#2c302c;--accent:#205c47;--gold:#b89758;--muted:#646b64;
+  --card:#ffffff;--gold-soft:#fff2cc;--gold-line:#e6b85c;--line:#dcd8cc;
+  --serif:"Deck Serif","Noto Serif SC",Songti SC,SimSun,serif;
+  --mono:"SF Mono",Consolas,ui-monospace,"Deck Serif",monospace;
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;padding:0;font-family:var(--serif);background:var(--bg);color:var(--text)}
 .stage{position:relative;width:100vw;height:100vh;overflow:hidden}
 .slide-wrap{position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform-origin:center;transform:translate(-50%,-50%) scale(1)}
-.slide{position:absolute;inset:0;padding:82px 96px 104px;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;display:flex;flex-direction:column}
+.slide{position:absolute;inset:0;padding:76px 96px 88px;opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;display:flex;flex-direction:column;background:var(--bg)}
 .slide.active{opacity:1;visibility:visible}
-.slide.cover{justify-content:center}
-h1{font-size:72px;font-weight:600;color:var(--accent);margin:0 0 26px;letter-spacing:-.01em}
-h2{font-size:34px;font-weight:500;color:var(--gold);margin:0 0 32px}
-p,li{font-size:22px;line-height:1.7;color:var(--text);margin:0}
+p,li{font-size:21px;line-height:1.65;color:var(--text);margin:0}
+.hdr{display:flex;align-items:flex-end;gap:20px;padding-bottom:14px;border-bottom:1px solid var(--line);flex:0 0 auto}
+.hdr .num{flex:0 0 auto;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#f8f6f0;font-family:var(--mono);font-size:21px}
+.hdr h3{margin:0;font-size:36px;font-weight:600;color:var(--accent);line-height:1.22}
+.hdr .sub{margin:6px 0 0;font-size:17px;color:var(--muted);line-height:1.45}
+.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:13px;color:var(--accent);border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:999px;padding:7px 16px;font-family:var(--mono);white-space:nowrap}
+.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:14px;margin-top:18px}
+footer{font-family:var(--mono);font-size:12.5px;letter-spacing:.5px;color:var(--muted);flex:0 0 auto;padding-top:10px;border-top:1px solid var(--line);margin-top:10px;display:flex;justify-content:space-between;gap:24px}
+footer .src{opacity:.85}
+.back{position:absolute;left:96px;top:40px;font-family:var(--mono);font-size:14px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--gold-line);padding-bottom:2px}
 
-.hdr{display:flex;align-items:center;gap:22px;padding-bottom:20px;border-bottom:1px solid var(--stroke);flex:0 0 auto}
-.hdr .num{flex:0 0 auto;width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#f8f6f0;font-family:var(--mono);font-size:24px;letter-spacing:1px}
-.hdr h3{margin:0;font-size:44px;font-weight:600;color:var(--accent);line-height:1.2}
-.hdr .sub{margin:6px 0 0;font-size:20px;color:var(--muted)}
-.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:17px;color:var(--accent);border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:999px;padding:8px 20px;font-family:var(--mono)}
+/* 布局 */
+.col2{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.col2.w6{grid-template-columns:1.25fr 1fr}
+.col3{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.col4{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stack{display:flex;flex-direction:column;gap:10px;min-height:0}
+.stack>.card{flex:1 1 auto;justify-content:center}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;display:flex;flex-direction:column;gap:6px;min-height:0}
+.card.gold{border-left:3px solid var(--gold-line)}
+.card.hi{background:#eef4f0;border-left:3px solid var(--accent)}
+.card h4{margin:0;font-size:22px;font-weight:600;color:var(--accent);line-height:1.3}
+.card h4 .g{color:var(--gold)}
+.card .k{font-family:var(--mono);font-size:11.5px;letter-spacing:1.2px;color:var(--gold)}
+.card ul{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.card ul li{font-size:17px;line-height:1.55;padding-left:14px;position:relative}
+.card ul li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.card ul li b{color:var(--accent);font-weight:600}
+.card p{font-size:17px;line-height:1.6}
+.card p b{color:var(--accent)}
 
-/* —— 封面 —— */
-.cover .eyebrow{font-family:var(--mono);font-size:20px;letter-spacing:3px;color:var(--gold);margin-bottom:22px}
-.cover .lede{font-size:26px;line-height:1.6;color:var(--muted);max-width:60ch;margin-top:8px}
-.cover .meta{display:flex;align-items:center;gap:16px;margin-top:44px}
-.pill{font-family:var(--mono);font-size:17px;letter-spacing:1px;padding:9px 22px;border-radius:999px;border:1px dashed var(--gold-line);background:var(--gold-soft);color:#7a5b12}
-.pill.solid{border-style:solid;border-color:var(--accent);background:transparent;color:var(--accent)}
+.note{background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:8px;padding:11px 17px;font-size:17px;line-height:1.6;flex:0 0 auto}
+.note b{color:#7a5a12}
+.note.plain{background:#f1f4f2;border-color:var(--line)}
 
-/* —— 占位骨牌 —— */
-.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:22px;margin-top:30px}
-.slots{display:grid;grid-template-columns:1fr 1fr;gap:26px;flex:1 1 auto;min-height:0}
-.slot{background:var(--card);border:1px dashed var(--stroke);border-radius:18px;padding:28px 30px;display:flex;flex-direction:column;gap:10px}
-.slot .k{font-family:var(--mono);font-size:15px;letter-spacing:2px;color:var(--gold)}
-.slot .t{font-size:28px;font-weight:600;color:var(--accent)}
-.slot .d{font-size:19px;line-height:1.6;color:var(--muted)}
-.slot .line{margin-top:auto;height:1px;background:repeating-linear-gradient(90deg,var(--stroke) 0 8px,transparent 8px 16px)}
+/* 表格 */
+.tbl{width:100%;border-collapse:collapse;font-size:16px}
+.tbl th{background:#eceee9;color:var(--accent);font-weight:600;text-align:left;padding:8px 11px;border:1px solid var(--line);font-size:15.5px}
+.tbl td{padding:7px 11px;border:1px solid var(--line);line-height:1.45;vertical-align:top}
+.tbl td b{color:var(--accent)}
+.tbl tr:nth-child(even) td{background:#fbfaf6}
+.tbl .c{text-align:center}
 
-.empty{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;border:1px dashed var(--stroke);border-radius:18px;background:#ffffffee}
-.empty .big{font-size:46px;font-weight:600;color:#c9c3b4}
-.empty .d{font-size:20px;color:var(--muted);text-align:center;line-height:1.7}
-
-.nav-hint{position:absolute;right:96px;bottom:56px;font-family:var(--mono);font-size:15px;letter-spacing:1px;color:var(--muted)}
-footer{font-family:var(--mono);font-size:15px;letter-spacing:1px;color:var(--muted);text-align:center;flex:0 0 auto;padding-top:18px}
-.back{position:absolute;left:96px;top:52px;font-family:var(--mono);font-size:16px;letter-spacing:1px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--gold-line);padding-bottom:2px}
-.progress{position:fixed;left:0;bottom:0;height:3px;background:var(--gold);width:0;transition:width .3s ease;z-index:9}
+/* 图 */
+.dg{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 20px;display:flex;flex-direction:column;min-height:0;gap:8px;justify-content:center}
+.dg .cap{font-family:var(--mono);font-size:11.5px;letter-spacing:1.2px;color:var(--gold);flex:0 0 auto}
+.dg .rowx{display:flex;align-items:center;justify-content:center;gap:10px;flex:0 0 auto}
+.dg .colx{display:flex;flex-direction:column;align-items:center;gap:0;flex:1 1 auto;justify-content:center;min-height:0}
+.n{background:#eef4f0;border:1px solid #c9d8ce;border-radius:8px;padding:9px 15px;font-size:17px;line-height:1.35;text-align:center;flex:0 0 auto}
+.n b{color:var(--accent);font-weight:600}
+.n.fill{background:var(--accent);border-color:var(--accent);color:#f8f6f0}
+.n.fill b{color:#fff}
+.n.gold{background:var(--gold-soft);border-color:var(--gold-line)}
+.n.dash{border-style:dashed;background:#fbfaf6}
+.n.sm{font-size:15px;padding:7px 12px}
+.n .s{display:block;font-size:14px;color:var(--muted);line-height:1.3;margin-top:2px}
+.n.fill .s{color:#d8e6de}
+.varr{position:relative;height:22px;width:100%;flex:0 0 auto}
+.varr::before{content:'';position:absolute;left:50%;margin-left:-9px;top:0;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:13px solid var(--gold)}
+.varr.lbl::after{content:attr(data-l);position:absolute;left:calc(50% + 12px);top:-2px;font-family:var(--mono);font-size:11px;color:var(--gold);white-space:nowrap}
+.vline{width:1px;height:12px;background:var(--gold-line);flex:0 0 auto}
+.harr{position:relative;width:32px;height:14px;flex:0 0 auto}
+.harr::before{content:'';position:absolute;left:12px;top:0;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid var(--gold)}
+.brace{position:relative;border-top:1px solid var(--gold-line);height:8px;flex:0 0 auto}
+.pin{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--gold-soft);border:1px solid var(--gold-line);font-family:var(--mono);font-size:12px;color:#7a5a12;flex:0 0 auto}
 </style>
 </head>
 <body>
 <div class="stage">
 <div class="slide-wrap">
 
-  <!-- 封面 -->
-  <div class="slide cover">
+  <!-- ===== 01 总览 ===== -->
+  <div class="slide">
     <a class="back" href="./index.html">← 返回目录</a>
-    <div class="eyebrow">GROUP TAX VALUE · 02</div>
-    <h1>增资扩股涉税</h1>
-    <p class="lede">增资扩股各环节的税务处理：出资方式、资本公积、原股东权益。</p>
-    <div class="meta">
-      <span class="pill">待建设 · IN PROGRESS</span>
-      <span class="pill solid">投融资</span>
+    <div class="hdr">
+      <div class="num">01</div>
+      <div>
+        <h3>公司扩张：六个动作，一条判断线</h3>
+        <p class="sub">扩张期的每个动作，本质都在回答同一句话——资产、资金、利润以什么身份进入公司，这个身份对应哪一套税规则</p>
+      </div>
+      <div class="badge">PART 02 · 6 章 12 页</div>
     </div>
-    <div class="nav-hint">← → / 空格 翻页</div>
+    <div class="body">
+      <div class="dg" style="flex:1 1 auto;gap:12px">
+        <div class="cap">EXPANSION MAP · 六章一览</div>
+        <div class="col4" style="flex:1 1 auto;gap:14px">
+          <div class="card hi" style="justify-content:center">
+            <div class="k">STAGE 01 · 第 7–8 章</div>
+            <h4>① 资产先进来</h4>
+            <ul>
+              <li>三重身份：卖资产、拿股权、设新平台</li>
+              <li>非货币出资三条路：买卖 / 划转 / 投资</li>
+              <li>视同销售：增值、减值都要确认</li>
+            </ul>
+            <p style="color:var(--gold);font-size:15.5px">视同销售 ＋ 三类优惠</p>
+          </div>
+          <div class="card hi" style="justify-content:center">
+            <div class="k">STAGE 02 · 第 9 章</div>
+            <h4>② 借壳合作</h4>
+            <ul>
+              <li>项目部：独立核算、共管账户、按面积分利</li>
+              <li>纳税主体只能是持有土地的一方</li>
+              <li>分配款按股息红利，但仅限房企</li>
+            </ul>
+            <p style="color:var(--gold);font-size:15.5px">纳税主体 ≠ 负税主体</p>
+          </div>
+          <div class="card hi" style="justify-content:center">
+            <div class="k">STAGE 03 · 第 10–11 章</div>
+            <h4>③ 资金进来</h4>
+            <ul>
+              <li>明股实债：股的外衣、债的内核</li>
+              <li>五指山五条定 CIT，共担风险定 VAT</li>
+              <li>稀释不是转让，公允增资不征税</li>
+            </ul>
+            <p style="color:var(--gold);font-size:15.5px">共担风险与否定税种</p>
+          </div>
+          <div class="card hi" style="justify-content:center">
+            <div class="k">STAGE 04 · 第 12 章</div>
+            <h4>④ 利润变股本</h4>
+            <ul>
+              <li>留存收益 / 资本溢价 / 其他资本公积</li>
+              <li>先分再投：视同分红＋再投资</li>
+              <li>来源不同，个人与企业的税不同</li>
+            </ul>
+            <p style="color:var(--gold);font-size:15.5px">先分再投</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;flex:1 1 auto;min-height:0">
+          <div class="card" style="justify-content:center">
+            <div class="k">第 7 章</div>
+            <h4 style="font-size:19px">非货币资产出资</h4>
+            <p style="font-size:15px;line-height:1.5;color:var(--muted)">视同销售；五税叠加；三类优惠可选（上家不交，下家扣不扣不同）</p>
+          </div>
+          <div class="card" style="justify-content:center">
+            <div class="k">第 8 章</div>
+            <h4 style="font-size:19px">联姻生子</h4>
+            <p style="font-size:15px;line-height:1.5;color:var(--muted)">个人递延 / 企业特殊重组；契税三步法省 210 万</p>
+          </div>
+          <div class="card" style="justify-content:center">
+            <div class="k">第 9 章</div>
+            <h4 style="font-size:19px">借鸡生蛋</h4>
+            <p style="font-size:15px;line-height:1.5;color:var(--muted)">纳税主体≠负税主体；分配按股息红利，仅限房企</p>
+          </div>
+          <div class="card" style="justify-content:center">
+            <div class="k">第 10 章</div>
+            <h4 style="font-size:19px">明股实债</h4>
+            <p style="font-size:15px;line-height:1.5;color:var(--muted)">五指山定 CIT；固定利润按贷款服务缴 6%</p>
+          </div>
+          <div class="card" style="justify-content:center">
+            <div class="k">第 11 章</div>
+            <h4 style="font-size:19px">增资扩股之股权融资</h4>
+            <p style="font-size:15px;line-height:1.5;color:var(--muted)">三剑客；稀释不征税；对赌四模型</p>
+          </div>
+          <div class="card" style="justify-content:center">
+            <div class="k">第 12 章</div>
+            <h4 style="font-size:19px">增资扩股之转增资本</h4>
+            <p style="font-size:15px;line-height:1.5;color:var(--muted)">先分再投；资本溢价转增个税仍有争议</p>
+          </div>
+        </div>
+      </div>
+      <div class="col3" style="flex:0 0 auto">
+        <div class="card hi"><div class="k">ONE THREAD</div><h4>分解原理：一件事，拆成两件事</h4>
+          <p>资产出资＝先卖后投；转增资本＝先分红后投；明股实债＝股的形式、债的实质。全书反复用同一把刀。</p></div>
+        <div class="card gold"><div class="k">TWO SUBJECTS</div><h4>纳税主体 ≠ 负税主体</h4>
+          <p>纳税主体由法定，不能谈；负税主体由合同约定。<b>合同不写分摊口径，争议必然发生</b>（第 9 章）。</p></div>
+        <div class="card"><div class="k">THREE LAYERS</div><h4>税收优惠只有三条路</h4>
+          <p>特殊重组（50% 门槛）、特定划转（100% 控制）、五年分期。前两条都是「上家不交，下家不扣」。</p></div>
+      </div>
+    </div>
+    <footer><span>投融资 · 增资扩股涉税</span><span><span class="src">依据：李利威《一本书看透股权节税》第二部分 · 笔记 6 篇</span>　<span class="pg"></span></span></footer>
   </div>
 
-  <!-- 第二章占位 -->
+  <!-- ===== 02 第7章 A 三条路径 ===== -->
   <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
     <div class="hdr">
       <div class="num">02</div>
       <div>
-        <h3>增资扩股涉税 · 内容框架</h3>
-        <p class="sub">先把骨架留好，内容后续逐页填充</p>
+        <h3>第 7 章｜同一批资产，三种不同进法</h3>
+        <p class="sub">国茂股份把资产注入上市主体，不是一套办法走到底：按资产的税负特征，分头选买卖、投资、划转</p>
       </div>
-      <div class="badge">OUTLINE · TO BE FILLED</div>
+      <div class="badge">CH 7 · 路径选择</div>
     </div>
     <div class="body">
-      <div class="slots">
-        <div class="slot">
-          <div class="k">SLOT 01 · FINANCING</div>
-          <div class="t">出资形式</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
+      <div class="col2 w6">
+        <div class="card" style="gap:8px">
+          <div class="k">CASE · 国茂股份（603915）</div>
+          <h4>五类资产，三条路径</h4>
+          <table class="tbl">
+            <tr><th>拟注入资产</th><th>方式</th><th>账面净值</th><th>评估值</th><th>交易价</th></tr>
+            <tr><td>存货</td><td><b>买卖</b></td><td>17 797</td><td>17 797</td><td>17 797</td></tr>
+            <tr><td>机器设备</td><td><b>买卖</b></td><td>8 130</td><td>9 535</td><td>8 436</td></tr>
+            <tr><td>土地、房产</td><td><b>投资</b></td><td>29 357</td><td>35 157</td><td>35 157</td></tr>
+            <tr><td>应收应付预付款</td><td><b>买卖</b></td><td>10 958</td><td>10 958</td><td>10 958</td></tr>
+            <tr><td>商标、专利</td><td><b>划转</b></td><td>0</td><td>—</td><td>无偿</td></tr>
+          </table>
+          <p style="margin-top:4px">为什么不一刀切？<b>土增税只在投资路径上出现（房地产企业除外）、契税看持股比例、往来款只能走买卖、无形资产零账面走划转最省。</b></p>
         </div>
-        <div class="slot">
-          <div class="k">SLOT 02 · FINANCING</div>
-          <div class="t">溢价与资本公积</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
+        <div class="dg">
+          <div class="cap">STRUCTURE · 注入结构</div>
+          <div class="colx">
+            <div class="n"><b>国茂集团</b><span class="s">资产持有方</span></div>
+            <div class="varr"></div>
+            <div class="rowx" style="gap:12px">
+              <div class="n sm" style="min-width:150px">买卖<span class="s">增值税链条完整</span></div>
+              <div class="n sm gold" style="min-width:150px">投资<span class="s">视同销售＋土增税</span></div>
+              <div class="n sm dash" style="min-width:150px">划转<span class="s">100% 控制才免</span></div>
+            </div>
+            <div class="varr"></div>
+            <div class="n fill"><b>国茂股份</b><span class="s">上市主体</span></div>
+          </div>
+          <div class="note plain" style="margin-top:4px"><b>法律流程四步</b>：评估 → 签约 → 过户 → 工商。非货币财产能出资，只要求两条：可估价、可依法转让。</div>
         </div>
-        <div class="slot">
-          <div class="k">SLOT 03 · FINANCING</div>
-          <div class="t">原股东涉税</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
-        </div>
-        <div class="slot">
-          <div class="k">SLOT 04 · FINANCING</div>
-          <div class="t">印花税</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
-        </div>
-      </div>
-      <div class="empty">
-        <div class="big">内容待建设</div>
-        <div class="d">确定本节提纲后，逐页补要点、法规依据与测算模型<br>（与集团税务价值其他章节共用同一套版式）</div>
       </div>
     </div>
-    <footer></footer>
+    <footer><span>第 7 章 资产出资之非货币资产出资</span><span><span class="src">案例：国茂股份公开披露</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 03 第7章 B 五税种与三类优惠 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">03</div>
+      <div>
+        <h3>第 7 章｜五个税种叠加，三条优惠只能选一条路</h3>
+        <p class="sub">出资环节是「视同销售 + 税收优惠」两件事：先按公允价值确认转让所得，再看能不能套优惠</p>
+      </div>
+      <div class="badge">CH 7 · 税负与优惠</div>
+    </div>
+    <div class="body">
+      <div class="col2">
+        <div class="card">
+          <div class="k">TAX · 出资方与被投资方各交什么</div>
+          <h4>五税同框</h4>
+          <table class="tbl">
+            <tr><th>税种</th><th>纳税人</th><th>规则</th></tr>
+            <tr><td>企业所得税</td><td>出资方</td><td>视同销售，<b>增值与减值都要确认</b>；损失可税前扣除</td></tr>
+            <tr><td>增值税</td><td>出资方</td><td>上家计销项、下家抵进项；整体重组为非应税交易</td></tr>
+            <tr><td>土地增值税</td><td>出资方</td><td>非房地产企业以房地产投资<b>免征</b>；房企不免</td></tr>
+            <tr><td>契税</td><td>被投资方</td><td>投资方与被投资方<b>100% 直接持股</b>才免</td></tr>
+            <tr><td>印花税</td><td>双方</td><td>资金账簿 0.25‰＋产权转移书据 0.5‰</td></tr>
+          </table>
+          <div class="note" style="margin-top:6px"><b>减值也视同销售</b>：设备 300 万元作价、500 万元账面，确认 200 万元资产转让损失，允许税前扣除——不是「不确认」。</div>
+        </div>
+        <div class="card">
+          <div class="k">RELIEF · 三类优惠</div>
+          <h4>条件、结果、文号</h4>
+          <table class="tbl">
+            <tr><th>优惠</th><th>适用条件</th><th>结果</th></tr>
+            <tr><td><b>特殊重组</b></td><td>投资资产占全部资产 ≥ 50%，股权支付 ≥ 85%</td><td>上家不交<br>下家不扣</td></tr>
+            <tr><td><b>特定划转</b></td><td>100% 直接控制的母子，或同一批居民企业 100% 控制的兄弟</td><td>上家不交<br>下家不扣</td></tr>
+            <tr><td><b>五年分期</b></td><td>无门槛，全部可适用</td><td>上家 5 年均匀确认<br><b>下家按评估值可扣</b></td></tr>
+          </table>
+          <p style="margin-top:4px"><b>差别就在「下家能不能扣」</b>：前两条把税基递延到下家，第三条把税基留在上家、只是推迟缴。</p>
+          <div class="note plain">文号：财税〔2009〕59 号、总局 2010 年第 4 号；财税〔2014〕109 号、总局 2015 年第 40 号；<b>五年分期：财税〔2014〕116 号、总局 2015 年第 33 号</b>（早期文献多引 109 号）。</div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 7 章 资产出资之非货币资产出资</span><span><span class="src">视同销售＋优惠选择</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 04 第8章 联姻生子 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">04</div>
+      <div>
+        <h3>第 8 章｜联姻生子：新设一家公司共同养</h3>
+        <p class="sub">各方有钱出钱、有物出物，另设新公司作运营平台。个人股东与公司股东的优惠不同，纳税主体变不变是关键</p>
+      </div>
+      <div class="badge">CH 8 · 共同投资</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg">
+          <div class="cap">STRUCTURE · 腾飞智能</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="rowx" style="gap:14px;align-items:stretch">
+              <div class="n" style="min-width:250px"><b>领先科技</b><span class="s">存货·设备·商标·房屋土地<br>账面 4 000 万 / 评估 8 000 万</span></div>
+              <div class="n gold" style="min-width:210px"><b>张博士</b><span class="s">专利技术作价 2 000 万<br>成本 100 余万，无发票</span></div>
+            </div>
+            <div class="rowx">
+              <div class="varr" style="width:250px;flex:0 0 auto"></div>
+              <div class="varr" style="width:210px;flex:0 0 auto"></div>
+            </div>
+            <div class="n fill" style="min-width:420px"><b>腾飞智能</b><span class="s">拟上市主体　领先科技 80% · 张博士 20%</span></div>
+          </div>
+          <div class="cap" style="margin-top:10px">契税三步法 · 80% 持股不免，改道省 210 万</div>
+          <div class="rowx" style="gap:6px;justify-content:center">
+            <div class="n sm" style="min-width:150px">① 领先科技<span class="s">先设全资子公司</span></div>
+            <div class="harr"></div>
+            <div class="n sm" style="min-width:160px">② 房屋土地过户<span class="s">100% 持股 → 免契税</span></div>
+            <div class="harr"></div>
+            <div class="n sm" style="min-width:150px">③ 张博士增资<span class="s">持股变 80% / 20%</span></div>
+          </div>
+          <div class="note plain" style="margin-top:8px">殊途同归：都实现了双方合资设立腾飞智能，但第②步的契税省下来了（7 000 万 × 3%）。</div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="k">个人股东 VS 公司股东</div>
+            <h4>优惠不同，纳税主体也不同</h4>
+            <table class="tbl">
+              <tr><th></th><th>公司股东（领先科技）</th><th>个人股东（张博士）</th></tr>
+              <tr><td>可用优惠</td><td>特殊重组 / 划转 / 五年分期</td><td>五年分期（财税〔2015〕41 号）<br>递延纳税（财税〔2016〕101 号）</td></tr>
+              <tr><td>结果</td><td>上家不交，<b>下家不扣</b></td><td>上家不交，<b>下家可扣</b></td></tr>
+              <tr><td>纳税主体</td><td><b>变更为</b>被投资企业</td><td><b>不变</b>，仍是张博士</td></tr>
+            </table>
+          </div>
+          <div class="card gold">
+            <div class="k">三个易漏点</div>
+            <ul>
+              <li>技术转让免征增值税，但<b>免税就丢进项</b>；想抵进项可放弃免税，36 个月内不得再申请</li>
+              <li>享受任何优惠都要<b>备案</b>，备案机关是被投资企业（腾飞智能）的主管税务机关</li>
+              <li>张博士递延了，腾飞智能仍可按<b>评估值 2 000 万</b>税前摊销——上家不交不等于下家不扣</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 8 章 股权合作之联姻生子</span><span><span class="src">案例：腾飞智能（案例 11）</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 05 第9章 A 借鸡生蛋结构 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">05</div>
+      <div>
+        <h3>第 9 章｜借鸡生蛋：不设公司，借别人的壳下蛋</h3>
+        <p class="sub">有地没钱、有钱没地，且土地不能裸转（须完成开发投资 25%）、土增税又扛不住——于是用「项目部」合作</p>
+      </div>
+      <div class="badge">CH 9 · 虚拟公司</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg">
+          <div class="cap">STRUCTURE · 紫荆花园项目部</div>
+          <div class="colx" style="gap:0">
+            <div class="rowx" style="gap:14px;align-items:flex-start">
+              <div class="n" style="min-width:230px"><b>海口城开</b><span class="s">土地证持有人 · 纳税主体<br>25% 面积销售权</span></div>
+              <div class="n gold" style="min-width:230px"><b>海南中建</b><span class="s">出资 1.3 亿 · 负税主体<br>75% 面积销售权</span></div>
+            </div>
+            <div class="rowx">
+              <div class="varr" style="width:230px;flex:0 0 auto"></div>
+              <div class="varr" style="width:230px;flex:0 0 auto"></div>
+            </div>
+            <div class="n dash" style="min-width:400px;border-color:var(--gold-line)"><b>紫荆花园项目部</b><span class="s">独立核算、独立运营，共担风险、共享利润<br><b>无法人工商登记</b>——虚拟公司</span></div>
+            <div class="varr"></div>
+            <div class="n sm"><b>购房人</b>　销售 2.55 亿全部进海口城开账户<span class="s">合同、发票、规证、立项均在城开名下</span></div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">CORE · 两个主体</div>
+            <h4>纳税主体是法定的，负税主体是谈出来的</h4>
+            <ul>
+              <li><b>纳税主体</b>：税法规定谁就是谁，没有讨价还价余地——本项目只能是海口城开</li>
+              <li><b>负税主体</b>：税款实际由谁承担，合同约定谁都可以，国家不干预</li>
+              <li>分歧根源：合同只写「各自负担所售房屋税费」，<b>没写分摊口径</b></li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <div class="k">为什么不做联姻生子</div>
+            <ul>
+              <li>房企以土地投资<b>不享土增税优惠</b>，过户即缴数千万</li>
+              <li>裸地不能转让：须完成开发投资总额 <b>25%</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 9 章 股权合作之借鸡生蛋</span><span><span class="src">案例：紫荆花园（案例 12）</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 06 第9章 B 三场交锋 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">06</div>
+      <div>
+        <h3>第 9 章｜三场交锋，最后落在「股息红利」</h3>
+        <p class="sub">同一笔 0.5 亿利润，按股息处理则投资方免税、项目方不扣；按利息处理则反过来。税法选了前者，但只给房企</p>
+      </div>
+      <div class="badge">CH 9 · 定性之争</div>
+    </div>
+    <div class="body">
+      <div class="col3" style="flex:0 0 auto">
+        <div class="card"><div class="k">第 1 场 · 企业所得税</div><h4>法人税制：合并计算</h4>
+          <p>项目盈亏必须并入海口城开汇总申报，<b>不得在税前分配项目利润</b>，也不得因接受投资而摊销或扣息。分摊基数因此成为争议焦点。</p></div>
+        <div class="card"><div class="k">第 2 场 · 流转税</div><h4>土地使用权人未变，不征</h4>
+          <p>分成款 1.8 亿＝本金 1.3 亿＋税后利润 0.5 亿，本质是共担风险的投资，<b>不属于应税行为</b>。</p></div>
+        <div class="card"><div class="k">第 3 场 · 分配环节</div><h4>按股息红利</h4>
+          <p>实质重于形式，把项目部当虚拟公司：<b>投资方取得的利润视同股息红利</b>，可申请免税；项目方支付的<b>不得税前扣除</b>。</p></div>
+      </div>
+      <div class="col2" style="flex:1 1 auto">
+        <div class="dg">
+          <div class="cap">图 · 房地产业与非房地产业的分野</div>
+          <div class="colx" style="gap:0">
+            <div class="rowx" style="gap:12px;align-items:flex-start">
+              <div class="n" style="min-width:190px"><b>有资质/有地的一方</b><span class="s">对外是唯一纳税人</span></div>
+              <div class="n gold" style="min-width:190px"><b>出资/出力的一方</b><span class="s">只按合同分利</span></div>
+            </div>
+            <div class="varr"></div>
+            <div class="rowx" style="gap:12px">
+              <div class="n" style="min-width:170px"><b>房地产项目</b><span class="s">国税发〔2009〕31 号</span></div>
+              <div class="harr"></div>
+              <div class="n fill" style="min-width:230px"><b>按股息红利</b><span class="s">投资方免税 · 项目方不扣</span></div>
+            </div>
+            <div class="varr"></div>
+            <div class="rowx" style="gap:12px">
+              <div class="n" style="min-width:170px"><b>非房地产项目</b><span class="s">哆啦游戏 · 飞鹰工作室</span></div>
+              <div class="harr"></div>
+              <div class="n gold" style="min-width:230px"><b>只能按工资薪金</b><span class="s">团队缴个税 · 公司可税前扣</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="k">非房企的差别</div>
+            <h4>工作室成员是员工，不是股东</h4>
+            <ul>
+              <li>成员与公司签劳动合同 → <b>内部服务不属于增值税征税范围</b></li>
+              <li>分配款只能走工资薪金（最高 45%），公司可全额税前扣除</li>
+              <li>两种思路整体税负差异不大，<b>变的是谁交、谁扣</b></li>
+            </ul>
+          </div>
+          <div class="note"><b>落地一条</b>：借鸡生蛋的合同，除利益分配外必须写明<b>税款负担与分摊口径</b>（按项目独立核算账、还是按实际缴纳额），否则清算时双方各执一词。</div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 9 章 股权合作之借鸡生蛋</span><span><span class="src">31 号文仅适用房地产开发企业 · 案例 13 哆啦游戏</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 07 第10章 A 明股实债结构 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">07</div>
+      <div>
+        <h3>第 10 章｜明股实债：股的外衣，债的内核</h3>
+        <p class="sub">工商登记成股东，却拿固定回报、到期回购——股和债的分界只有四个字：共担风险</p>
+      </div>
+      <div class="badge">CH 10 · 混合性投资</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg">
+          <div class="cap">STRUCTURE · 羊宝宝（案例 14）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="rowx" style="gap:16px;align-items:flex-start">
+              <div class="n" style="min-width:210px"><b>喜羊羊</b><span class="s">原股东 · 100%</span></div>
+              <div class="n gold" style="min-width:230px"><b>灰太狼</b><span class="s">增资 1 亿 · 持股 20%</span></div>
+            </div>
+            <div class="rowx" style="gap:16px">
+              <div class="varr" style="width:210px;flex:0 0 auto"></div>
+              <div class="varr" style="width:230px;flex:0 0 auto"></div>
+            </div>
+            <div class="n fill" style="min-width:400px"><b>羊宝宝</b><span class="s">工商登记：灰太狼已是股东</span></div>
+          </div>
+          <div class="rowx" style="gap:10px;align-items:stretch">
+            <div class="n sm" style="min-width:190px">每年固定分红<span class="s">0.15 亿，盈亏都要给</span></div>
+            <div class="n sm" style="min-width:190px">3 年后回购<span class="s">喜羊羊付 1 亿收回股权</span></div>
+            <div class="n sm" style="min-width:190px">不参与经营<span class="s">无选举权、无净资产所有权</span></div>
+          </div>
+          <div class="note plain">形式上看是股（办了增资登记），实质上是债（旱涝保收、到期还本）——这种表里不一的资金就是明股实债。</div>
+        </div>
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">ONE TEST</div>
+            <h4>股与债，本质区别只有「共担风险」</h4>
+            <ul>
+              <li>债：投本收息，旱涝保收，不承担经营风险</li>
+              <li>股：共担风险，经营不善可能血本无归，所以才有共享利润</li>
+              <li>税法上两套规则差异极大，<b>定性错一步，双方都错</b></li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <div class="k">FIVE CONDITIONS · 总局 2013 年第 41 号</div>
+            <h4>五指山：五条全满足，才按债处理</h4>
+            <ul>
+              <li><b>①</b> 按约定利率定期支付利息（含保底利息、固定利润、固定股息）</li>
+              <li><b>②</b> 有明确投资期限，期满或满足条件须赎回本金</li>
+              <li><b>③</b> 投资方对被投资企业净资产不拥有所有权</li>
+              <li><b>④</b> 投资方不具有选举权和被选举权</li>
+              <li><b>⑤</b> 投资方不参与日常生产经营</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col2" style="flex:0 0 auto">
+        <div class="card"><div class="k">若定性为债</div><h4>融资方扣、投资方缴</h4>
+          <p>0.15 亿作<b>利息费用税前扣除</b>；灰太狼作利息收入缴企业所得税，且需取得发票。</p></div>
+        <div class="card"><div class="k">若定性为股</div><h4>融资方不扣、投资方可免</h4>
+          <p>0.15 亿作<b>股息红利不得扣除</b>；灰太狼可申请居民企业间股息免税。<b>任何一条不满足，就走这套。</b></p></div>
+      </div>
+    </div>
+    <footer><span>第 10 章 债权融资之明股实债</span><span><span class="src">41 号公告：企业混合性投资业务企业所得税处理</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 08 第10章 B 增值税与成本 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">08</div>
+      <div>
+        <h3>第 10 章｜两个税种，两把不同的尺子</h3>
+        <p class="sub">企业所得税走「五指山」五条，增值税只看一条——是否共担风险。判定标准不一致，是最容易扣错的坑</p>
+      </div>
+      <div class="badge">CH 10 · 税种错配</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg">
+          <div class="cap">DUAL TEST · 同一笔资金，两套判定</div>
+          <div class="rowx" style="gap:14px;align-items:stretch;flex:0 0 auto">
+            <div class="n fill" style="min-width:250px"><b>明股实债</b><span class="s">固定回报 ＋ 到期回购</span></div>
+          </div>
+          <div class="rowx" style="gap:0">
+            <div class="varr" style="width:50%"></div>
+            <div class="varr" style="width:50%"></div>
+          </div>
+          <div class="rowx" style="gap:16px;align-items:flex-start">
+            <div class="colx" style="flex:1 1 0">
+              <div class="n" style="min-width:180px"><b>企业所得税</b><span class="s">总局 41 号公告</span></div>
+              <div class="varr"></div>
+              <div class="n sm" style="min-width:200px">五指山五条<b>全满足</b><span class="s">→ 债规则</span></div>
+              <div class="varr"></div>
+              <div class="n sm dash" style="min-width:200px">任一条不满足<span class="s">→ 股规则</span></div>
+            </div>
+            <div class="colx" style="flex:1 1 0">
+              <div class="n" style="min-width:180px"><b>增值税</b><span class="s">销售服务注释</span></div>
+              <div class="varr"></div>
+              <div class="n sm" style="min-width:200px">是否共担风险<b>一条</b><span class="s">→ 固定/保底利润＝贷款服务</span></div>
+              <div class="varr"></div>
+              <div class="n sm gold" style="min-width:200px">按 6% 缴<span class="s">融资方须取得发票才能扣</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="k">CASE · 肥肥养生（案例 15）</div>
+            <h4>股债混合：同一笔融资，两套处理</h4>
+            <table class="tbl">
+              <tr><th>注入方式</th><th>金额</th><th>每年成本</th><th>处理</th></tr>
+              <tr><td>借款协议（债）</td><td>1.5 亿</td><td>0.27 亿</td><td>按债规则，可扣除</td></tr>
+              <tr><td>增资协议（明股实债）</td><td>0.5 亿</td><td>0.09 亿</td><td>满足五指山，按债规则可扣</td></tr>
+              <tr><td>顾问费（GP 收取）</td><td>—</td><td>300 万</td><td>缴 VAT 与所得税，凭票扣除</td></tr>
+            </table>
+          </div>
+          <div class="note"><b>关键一句</b>：能不能税前扣除，不只看 CIT 定性，还要看<b>有没有发票</b>——VAT 定性为应税，就意味必须取得发票。</div>
+        </div>
+      </div>
+      <div class="note" style="flex:0 0 auto"><b>为什么企业愿意绕这个弯</b>：融资方不受银行贷款额度与期限限制、还能做大股本金；投资方拿到稳定收益、且不触碰放贷资质风险。但要记住——<b>融资成本里含税负成本</b>，只算利息不算税，投资决策一定低估成本。</div>
+    </div>
+    <footer><span>第 10 章 债权融资之明股实债</span><span><span class="src">固定利润、保底利润按贷款服务缴纳增值税</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 09 第11章 A 三剑客与稀释 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">09</div>
+      <div>
+        <h3>第 11 章｜增资扩股三剑客：投多少、值多少、占多少</h3>
+        <p class="sub">投资额 ÷ 公司估值 ＝ 持股比例。稀释不是转让，所以不征所得税——这是全章的地基</p>
+      </div>
+      <div class="badge">CH 11 · 股权融资</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg">
+          <div class="cap">STRUCTURE · 增资前后（示例）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="rowx" style="gap:12px;align-items:flex-start">
+              <div class="n" style="min-width:150px"><b>有限合伙 W</b><span class="s">95%</span></div>
+              <div class="n" style="min-width:150px"><b>自然人 E</b><span class="s">5%</span></div>
+            </div>
+            <div class="n sm gold" style="min-width:230px">增资 1 787.5 万<span class="s">按公允价定价，见下页测算</span></div>
+            <div class="varr"></div>
+            <div class="rowx" style="gap:12px;align-items:flex-start">
+              <div class="n gold" style="min-width:130px"><b>W</b><span class="s">40%</span></div>
+              <div class="n gold" style="min-width:130px"><b>E</b><span class="s">40%</span></div>
+              <div class="n gold" style="min-width:130px"><b>公司 B</b><span class="s">20%</span></div>
+            </div>
+          </div>
+          <div class="note plain"><b>比例降了，权益没降</b>：W 从 95% 降到 40%，但对应净资产权益仍是 1 235 万——按公允价增资，就是「不发生财富转移」。</div>
+        </div>
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">FORMULA</div>
+            <h4>三剑客：投资额 ÷ 估值 ＝ 持股比例</h4>
+            <ul>
+              <li>最核心是<b>估值</b>：投前估值是增资前的价值</li>
+              <li><b>投后估值＝投前估值＋本次增资总额</b></li>
+              <li>三个要素任意一个谈错，比例和税负都会跟着错</li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <div class="k">WHY NO TAX</div>
+            <h4>持股比例减少有三种，只有两种征税</h4>
+            <table class="tbl">
+              <tr><th>原因</th><th>性质</th><th>所得税</th></tr>
+              <tr><td>股权转让</td><td>原股东<b>主动</b></td><td>征</td></tr>
+              <tr><td>股东撤资</td><td>原股东<b>主动</b></td><td>征</td></tr>
+              <tr><td>增资扩股</td><td>原股东<b>被动稀释</b></td><td><b>不征</b></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="note" style="flex:0 0 auto"><b>国家为什么不在增资时征税</b>：增资是股东向公司<b>注入资金</b>，不是从公司撤走收益的环节；此时征税会直接抑制投资。所以个税法、企业所得税法都没把货币投资列为征税对象。<b>但印花税照缴</b>：实收资本＋资本公积合计按 0.25‰ 贴花。</div>
+    </div>
+    <footer><span>第 11 章 增资扩股之股权融资</span><span><span class="src">案例 16 吉祥航空</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 10 第11章 B 对赌与不公允 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">10</div>
+      <div>
+        <h3>第 11 章｜对赌失败怎么办：退钱还是退股，对谁退</h3>
+        <p class="sub">对赌是估值调整机制，补偿只是「把价格改回公允」。四种模型，两种结果，一套处理逻辑</p>
+      </div>
+      <div class="badge">CH 11 · 对赌四模型</div>
+    </div>
+    <div class="body">
+      <div class="col4" style="flex:0 0 auto">
+        <div class="card"><div class="k">模型 1 · 退钱＋对公司</div><h4>公司付补偿金</h4>
+          <p>投资方收到冲减<b>长期股权投资成本</b>；公司支付冲减<b>资本溢价</b>。双方均不确认所得。</p></div>
+        <div class="card"><div class="k">模型 2 · 退钱＋对股东</div><h4>原股东代付</h4>
+          <p>投资方仍冲减投资成本；原股东支付作<b>资本公积或往来款</b>，仍不确认所得。</p></div>
+        <div class="card"><div class="k">模型 3 · 退股＋对公司</div><h4>资本溢价定向转增</h4>
+          <p>调回持股比例：投资方<b>不缴税、也不调计税基础</b>；公司与其他股东无需处理。</p></div>
+        <div class="card"><div class="k">模型 4 · 退股＋对股东</div><h4>原股东 0 元转股</h4>
+          <p>属原投资行为的延续，双方均不确认所得，<b>计税基础不变</b>——但要能证明合理商业目的。</p></div>
+      </div>
+      <div class="col2" style="flex:1 1 auto">
+        <div class="card">
+          <div class="k">四种观点 · 只有一种站得住</div>
+          <h4>变更说：把补偿看作价格回调</h4>
+          <table class="tbl">
+            <tr><th style="width:22%">观点</th><th>主张</th><th style="width:30%">评价</th></tr>
+            <tr><td>捐赠说</td><td>投资方收到的是无偿捐赠，计收入</td><td>简单但粗暴</td></tr>
+            <tr><td>违约说</td><td>把股权合作当成合同违约，收违约金</td><td>夸张且无理</td></tr>
+            <tr><td>期权说</td><td>对赌条款本身当作期权单独定价</td><td>科学但复杂</td></tr>
+            <tr><td><b>变更说</b></td><td>补偿即价格回调：投资方冲减投资成本，支付方冲减资本溢价</td><td><b>合理且可行</b></td></tr>
+          </table>
+          <p style="margin-top:4px">四种观点的差别，说到底是「承认不承认估值被修正过」。变更说承认，所以收支环节都不确认所得。</p>
+        </div>
+        <div class="stack">
+          <div class="card gold">
+            <div class="k">RISK · 0 元转让 ＋ 不公允增资</div>
+            <h4>两个特别纳税调整的口子</h4>
+            <ul>
+              <li>0 元转股：须同时具备「无合理商业目的」和「减少应纳税收入」，才可能被调整——留存商业目的证据</li>
+              <li>不公允增资：低价增资实质是被稀释股东向新股东让渡净资产权益，<b>宁波等地从严重核定</b>，浙江、广东 12366 口径为不征</li>
+            </ul>
+          </div>
+          <div class="note plain"><b>公允价怎么算（1300 万净资产）</b>：W 不出资，要保住 1 235 万权益 → 增资后净资产须达 3 087.5 万 → <b>公允增资总额 1 787.5 万</b>（B 617.5 万、E 1 170 万）。实际出资远低于此，W 最多被认定让渡 <b>715 万</b>＝1300×(95%−40%)。</div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 11 章 增资扩股之股权融资</span><span><span class="src">对赌四模型 · 变更说 · 特别纳税调整（企业所得税法第 47 条）</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 11 第12章 A 留存收益转增 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">11</div>
+      <div>
+        <h3>第 12 章｜转增资本：先当分红，再当投资</h3>
+        <p class="sub">净资产四个科目，只有三个能转增。转增不是免税动作，税法上要拆成「视同分红＋再投资」两件事</p>
+      </div>
+      <div class="badge">CH 12 · 转增资本</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg">
+          <div class="cap">STRUCTURE · 转增的三条来源</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="n fill" style="min-width:380px"><b>公司净资产</b><span class="s">四科目：实收资本 / 资本公积 / 盈余公积 / 未分配利润</span></div>
+            <div class="varr"></div>
+            <div class="rowx" style="gap:10px;align-items:stretch">
+              <div class="n" style="min-width:170px">留存收益<span class="s">盈余公积＋未分配利润<br>已缴过企业所得税</span></div>
+              <div class="n gold" style="min-width:170px">资本溢价<span class="s">股东投入形成<br>未缴过税</span></div>
+              <div class="n" style="min-width:170px">其他资本公积<span class="s">看形成时是否已税</span></div>
+            </div>
+            <div class="varr"></div>
+            <div class="n sm" style="min-width:400px"><b>转增注册资本</b><span class="s">视同分红 ＋ 股东以分红款再投资</span></div>
+          </div>
+          <div class="note plain">判断顺序固定：<b>先看来源是否已税，再看股东是谁</b>。同样一笔转增，个人、居民企业、合伙企业三种结果。</div>
+        </div>
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">个人股东 · 留存收益转增</div>
+            <h4>20%，但四类公司可缓缴或免</h4>
+            <ul>
+              <li>中小高新技术企业：<b>5 个公历年度分期</b>缴纳，需备案</li>
+              <li>新三板挂牌公司：持股<b>超过 1 年免税</b></li>
+              <li>北交所上市公司：持股超过 1 年免税</li>
+              <li>其他上市公司：限售股<b>解禁起满 1 年</b>免税</li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <div class="k">企业股东与合伙企业</div>
+            <h4>免税 ＋ 可扣；合伙要穿到人</h4>
+            <ul>
+              <li>居民企业股东：符合条件的股息红利<b>免税</b>，且转增部分未来转股<b>可作成本扣除</b>——转增环节免税，转股环节扣除</li>
+              <li>合伙企业本身不缴税，穿透到合伙人：个人合伙人按<b>股息红利 20%</b>，公司合伙人<b>缴 25%</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 12 章 增资扩股之转增资本</span><span><span class="src">案例 18 尚美家装</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 12 第12章 B 资本溢价与其他 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">12</div>
+      <div>
+        <h3>第 12 章｜资本溢价转增：企业很清楚，个人还在吵</h3>
+        <p class="sub">企业股东「不征、不扣」是铁律；个人股东四种观点并存，分水岭是 2016 年 1 月 1 日</p>
+      </div>
+      <div class="badge">CH 12 · 争议区</div>
+    </div>
+    <div class="body">
+      <div class="col2">
+        <div class="card">
+          <div class="k">个人股东 · 四种观点</div>
+          <h4>有限公司 / 非公众股份公司 / 公众公司</h4>
+          <table class="tbl">
+            <tr><th></th><th>有限公司</th><th>非公众股份公司</th><th>公众公司</th></tr>
+            <tr><td>观点 1</td><td>不纳</td><td>不纳</td><td>不纳</td></tr>
+            <tr><td>观点 2</td><td>纳</td><td>不纳</td><td>不纳</td></tr>
+            <tr><td>观点 3</td><td>纳</td><td>2016 前不纳、之后纳</td><td>不纳</td></tr>
+            <tr><td>观点 4</td><td colspan="2">2016 前不纳，2016-01-01 起资本溢价/股本溢价转增<b>均纳税</b></td><td>不纳</td></tr>
+          </table>
+          <div class="note plain" style="margin-top:6px">政策脉络：国税发〔1997〕198 号 → 国税函〔1998〕289 号 → 国税发〔2010〕54 号 → 财税〔2015〕116 号、总局 2015 年第 80 号。实务主流取<b>观点 4</b>：非上市、非挂牌企业 2016 年起征 20%；上市与新三板股票溢价继续免税。</div>
+        </div>
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">居民企业股东 · 没有争议</div>
+            <h4>转增环节不征，转股环节不扣</h4>
+            <p>股权（票）溢价形成的资本公积转增股本，<b>不作为投资方股息红利收入</b>，也不得增加长期股权投资计税基础（国税函〔2010〕79 号）。</p>
+          </div>
+          <div class="card gold">
+            <div class="k">其他资本公积 · 看形成时是否已税</div>
+            <h4>跟着来源走，不跟着科目走</h4>
+            <ul>
+              <li><b>税后</b>其他资本公积（已在被投资公司缴过企业所得税）→ 视同留存收益：<b>免税 ＋ 转股可扣</b></li>
+              <li><b>未税</b>其他资本公积（股东权益性投入形成）→ 视同资本溢价：<b>不交 ＋ 转股不扣</b></li>
+              <li>无明文政策，属原理推论，实务需与主管税务机关沟通确认</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="note" style="flex:0 0 auto"><b>三来源 × 三股东 速记</b>：留存收益——个人 20%（四类可缓免）／企业免税可扣／合伙穿透；资本溢价——个人 2016 起 20%（上市挂牌免）／企业不征不扣／合伙穿透同个人；其他资本公积——先判断题，再套前两行的规则。</div>
+    </div>
+    <footer><span>第 12 章 增资扩股之转增资本</span><span><span class="src">案例 19 三只松鼠 · 案例 20 无欢影视</span>　<span class="pg"></span></span></footer>
   </div>
 
 </div>
 </div>
-<div class="progress" id="progress"></div>
 <script>
 const slides=document.querySelectorAll('.slide');
 let idx=0;
 function render(){
   slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
-  slides.forEach((s,i)=>{const f=s.querySelector('footer');if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;});
-  const p=document.getElementById('progress');
-  if(p)p.style.width=((idx+1)/slides.length*100)+'%';
+  slides.forEach((s,i)=>{const f=s.querySelector('footer .pg');if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;});
 }
 document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){idx=Math.min(idx+1,slides.length-1);render()}
   if(e.key==='ArrowLeft'||e.key==='PageUp'){idx=Math.max(idx-1,0);render()}
 });
 document.querySelector('.slide-wrap').addEventListener('click',e=>{
-  const rect=e.target.getBoundingClientRect();
-  if(e.clientX-rect.left>rect.width/2) idx=Math.min(idx+1,slides.length-1);
-  else idx=Math.max(idx-1,0);
+  if(e.target.closest('a'))return;
+  const r=e.target.getBoundingClientRect();
+  if(e.clientX-r.left>r.width/2) idx=Math.min(idx+1,slides.length-1); else idx=Math.max(idx-1,0);
   render();
 });
 render();
@@ -153,8 +808,7 @@ function fit(){
   const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
   document.querySelector('.slide-wrap').style.transform='translate(-50%,-50%) scale('+s+')';
 }
-window.addEventListener('resize',fit);
-fit();
+window.addEventListener('resize',fit);fit();
 </script>
 </body>
 </html>
