@@ -3,149 +3,726 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>重组与并购涉税 · 集团税务价值</title>
+<title>投融资 · 增资扩股涉税 · 第二部分 公司扩张</title>
 <style>
-/* emerald-editorial template | 与 group-tax deck 统一风格 */
-@font-face{font-family:'Noto Serif SC';src:url('fonts/notoserif-cn-r5.woff2') format('woff2');font-weight:300 700;font-display:swap}
-@font-face{font-family:'Noto Sans SC';src:url('fonts/notosans-cn-r5.woff2') format('woff2');font-weight:300 700;font-display:swap}
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-r.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Deck Serif';src:url('fonts/notoserif-sc-shared-sb.woff2') format('woff2');font-weight:500 700;font-display:swap}
 :root{
-  --bg:#f8f6f0;
-  --text:#2c302c;
-  --accent:#205c47;
-  --gold:#b89758;
-  --muted:#646b64;
-  --card:#ffffffdd;
-  --stroke:#dcd8cc;
-  --gold-soft:#fff2cc;
-  --gold-line:#e6b85c;
-  --serif:"Noto Serif SC",serif;
-  --mono:"SF Mono",Consolas,"Noto Sans SC",monospace;
+  --bg:#f8f6f0;--text:#2c302c;--accent:#205c47;--gold:#b89758;--muted:#646b64;
+  --card:#ffffff;--gold-soft:#fff2cc;--gold-line:#e6b85c;--line:#dcd8cc;
+  --serif:"Deck Serif","Noto Serif SC",Songti SC,SimSun,serif;
+  --mono:"SF Mono",Consolas,ui-monospace,"Deck Serif",monospace;
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;padding:0;font-family:var(--serif);background:var(--bg);color:var(--text)}
 .stage{position:relative;width:100vw;height:100vh;overflow:hidden}
 .slide-wrap{position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform-origin:center;transform:translate(-50%,-50%) scale(1)}
-.slide{position:absolute;inset:0;padding:82px 96px 104px;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;display:flex;flex-direction:column}
+.slide{position:absolute;inset:0;padding:76px 96px 88px;opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;display:flex;flex-direction:column;background:var(--bg)}
 .slide.active{opacity:1;visibility:visible}
-.slide.cover{justify-content:center}
-h1{font-size:72px;font-weight:600;color:var(--accent);margin:0 0 26px;letter-spacing:-.01em}
-h2{font-size:34px;font-weight:500;color:var(--gold);margin:0 0 32px}
-p,li{font-size:22px;line-height:1.7;color:var(--text);margin:0}
+p,li{font-size:21px;line-height:1.65;color:var(--text);margin:0}
+.hdr{display:flex;align-items:flex-end;gap:20px;padding-bottom:14px;border-bottom:1px solid var(--line);flex:0 0 auto}
+.hdr .num{flex:0 0 auto;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#f8f6f0;font-family:var(--mono);font-size:21px}
+.hdr h3{margin:0;font-size:36px;font-weight:600;color:var(--accent);line-height:1.22}
+.hdr .sub{margin:6px 0 0;font-size:17px;color:var(--muted);line-height:1.45}
+.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:13px;color:var(--accent);border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:999px;padding:7px 16px;font-family:var(--mono);white-space:nowrap}
+.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:14px;margin-top:18px}
+footer{font-family:var(--mono);font-size:12.5px;letter-spacing:.5px;color:var(--muted);flex:0 0 auto;padding-top:10px;border-top:1px solid var(--line);margin-top:10px;display:flex;justify-content:space-between;gap:24px}
+footer .src{opacity:.85}
+.back{position:absolute;left:96px;top:40px;font-family:var(--mono);font-size:14px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--gold-line);padding-bottom:2px}
 
-.hdr{display:flex;align-items:center;gap:22px;padding-bottom:20px;border-bottom:1px solid var(--stroke);flex:0 0 auto}
-.hdr .num{flex:0 0 auto;width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#f8f6f0;font-family:var(--mono);font-size:24px;letter-spacing:1px}
-.hdr h3{margin:0;font-size:44px;font-weight:600;color:var(--accent);line-height:1.2}
-.hdr .sub{margin:6px 0 0;font-size:20px;color:var(--muted)}
-.hdr .badge{margin-left:auto;flex:0 0 auto;font-size:17px;color:var(--accent);border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:999px;padding:8px 20px;font-family:var(--mono)}
+/* 布局 */
+.col2{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.col2.w6{grid-template-columns:1.25fr 1fr}
+.col3{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.col4{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stack{display:flex;flex-direction:column;gap:12px;min-height:0;justify-content:center}
+.stack>.card{flex:0 0 auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;display:flex;flex-direction:column;gap:6px;min-height:0}
+.card.gold{border-left:3px solid var(--gold-line)}
+.card.hi{background:#eef4f0;border-left:3px solid var(--accent)}
+.card h4{margin:0;font-size:23px;font-weight:600;color:var(--accent);line-height:1.3}
+.card h4 .g{color:var(--gold)}
+.card .k{font-family:var(--mono);font-size:11.5px;letter-spacing:1.2px;color:var(--gold)}
+.card ul{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.card ul li{font-size:17.5px;line-height:1.58;padding-left:14px;position:relative}
+.card ul li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.card ul li b{color:var(--accent);font-weight:600}
+.card p{font-size:17.5px;line-height:1.6}
+.card p b{color:var(--accent)}
 
-/* —— 封面 —— */
-.cover .eyebrow{font-family:var(--mono);font-size:20px;letter-spacing:3px;color:var(--gold);margin-bottom:22px}
-.cover .lede{font-size:26px;line-height:1.6;color:var(--muted);max-width:60ch;margin-top:8px}
-.cover .meta{display:flex;align-items:center;gap:16px;margin-top:44px}
-.pill{font-family:var(--mono);font-size:17px;letter-spacing:1px;padding:9px 22px;border-radius:999px;border:1px dashed var(--gold-line);background:var(--gold-soft);color:#7a5b12}
-.pill.solid{border-style:solid;border-color:var(--accent);background:transparent;color:var(--accent)}
+.note{background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:8px;padding:11px 17px;font-size:17px;line-height:1.6;flex:0 0 auto}
+.note b{color:#7a5a12}
+.note.plain{background:#f1f4f2;border-color:var(--line)}
 
-/* —— 占位骨牌 —— */
-.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:22px;margin-top:30px}
-.slots{display:grid;grid-template-columns:1fr 1fr;gap:26px;flex:1 1 auto;min-height:0}
-.slot{background:var(--card);border:1px dashed var(--stroke);border-radius:18px;padding:28px 30px;display:flex;flex-direction:column;gap:10px}
-.slot .k{font-family:var(--mono);font-size:15px;letter-spacing:2px;color:var(--gold)}
-.slot .t{font-size:28px;font-weight:600;color:var(--accent)}
-.slot .d{font-size:19px;line-height:1.6;color:var(--muted)}
-.slot .line{margin-top:auto;height:1px;background:repeating-linear-gradient(90deg,var(--stroke) 0 8px,transparent 8px 16px)}
+/* 表格 */
+.tbl{width:100%;border-collapse:collapse;font-size:16px}
+.tbl th{background:#eceee9;color:var(--accent);font-weight:600;text-align:left;padding:8px 11px;border:1px solid var(--line);font-size:15.5px}
+.tbl td{padding:7px 11px;border:1px solid var(--line);line-height:1.45;vertical-align:top}
+.tbl td b{color:var(--accent)}
+.tbl tr:nth-child(even) td{background:#fbfaf6}
+.tbl .c{text-align:center}
 
-.empty{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;border:1px dashed var(--stroke);border-radius:18px;background:#ffffffee}
-.empty .big{font-size:46px;font-weight:600;color:#c9c3b4}
-.empty .d{font-size:20px;color:var(--muted);text-align:center;line-height:1.7}
+/* 图 */
+.dg{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 20px;display:flex;flex-direction:column;min-height:0;gap:8px;justify-content:center}
+.dg .cap{font-family:var(--mono);font-size:11.5px;letter-spacing:1.2px;color:var(--gold);flex:0 0 auto}
+.dg .rowx{display:flex;align-items:center;justify-content:center;gap:10px;flex:0 0 auto}
+.dg .colx{display:flex;flex-direction:column;align-items:center;gap:0;flex:1 1 auto;justify-content:center;min-height:0}
+.n{background:#eef4f0;border:1px solid #c9d8ce;border-radius:8px;padding:9px 15px;font-size:17px;line-height:1.35;text-align:center;flex:0 0 auto}
+.n b{color:var(--accent);font-weight:600}
+.n.fill{background:var(--accent);border-color:var(--accent);color:#f8f6f0}
+.n.fill b{color:#fff}
+.n.gold{background:var(--gold-soft);border-color:var(--gold-line)}
+.n.dash{border-style:dashed;background:#fbfaf6}
+.n.sm{font-size:15px;padding:7px 12px}
+.n .s{display:block;font-size:15px;color:var(--muted);line-height:1.3;margin-top:2px}
+.n.fill .s{color:#d8e6de}
+.varr{position:relative;height:22px;width:100%;flex:0 0 auto}
+.varr::before{content:'';position:absolute;left:50%;margin-left:-9px;top:0;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:13px solid var(--gold)}
+.varr.lbl::after{content:attr(data-l);position:absolute;left:calc(50% + 12px);top:-2px;font-family:var(--mono);font-size:11px;color:var(--gold);white-space:nowrap}
+.vline{width:1px;height:12px;background:var(--gold-line);flex:0 0 auto}
+.harr{position:relative;width:32px;height:14px;flex:0 0 auto}
+.harr::before{content:'';position:absolute;left:12px;top:0;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid var(--gold)}
+.brace{position:relative;border-top:1px solid var(--gold-line);height:8px;flex:0 0 auto}
+.pin{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--gold-soft);border:1px solid var(--gold-line);font-family:var(--mono);font-size:12px;color:#7a5a12;flex:0 0 auto}
 
-.nav-hint{position:absolute;right:96px;bottom:56px;font-family:var(--mono);font-size:15px;letter-spacing:1px;color:var(--muted)}
-footer{font-family:var(--mono);font-size:15px;letter-spacing:1px;color:var(--muted);text-align:center;flex:0 0 auto;padding-top:18px}
-.back{position:absolute;left:96px;top:52px;font-family:var(--mono);font-size:16px;letter-spacing:1px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--gold-line);padding-bottom:2px}
-.progress{position:fixed;left:0;bottom:0;height:3px;background:var(--gold);width:0;transition:width .3s ease;z-index:9}
+/* 追加组件：流程箭头、星级、明细小表 */
+.flow{display:flex;align-items:stretch;gap:0;flex:0 0 auto;width:100%}
+.flow .stp{flex:1 1 0;min-width:0;background:var(--card);border:1px solid var(--line);border-right:none;padding:10px 14px 10px 22px;position:relative;display:flex;flex-direction:column;gap:3px}
+.flow .stp:first-child{border-radius:8px 0 0 8px;padding-left:16px}
+.flow .stp:last-child{border-right:1px solid var(--line);border-radius:0 8px 8px 0}
+.flow .stp::after{content:'';position:absolute;right:-11px;top:50%;margin-top:-11px;width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:11px solid var(--line);z-index:2}
+.flow .stp:last-child::after{display:none}
+.flow .stp .k{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--gold)}
+.flow .stp .t{font-size:17px;font-weight:600;color:var(--accent);line-height:1.3}
+.flow .stp .d{font-size:14px;color:var(--muted);line-height:1.4}
+.flow .stp.hi{background:#eef4f0}
+.stars{color:var(--gold);letter-spacing:2px;font-size:15px}
+.mini-tbl{width:100%;border-collapse:collapse;font-size:15.5px}
+.mini-tbl th{background:#eceee9;color:var(--accent);text-align:left;padding:6px 9px;border:1px solid var(--line);font-size:15px}
+.mini-tbl td{padding:5px 9px;border:1px solid var(--line);line-height:1.4}
+.mini-tbl td.n1{color:#b04a2f;font-weight:600}
+.mini-tbl td.n0{color:var(--accent);font-weight:600}
+
+.bars{display:flex;height:38px;border-radius:7px;overflow:hidden;border:1px solid var(--line);flex:0 0 auto}
+.bars div{display:flex;align-items:center;justify-content:center;font-size:13.5px;color:#fff;font-weight:500;white-space:nowrap}
+.bars .b1{background:#2c6e54}.bars .b2{background:#5d8d78}.bars .b3{background:#b04a2f}.bars .b4{background:#b89758}.bars .b5{background:#5b6b64}
+
+.body:has(> .col3){justify-content:center}
+.col3{flex:0 0 auto}
+
+/* 收紧：图框与卡片按内容高度居中，不再拉满整列 */
+.n b{font-size:19px}
+
+.col2>.card{justify-content:center}
+.col2>.card.hi{justify-content:center}
 </style>
 </head>
 <body>
 <div class="stage">
 <div class="slide-wrap">
-
-  <!-- 封面 -->
-  <div class="slide cover">
+  <!-- ===== 01 总览 ===== -->
+  <div class="slide">
     <a class="back" href="./index.html">← 返回目录</a>
-    <div class="eyebrow">GROUP TAX VALUE · 03</div>
-    <h1>重组与并购涉税</h1>
-    <p class="lede">股权收购、资产收购、合并分立的税务处理与特殊性税务处理适用。</p>
-    <div class="meta">
-      <span class="pill">待建设 · IN PROGRESS</span>
-      <span class="pill solid">管理</span>
+    <div class="hdr">
+      <div class="num">01</div>
+      <div>
+        <h3>并购与重组：先分清「控制权变没变」</h3>
+        <p class="sub">股权架构调整前后实际控制人变了＝并购；没变＝重组。这一条线，决定了 03 与 04 两册的分界</p>
+      </div>
+      <div class="badge">PART 03+04 · 6 章 12 页</div>
     </div>
-    <div class="nav-hint">← → / 空格 翻页</div>
+    <div class="body">
+      <div class="dg" style="flex:1 1 auto;gap:12px;justify-content:center">
+        <div class="cap">M&A MAP · 第 20、21、25–28 章</div>
+        <div class="col3" style="flex:0 0 auto;gap:14px">
+          <div class="card hi" style="justify-content:center">
+            <div class="k">预先准备 · 第 20–21 章</div>
+            <h4>① 上市前的架构改造</h4>
+            <ul>
+              <li>顶层：直接架构变间接架构，三个方案税负 0／1.1 亿／0</li>
+              <li>底层：股东翻墙、子公司变孙公司</li>
+              <li><b>控制权没变，但路径不同，税差上亿</b></li>
+            </ul>
+            <p style="color:var(--gold);font-size:15.5px">重组</p>
+          </div>
+          <div class="card hi" style="justify-content:center">
+            <div class="k">交易落地 · 第 25–26 章</div>
+            <h4>② 协议条款怎么写</h4>
+            <ul>
+              <li>包税条款：纳税主体法定，负税主体约定</li>
+              <li>过渡期损益：归谁取决于股东会决议时点</li>
+              <li>承债条款：一句「债务由老股东承担」埋 1 000 万税</li>
+            </ul>
+            <p style="color:var(--gold);font-size:15.5px">并购</p>
+          </div>
+          <div class="card hi" style="justify-content:center">
+            <div class="k">对价设计 · 第 27–28 章</div>
+            <h4>③ 用什么付钱</h4>
+            <ul>
+              <li>换股：以本企业股权支付</li>
+              <li>置换：以控股企业股权支付</li>
+              <li><b>股权支付 ≥85%，才有递延的空间</b></li>
+            </ul>
+            <p style="color:var(--gold);font-size:15.5px">并购</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;flex:0 0 auto">
+          <div class="card" style="justify-content:center"><div class="k">第 20 章</div><h4 style="font-size:18px">顶层架构</h4><p style="font-size:14.5px;color:var(--muted)">直变间三方案</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 21 章</div><h4 style="font-size:18px">底层架构</h4><p style="font-size:14.5px;color:var(--muted)">翻墙与升层</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 25 章</div><h4 style="font-size:18px">并购协议</h4><p style="font-size:14.5px;color:var(--muted)">8 类涉税条款</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 26 章</div><h4 style="font-size:18px">承债式收购</h4><p style="font-size:14.5px;color:var(--muted)">承债条款的坑</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 27 章</div><h4 style="font-size:18px">换股并购</h4><p style="font-size:14.5px;color:var(--muted)">本企业股权支付</p></div>
+          <div class="card" style="justify-content:center"><div class="k">第 28 章</div><h4 style="font-size:18px">股权置换</h4><p style="font-size:14.5px;color:var(--muted)">控股企业股权支付</p></div>
+        </div>
+        <div class="note" style="flex:0 0 auto"><b>一本协议里有 8 类涉税条款</b>：承债、包税、过渡期损益、支付对价、付款时间、并购标的、分红、对赌。本册讲前五类中的四类；对赌与分红在第 11、15 章（02、04 分册）。</div>
+      </div>
+    </div>
+    <footer><span>管理 · 重组与并购涉税</span><span><span class="src">并购＝控制权变更；重组＝控制权不变</span>　<span class="pg"></span></span></footer>
   </div>
 
-  <!-- 第二章占位 -->
+  <!-- ===== 02 第20章 A 直变间三方案 ===== -->
   <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">02</div>
+      <div>
+        <h3>第 20 章｜直接持股变间接持股：同一个目标，三种走法</h3>
+        <p class="sub">阮氏兄弟要把公牛集团 60% 股权装进自己新设的良机公司——三条路的税负分别是 0、1.1 亿、0</p>
+      </div>
+      <div class="badge">CH 20 · 顶层架构</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 阮氏兄弟（案例 33）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="n" style="min-width:300px"><b>阮氏兄弟（自然人）</b><span class="s">直接持有公牛集团 60% 股权</span></div>
+            <div class="varr"></div>
+            <div class="n gold" style="min-width:300px"><b>良机公司（新设）</b><span class="s">持股平台，用于间接持股</span></div>
+            <div class="varr"></div>
+            <div class="n fill" style="min-width:300px"><b>公牛集团</b><span class="s">60% 股权需从个人名下移到良机公司名下</span></div>
+          </div>
+          <div class="note plain" style="margin-top:6px">三个方案的目标完全一样，区别只在<b>股权所有权有没有「过户」</b>——这是税负差别的唯一来源。</div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="k">方案一 · 股权转让</div><h4>平价转让，靠「正当理由」活</h4>
+            <ul><li>阮氏兄弟把 60% 股权按原价转让给良机公司</li>
+              <li>价格明显偏低，会被核定；<b>需与税务机关沟通正当理由</b></li>
+              <li>实务有成功案例，但结果取决于当地口径</li></ul>
+          </div>
+          <div class="card gold">
+            <div class="k">方案二 · 股权投资</div><h4>评估作价 6 亿，缴 1.1 亿</h4>
+            <ul><li>评估 → 签约 → 过户 → 工商增资，四步</li>
+              <li>按分解原理：视同销售 6 亿，再以 6 亿增资</li>
+              <li>个税约 <b>1.1 亿</b>，可备案<b>分 5 年</b>缴纳（财税〔2015〕41 号）</li></ul>
+          </div>
+          <div class="card hi">
+            <div class="k">方案三 · 增资扩股</div><h4>1 元／注册资本，原理上不交</h4>
+            <ul><li>阮氏兄弟出资 12 250.5 万设良机，良机再以 1 元／注册资本增资公牛</li>
+              <li>价格不公允，但不属于个人 9 类所得 → <b>原理上不征个税</b></li>
+              <li>需提前与主管税务机关确认口径</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 20 章 拟上市公司之顶层架构</span><span><span class="src">案例 33 公牛集团 · 财税〔2015〕41 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 03 第20章 B ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
     <div class="hdr">
       <div class="num">03</div>
       <div>
-        <h3>重组与并购涉税 · 内容框架</h3>
-        <p class="sub">先把骨架留好，内容后续逐页填充</p>
+        <h3>第 20 章｜增资扩股为什么不交税，反避税又为什么难启动</h3>
+        <p class="sub">不公允增资确实让个人「无税」拿到了间接持股，但税务机关要调整它，得先迈过两道门</p>
       </div>
-      <div class="badge">OUTLINE · TO BE FILLED</div>
+      <div class="badge">CH 20 · 反避税边界</div>
     </div>
     <div class="body">
-      <div class="slots">
-        <div class="slot">
-          <div class="k">SLOT 01 · MANAGEMENT</div>
-          <div class="t">交易结构</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
+      <div class="flow" style="flex:0 0 auto">
+        <div class="stp hi"><div class="k">STEP 01</div><div class="t">阮氏兄弟出资 12 250.5 万</div><div class="d">设立良机公司，注册资本 12 250.5 万</div></div>
+        <div class="stp"><div class="k">STEP 02</div><div class="t">良机以 1 元／注册资本增资公牛</div><div class="d">价格明显不公允，公牛股权转到良机名下</div></div>
+        <div class="stp gold"><div class="k">STEP 03</div><div class="t">个人环节：没有所得</div><div class="d">阮氏兄弟未取得任何对价，无纳税义务</div></div>
+      </div>
+      <div class="col2" style="flex:1 1 auto">
+        <div class="card">
+          <div class="k">门 1 · 是不是「所得」</div>
+          <h4>个税法只列举 9 类所得，增资不在其中</h4>
+          <ul>
+            <li>个人没有收到现金、实物或任何经济利益</li>
+            <li>股权从自己名下移到自己的公司名下，权益未减少</li>
+            <li>没有所得，就不产生纳税义务——这是第一道门</li>
+            <li>对比：若把这 60% 股权卖给外部第三方，就是「财产转让」，要缴 20%</li>
+            <li>关键差别在于交易对手是不是自己控制的公司</li>
+          </ul>
         </div>
-        <div class="slot">
-          <div class="k">SLOT 02 · MANAGEMENT</div>
-          <div class="t">一般性处理</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
-        </div>
-        <div class="slot">
-          <div class="k">SLOT 03 · MANAGEMENT</div>
-          <div class="t">特殊性处理</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
-        </div>
-        <div class="slot">
-          <div class="k">SLOT 04 · MANAGEMENT</div>
-          <div class="t">亏损与税基承继</div>
-          <div class="d">要点、依据、测算与案例待补</div>
-          <div class="line"></div>
+        <div class="card">
+          <div class="k">门 2 · 是不是「不当税收利益」</div>
+          <h4>一般反避税要求两个要件同时成立</h4>
+          <ul>
+            <li>不具有合理商业目的：本例有股权传承、股权激励、资本运作等真实目的</li>
+            <li>获取不当税收利益：调整后公牛分红给良机、再分给阮氏兄弟，<b>个人仍要缴 20%</b></li>
+            <li>税只是延后，并未消灭 → 国家税款没有流失</li>
+            <li>且反避税不是「核定价格」，而是要重新定性整笔交易，启动门槛很高</li>
+          </ul>
         </div>
       </div>
-      <div class="empty">
-        <div class="big">内容待建设</div>
-        <div class="d">确定本节提纲后，逐页补要点、法规依据与测算模型<br>（与集团税务价值其他章节共用同一套版式）</div>
-      </div>
+      <div class="note" style="flex:0 0 auto"><b>结论与风险</b>：两道门都过不去，实务主流认为不征税。<b>但这不是万能的</b>：不公允增资在宁波等地被从严核定（见 02 分册第 11 章），浙江、广东 12366 口径为不征。同一方案跨省结论可能相反，落地前务必书面向主管税务机关确认。</div>
     </div>
-    <footer></footer>
+    <footer><span>第 20 章 拟上市公司之顶层架构</span><span><span class="src">个人所得税法 · 一般反避税规则</span>　<span class="pg"></span></span></footer>
   </div>
 
+  <!-- ===== 04 第21章 A 股东翻墙 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">04</div>
+      <div>
+        <h3>第 21 章｜股东翻墙：四步算出比例，三条路径选税</h3>
+        <p class="sub">小股东本来在子公司层面持股，翻墙后改到母公司层面持股——比例不是拍脑袋定的，是一道分数</p>
+      </div>
+      <div class="badge">CH 21 · 股东翻墙</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 王大壮翻墙（案例 34）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="rowx" style="gap:12px;align-items:flex-start">
+              <div class="n" style="min-width:150px">墙前<span class="s">好老板 100% → 蓝天公司 90% → 大地公司<br>王大壮直接持大地 10%</span></div>
+              <div class="n gold" style="min-width:150px">墙后<span class="s">王大壮改持蓝天 2.4%<br>大地成为蓝天全资子公司</span></div>
+            </div>
+            <div class="varr"></div>
+            <div class="n fill" style="min-width:330px"><b>比例 ＝ 200 万 ÷ 8 200 万 ＝ 2.4%</b><span class="s">分子：大地估值 2 000 万 × 10%　分母：蓝天 8 000 万 ＋ 200 万</span></div>
+            <div class="note plain" style="margin-top:6px">四步：① 给子公司估值 ② 给母公司估值 ③ 定翻墙后比例 ④ 选重组路径。前两步是商业谈判，第三步是算术，<b>第四步才是税</b>。</div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="k">路径一 · 转让（简单，无优惠）</div>
+            <h4>两个方向都按原价转 → 两头都可能被核定</h4>
+            <ul><li>王大壮按原始出资额 50 万把 10% 转给蓝天</li>
+              <li>好老板按 50 万把蓝天 2.4% 转给王大壮（成本 60 万）</li>
+              <li>两笔都是平价或低价，<b>都可能被核定收入</b></li></ul>
+          </div>
+          <div class="card gold">
+            <div class="k">路径二 · 划转（不可取）</div>
+            <h4>没有对价，反而更像「白拿」</h4>
+            <ul><li>划出方：价格按 0 认定 → 核定收入</li>
+              <li>划入方蓝天：可能被认定<b>接受捐赠所得</b>，缴企业所得税</li>
+              <li>划入方王大壮：两观点——不属征税范围（笔者赞同）／偶然所得 20%</li></ul>
+          </div>
+          <div class="card hi">
+            <div class="k">路径三 · 投资（复杂，有优惠）</div>
+            <h4>唯一能落地的路：视同销售 ＋ 5 年分期</h4>
+            <ul><li>大地 10% 评估 200 万，投资蓝天增资</li>
+              <li>视同销售，个税（200−50）× 20% ＝ <b>30 万</b></li>
+              <li>备案后可 <b>5 年内分期</b>缴纳，缓解纳税资金压力</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 21 章 拟上市公司之底层架构</span><span><span class="src">案例 34 大地公司 · 财税〔2015〕41 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 05 第21章 B 子公司变孙公司 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">05</div>
+      <div>
+        <h3>第 21 章｜子公司变孙公司：划转的优惠，只给 100% 直接控制</h3>
+        <p class="sub">煌上煌集团把煌大食品「下放」到煌上煌名下，三条路里只有一条能拿到优惠，而且有前提</p>
+      </div>
+      <div class="badge">CH 21 · 架构升层</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 煌上煌（案例 35）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="n fill" style="min-width:330px"><b>煌上煌集团</b><span class="s">同时持有煌上煌与煌大食品</span></div>
+            <div class="varr"></div>
+            <div class="n gold" style="min-width:330px"><b>目标结构</b><span class="s">煌大食品 100% 股权 ↓ 转入煌上煌名下</span></div>
+            <div class="note plain" style="margin-top:6px">煌大食品：投资成本 1 000 万，账面净资产约 2 400 万，<b>评估价 3 000 万</b>。这个 3 000 万决定后面每一种路径的税。</div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="k">路径一 · 转让</div>
+            <h4>平价转＝等着被纳税调整</h4>
+            <ul><li>按 1 000 万平价转让，虽然母子公司可以协商，但税法上「亲兄弟明算账」</li>
+              <li>被调整后确认 <b>2 000 万</b>转让所得</li>
+              <li>好处：煌上煌的税收成本同步调到 3 000 万——<b>上家交税，下家可扣</b></li></ul>
+          </div>
+          <div class="card gold">
+            <div class="k">路径二 · 划转</div>
+            <h4>看着最省，却被前提卡死</h4>
+            <ul><li>划出方须视同销售确认收入</li>
+              <li>优惠只给 <b>100% 直接控制的母子公司之间</b>；煌上煌集团与煌上煌不是这种关系 → <b>不能享受</b></li>
+              <li>照常缴税，等于白折腾</li></ul>
+          </div>
+          <div class="card hi">
+            <div class="k">路径三 · 投资</div>
+            <h4>三类优惠可选，最灵活</h4>
+            <ul><li>煌大食品评估 3 000 万，投资增资煌上煌</li>
+              <li>视同销售，但可选<b>特殊重组／特定划转／五年分期</b>之一</li>
+              <li>特殊情况才有选择的余地——这就是投资路径的价值</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 21 章 拟上市公司之底层架构</span><span><span class="src">财税〔2009〕59 号 · 财税〔2014〕109 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 06 第25章 A 包税条款 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">06</div>
+      <div>
+        <h3>第 25 章｜包税条款：法院认，税务局不认</h3>
+        <p class="sub">合同里写「税费由买方承担」，这句约定的效力只在民法世界里，税务机关照样找卖方</p>
+      </div>
+      <div class="badge">CH 25 · 包税条款</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">TWO WORLDS · 一个条款，两个世界</div>
+          <div class="colx" style="gap:10px;flex:0 0 auto">
+            <div class="n" style="min-width:330px">民法世界（私法）<span class="s">平等主体、意思自治<br>法院认可双方约定谁最终掏钱 → 负税主体可自由约定</span></div>
+            <div class="varr"></div>
+            <div class="n gold" style="min-width:330px">行政法世界（公法）<span class="s">主体不平等、税收法定<br>纳税主体由法律直接规定，任何约定都改不了</span></div>
+            <div class="varr"></div>
+            <div class="n sm fill" style="min-width:330px">结果：税务机关仍向太重公司追税，太重公司再依合同向嘉和泰公司追偿</div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">一句话记住</div>
+            <h4>纳税主体是法定的，负税主体是约定的</h4>
+            <ul>
+              <li>纳税主体：谁去申报、谁被处罚，税法说了算</li>
+              <li>负税主体：钱最终谁出，合同说了算</li>
+              <li>两者在同一个交易里，但<b>在两套语言体系里</b></li>
+            </ul>
+          </div>
+          <div class="note"><b>实务用法</b>：包税条款不是不能签，但要知道它只解决「钱谁出」，不解决「税谁交」。买方要真包税，应在价款里预留、并在协议中约定<b>卖方不申报时的违约责任与追偿路径</b>，同时核对卖方的完税凭证后再付尾款。</div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 25 章 企业并购之并购协议</span><span><span class="src">案例 41 太重公司 · 纳税主体 vs 负税主体</span>　<span class="pg"></span></span></footer>
+  </div>
+  <!-- ===== 07 第25章 B 过渡期损益与付款时间 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">07</div>
+      <div>
+        <h3>第 25 章｜过渡期损益与付款时间：两个纯法律条款，其实是涉税条款</h3>
+        <p class="sub">评估基准日到交割日之间赚的钱归谁、什么时候确认收入——两处写法不同，税不一样</p>
+      </div>
+      <div class="badge">CH 25 · 条款涉税</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">TIMELINE · 帝都集团收购燃气公司（案例 42）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="rowx" style="gap:10px;align-items:stretch">
+              <div class="n sm" style="min-width:135px">评估基准日<span class="s">2013.12.31</span></div>
+              <div class="n sm gold" style="min-width:135px">过渡期<span class="s">又赚了 2 000 万</span></div>
+              <div class="n sm" style="min-width:135px">股权交割日<span class="s">2014.8.31</span></div>
+            </div>
+            <div class="varr"></div>
+            <div class="n fill" style="min-width:340px">税务检查后，燃气公司才决议分红<span class="s">距离股东变更登记已过去 1 年</span></div>
+            <div class="note plain" style="margin-top:6px"><b>结论</b>：收入性质不看钱叫什么名字，看<b>分红决议的时点</b>在股权变更之前还是之后。</div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="k">过渡期损益 · 归谁可以谈</div>
+            <h4>非上市自由约定，上市有硬要求</h4>
+            <ul>
+              <li>非上市公司：归属由股权转让协议自由约定</li>
+              <li>上市公司重大资产重组：用收益现值法等基于未来收益的估值方法，<b>过渡期收益归上市公司、亏损由交易对方补足</b></li>
+              <li><b>争议焦点</b>：2 000 万是股权转让收入（缴税）还是股息红利（免税）——取决于股东会决议时点，晚于变更登记就只能算转让收入</li>
+              <li><b>反向延伸</b>：若过渡期亏 2 000 万、由受让方补偿，则视同<b>退回股权转让款，冲减转让收入</b></li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <div class="k">付款时间 · 确认收入的时点与收钱无关</div>
+            <h4>公司看权责发生，个人看孰早</h4>
+            <ul>
+              <li><b>公司股东</b>（79 号）：协议生效 ＋ 完成股权变更登记，两个条件同时满足即确认全部收入——珠海中富 4 500 万，尾款 2 500 万未收，当年仍要全额计入</li>
+              <li><b>个人股东</b>（67 号）：六情形孰早，<b>协议签订生效即触发</b>，次月 15 日内申报——越博动力 7 650 万分两期付，第一期还没付就得申报</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 25 章 企业并购之并购协议</span><span><span class="src">国税函〔2010〕79 号 · 总局 2014 年第 67 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 08 第26章 承债式收购 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">08</div>
+      <div>
+        <h3>第 26 章｜承债式收购：一句「债务由老股东承担」，1000 万税</h3>
+        <p class="sub">协议写得很漂亮，会计也照做了——但税法把这个「不用还的钱」认成了所得</p>
+      </div>
+      <div class="badge">CH 26 · 承债条款</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 亿科置业收购杉杉地产（案例 45）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="n" style="min-width:320px"><b>张三（老股东）</b><span class="s">持股 100%，另借给公司 4 000 万</span></div>
+            <div class="varr"></div>
+            <div class="n gold" style="min-width:320px"><b>杉杉地产</b><span class="s">注册资本 1 000 万 · 土地历史成本 5 000 万（其中 4 000 万是借款）· 市价 1.5 亿</span></div>
+            <div class="varr"></div>
+            <div class="n sm fill" style="min-width:320px">协议第八条：签订前所有债务由张三承担清偿责任<span class="s">→ 会计冲销「其他应付款 4 000 万」，贷记「资本公积 4 000 万」→ 税局认定为捐赠或债务豁免所得，补 <b>25% ＝ 1 000 万</b></span></div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card hi">
+            <div class="k">三个正确方案 · 双赢</div>
+            <h4>先把钱还掉，再谈转让价</h4>
+            <table class="mini-tbl">
+              <tr><th>方案</th><th>步骤</th><th>个税</th></tr>
+              <tr><td>A · 老股东增资</td><td>张三增资 4 000 万 → 公司还债 → 1.5 亿转让</td><td>2 000 万</td></tr>
+              <tr><td>B · 收购方增资</td><td>亿科增资 4 000 万 → 公司还债 → 1.1 亿转让</td><td>2 000 万</td></tr>
+              <tr><td>C · 股权＋债权分别转</td><td>1.1 亿转股权 ＋ 4 000 万转债权</td><td>2 000 万</td></tr>
+            </table>
+          </div>
+          <div class="note"><b>差在哪</b>：原方案成本 1 000 万、收入 1.5 亿，个税 <b>2 800 万</b>；三个新方案成本与收入的组合变了，个税降到 <b>2 000 万</b>，还替子公司规避了未来补税风险。<b>承债条款不是不能写，写完必须保证「债」在税法上真的清了。</b></div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 26 章 企业并购之承债式收购</span><span><span class="src">案例 45 亿科置业 · 债务豁免所得</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 09 第27章 A 换股并购 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">09</div>
+      <div>
+        <h3>第 27 章｜换股并购：一笔交易，两副面孔</h3>
+        <p class="sub">站在收购方是「股权收购」，站在被收购方是「股权投资」——税负只落在后者的账上</p>
+      </div>
+      <div class="badge">CH 27 · 换股并购</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 星星收购月亮（案例 46）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="rowx" style="gap:12px;align-items:flex-start">
+              <div class="n" style="min-width:175px">收购方 · 星星公司<span class="s">增发 9 亿注册资本作对价<br>注册资本 1 亿 → 10 亿</span></div>
+              <div class="n gold" style="min-width:175px">被收购方 · 太阳公司<span class="s">把月亮 100% 股权作价 9 亿<br>投资进星星</span></div>
+            </div>
+            <div class="varr"></div>
+            <div class="n fill" style="min-width:330px"><b>月亮公司</b><span class="s">股东由太阳变星星，公司本身无纳税义务，只有印花税</span></div>
+            <div class="note plain" style="margin-top:6px"><b>股权支付有两种</b>：以<b>本企业</b>股权支付＝换股并购；以<b>控股企业</b>股权支付＝股权置换（下一章）。依据财税〔2009〕59 号。</div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="k">税负落点</div>
+            <h4>三方里只有一方要交税</h4>
+            <ul>
+              <li>收购方星星：除印花税外无其他纳税义务</li>
+              <li>标的月亮：股东变更，主体没变，无纳税义务</li>
+              <li><b>被收购方太阳：股权权属转移，须按公允价值确认视同销售收入</b></li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <div class="k">多付现金的代价</div>
+            <h4>混合支付里，现金部分是「硬税」</h4>
+            <ul>
+              <li>对价 = 股份 ＋ 现金时，先看现金够不够缴税</li>
+              <li>41 号文：取得现金补价的，<b>现金应优先用于缴税</b>，不足部分才能分期</li>
+              <li>股份有锁定期，不等于有纳税能力——这是最容易被忽略的判断</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 27 章 企业并购之换股并购</span><span><span class="src">案例 46 星星公司 · 财税〔2009〕59 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 10 第27章 B 个人与公司 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">10</div>
+      <div>
+        <h3>第 27 章｜被收购方是个人，还是公司：两条完全不同的递延路</h3>
+        <p class="sub">个人靠 41 号文的五年分期，公司靠 59 号文的特殊重组——但两者都有前提，不是想用就能用</p>
+      </div>
+      <div class="badge">CH 27 · 主体差异</div>
+    </div>
+    <div class="body">
+      <div class="col2" style="flex:0 0 auto">
+        <div class="card">
+          <div class="k">个人 · 蓝鼎控股收购高升科技（案例 47）</div>
+          <h4>15 亿对价 = 9 亿股份 ＋ 6 亿现金</h4>
+          <ul>
+            <li>于平等人以高升科技 100% 股权投资进蓝鼎，换取股份与现金</li>
+            <li>投资属于转让的一种形式 → 有「财产转让所得」</li>
+            <li>41 号文可 <b>5 个公历年度分期</b>，法规未要求均匀分摊，实务可争取递延到第 5 年</li>
+            <li><b>但本案不能递延</b>：取得 6 亿现金，须优先缴约 3 亿个税，现金足以覆盖 → 只能当期缴，实收现金只剩 3 亿</li>
+          </ul>
+          <div class="note plain" style="margin-top:4px"><b>锁定期陷阱</b>：9 亿股份锁 36 个月，不等于「缺乏纳税必要资金」——判断标准是<b>有没有拿到现金</b>，不是股份能不能卖。</div>
+        </div>
+        <div class="card gold">
+          <div class="k">公司 · 方正证券收购民族证券（案例 43）</div>
+          <h4>132.02 亿，全额股份支付</h4>
+          <ul>
+            <li>企业所得税是法人税制：资产所有权转移即有纳税义务，须按公允价确认视同销售收入</li>
+            <li>股份支付、锁 36 个月 → 适用 59 号文<b>特殊性税务处理</b></li>
+            <li>政泉控股等<b>无须确认所得</b>；但方正证券取得股权的计税基础按原基础确定</li>
+            <li><b>上家不交，下家不扣</b>——税负随计税基础一起转给了收购方</li>
+          </ul>
+          <div class="note plain" style="margin-top:4px"><b>选择权在双方</b>：同一重组业务的各方须<b>一致</b>适用特殊性或一般性处理，不能一边递延一边扣成本。</div>
+        </div>
+      </div>
+      <div class="col3" style="flex:0 0 auto;gap:14px">
+        <div class="card hi" style="align-items:center;text-align:center"><div class="k">个人 · 当期真要掏钱</div><h4 style="font-size:30px;color:#b04a2f">3 亿</h4><p style="font-size:15px;color:var(--muted)">15 亿对价里 6 亿现金，优先缴税</p></div>
+        <div class="card" style="align-items:center;text-align:center"><div class="k">公司 · 当期可以为零</div><h4 style="font-size:30px;color:var(--accent)">0</h4><p style="font-size:15px;color:var(--muted)">132.02 亿全额股份支付，走特殊重组</p></div>
+        <div class="card gold" style="align-items:center;text-align:center"><div class="k">共同代价</div><h4 style="font-size:24px;color:var(--accent)">计税基础不跟随</h4><p style="font-size:15px;color:var(--muted)">当期不缴，未来卖出时补；差额由下家承担</p></div>
+      </div>
+      <div class="note" style="flex:0 0 auto;margin-top:auto"><b>一句话区分</b>：个人的递延看「有没有拿到现金」，公司的递延看「股权支付够不够 85%」——判断依据不同，是一个案子两套思路。</div>
+    </div>
+    <footer><span>第 27 章 企业并购之换股并购</span><span><span class="src">财税〔2015〕41 号 · 总局 2015 年第 20 号 · 财税〔2009〕59 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 11 第28章 A 股权置换 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">11</div>
+      <div>
+        <h3>第 28 章｜股权置换：拿子公司的股权去付钱</h3>
+        <p class="sub">换股是用自己的股份付，置换是拿自己直接持有的子公司股权付——本质是两家互换个子公司</p>
+      </div>
+      <div class="badge">CH 28 · 股权置换</div>
+    </div>
+    <div class="body">
+      <div class="col2 w6">
+        <div class="dg" style="justify-content:center">
+          <div class="cap">STRUCTURE · 华创合成收购天地人和（案例 48）</div>
+          <div class="colx" style="gap:0;flex:0 0 auto">
+            <div class="rowx" style="gap:12px;align-items:flex-start">
+              <div class="n" style="min-width:175px">原方案 · 现金收购<span class="s">6 783.56 万买 48.65%<br>转让方税负约 1 330 万</span></div>
+              <div class="n gold" style="min-width:175px">新方案 · 股权置换<span class="s">以药之源 100% 股权置换<br>对价中无现金</span></div>
+            </div>
+            <div class="varr"></div>
+            <div class="n fill" style="min-width:330px"><b>天地人和药业 48.65% 股权</b><span class="s">转让方：威信制药 ＋ 骨圣生物，税收成本不到 1 500 万</span></div>
+          </div>
+          <div class="note plain" style="margin-top:6px">为什么换方案：转让方觉得 1 330 万税太重。<b>用股权付股权，就有机会让转让方不确认所得。</b></div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="k">定义要抠字眼</div>
+            <h4>「控股企业」＝直接持股的企业</h4>
+            <ul>
+              <li>依据总局 2010 年第 4 号：控股企业指由本企业<b>直接持有</b>股份的企业</li>
+              <li>所以置换＝两家公司把<b>直接持股的子公司</b>互换</li>
+              <li>可口公司用可乐公司 100% 股权，换吉祥公司持有的如意公司 100% 股权（作价 3 亿）——就是典型置换</li>
+            </ul>
+          </div>
+          <div class="card hi">
+            <div class="k">视角转换是关键</div>
+            <h4>谁收购谁，决定比例怎么算</h4>
+            <ul>
+              <li>华创合成视角：我收购了天地人和 48.65%</li>
+              <li>但特殊重组的比例要<b>反着看</b>：威信、骨圣以天地人和股权作对价，收购了药之源 100%</li>
+              <li>于是「收购股权比例」＝药之源 100%（≥50%），「股权支付比例」＝100%（≥85%）→ 两个门槛都过</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><span>第 28 章 企业并购之股权置换</span><span><span class="src">案例 48 华创合成 · 总局 2010 年第 4 号</span>　<span class="pg"></span></span></footer>
+  </div>
+
+  <!-- ===== 12 第28章 B 五道门与转嫁 ===== -->
+  <div class="slide">
+    <a class="back" href="./index.html">← 返回目录</a>
+    <div class="hdr">
+      <div class="num">12</div>
+      <div>
+        <h3>第 28 章｜特殊重组的五道门，和一笔被转嫁的税</h3>
+        <p class="sub">转让方省下的 1 330 万，三年后由收购方在转让环节补上——上家不交，下家必然不扣</p>
+      </div>
+      <div class="badge">CH 28 · 递延的代价</div>
+    </div>
+    <div class="body">
+      <div class="flow" style="flex:0 0 auto">
+        <div class="stp hi"><div class="k">DOOR 01</div><div class="t">合理商业目的</div><div class="d">不以减少、免除或推迟缴税为主要目的</div></div>
+        <div class="stp"><div class="k">DOOR 02</div><div class="t">收购股权 ≥50%</div><div class="d">不低于被收购企业全部股权的 50%</div></div>
+        <div class="stp"><div class="k">DOOR 03</div><div class="t">股权支付 ≥85%</div><div class="d">不低于交易支付总额的 85%</div></div>
+        <div class="stp"><div class="k">DOOR 04</div><div class="t">12 个月不改变经营</div><div class="d">重组后连续 12 个月内不改变实质经营活动</div></div>
+        <div class="stp"><div class="k">DOOR 05</div><div class="t">12 个月不转让</div><div class="d">取得股权的一方 12 个月内不转让所取得股权</div></div>
+      </div>
+      <div class="col2" style="flex:0 0 auto">
+        <div class="card hi">
+          <div class="k">幸福的威信制药</div>
+          <h4>省下 1 330 万，一分钱不用交</h4>
+          <ul>
+            <li>以 6 783.56 万卖掉 48.65% 股权，成本不到 1 500 万 → 原本要缴约 1 330 万企业所得税</li>
+            <li>改成股权置换后，五道门全过 → <b>不确认股权转让所得</b></li>
+            <li>置换的对价里没有现金，一分税都不用掏</li>
+            <li>对转让方而言，这是「用股权换股权」的最优解；对收购方而言，代价在几年后才显现</li>
+          </ul>
+        </div>
+        <div class="card gold">
+          <div class="k">悲伤的华创合成</div>
+          <h4>成本从 6 783.56 万变成 1 459.5 万</h4>
+          <ul>
+            <li>2019 年又用 7 420.5 万现金买下剩余 51.35%，合计投入 14 204.06 万</li>
+            <li>2020 年把 100% 股权以 <b>2 484 万</b>转给三叶投资</li>
+            <li>税法要求同一重组各方处理一致 → 华创合成也走特殊性处理，<b>48.65% 部分的计税基础只能按原基础 1 459.5 万</b></li>
+            <li>当年转让方的节税，变成了今天的多缴税</li>
+            <li>若当年把「未来卖出时的税」折进价格，这 5 300 万的税基差本可以在谈判桌上要回来</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col3" style="flex:0 0 auto;gap:14px">
+        <div class="card hi" style="align-items:center;text-align:center"><div class="k">转让方当年省税</div><h4 style="font-size:30px;color:var(--accent)">≈ 1 330 万</h4><p style="font-size:15px;color:var(--muted)">威信制药 ＋ 骨圣生物，一分未缴</p></div>
+        <div class="card" style="align-items:center;text-align:center"><div class="k">华创合成计税基础缩水</div><h4 style="font-size:30px;color:#b04a2f">5 324 万</h4><p style="font-size:15px;color:var(--muted)">6 783.56 − 1 459.5</p></div>
+        <div class="card gold" style="align-items:center;text-align:center"><div class="k">等于下家未来多缴</div><h4 style="font-size:30px;color:var(--accent)">≈ 1 331 万</h4><p style="font-size:15px;color:var(--muted)">5 324 × 25%，几乎回到原点</p></div>
+      </div>
+      <div class="note" style="flex:0 0 auto;margin-top:auto"><b>这就是 04 分册第 13 章那句话的另一个版本</b>：全链条看，税要么消失、要么迟到、要么转移。「递延」的代价几乎总是<b>计税基础不跟随</b>——所以谈特殊重组时，一定要把「下家未来卖出的税」算进交易价格。</div>
+    </div>
+    <footer><span>第 28 章 企业并购之股权置换</span><span><span class="src">财税〔2009〕59 号 · 总局 2010 年第 4 号 · 案例 48 华创合成</span>　<span class="pg"></span></span></footer>
+  </div>
 </div>
 </div>
-<div class="progress" id="progress"></div>
+</div>
 <script>
 const slides=document.querySelectorAll('.slide');
 let idx=0;
 function render(){
   slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
-  slides.forEach((s,i)=>{const f=s.querySelector('footer');if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;});
-  const p=document.getElementById('progress');
-  if(p)p.style.width=((idx+1)/slides.length*100)+'%';
+  slides.forEach((s,i)=>{const f=s.querySelector('footer .pg');if(f)f.textContent='Slide '+(i+1)+' / '+slides.length;});
 }
 document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){idx=Math.min(idx+1,slides.length-1);render()}
   if(e.key==='ArrowLeft'||e.key==='PageUp'){idx=Math.max(idx-1,0);render()}
 });
 document.querySelector('.slide-wrap').addEventListener('click',e=>{
-  const rect=e.target.getBoundingClientRect();
-  if(e.clientX-rect.left>rect.width/2) idx=Math.min(idx+1,slides.length-1);
-  else idx=Math.max(idx-1,0);
+  if(e.target.closest('a'))return;
+  const r=e.target.getBoundingClientRect();
+  if(e.clientX-r.left>r.width/2) idx=Math.min(idx+1,slides.length-1); else idx=Math.max(idx-1,0);
   render();
 });
 render();
@@ -153,8 +730,7 @@ function fit(){
   const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
   document.querySelector('.slide-wrap').style.transform='translate(-50%,-50%) scale('+s+')';
 }
-window.addEventListener('resize',fit);
-fit();
+window.addEventListener('resize',fit);fit();
 </script>
 </body>
 </html>
